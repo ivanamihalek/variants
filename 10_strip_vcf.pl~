@@ -1,0 +1,29 @@
+#! /usr/bin/perl -w	print;
+
+
+@ARGV ||
+    die "Usage:  $0  <file name> \n";
+
+$filename = $ARGV[0];
+open (IF, "<$filename" ) 
+    || die "Cno $filename: $!.\n";
+
+$reading = 0;
+while ( <IF> ) {
+
+    if (! $reading) {
+	print;
+        /^#CHROM/ && ($reading = 1);
+    } else {
+	print;
+	@aux = split '\t';
+	$newline = join '\t', @aux [0 .. 6];
+	$newline .= "\n";
+	$newline .-  @aux [8 .. 9];
+	print $newline;
+	exit;
+    }
+
+}
+
+close IF;

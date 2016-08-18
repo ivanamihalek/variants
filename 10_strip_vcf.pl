@@ -24,8 +24,8 @@ while ( <IF> ) {
     } else {
 	@aux = split '\t';
 	$newline = join "\t", @aux [0 .. 6];
-	$newline .= "\tINFO;\t"; #jannovar insists that this field cannot be 0 length
-	$newline .=  @aux [8 .. 9];
+	$newline .= "\t\t"; 
+	$newline .= join "\t", @aux [8 .. 9];
 	print OF $newline;
     }
 

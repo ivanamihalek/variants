@@ -21,7 +21,8 @@ open (IF, "<$new_filename" )
     || die "Cno $new_filename: $!.\n";
 
 $final_filename = $new_filename;
-$new_filename=~ s/\.vcf/.cleaned.vcf/;
+$final_filename=~ s/\.vcf/.cleaned.vcf/;
+
 open (OF, ">$final_filename" ) 
     || die "Cno $final_filename: $!.\n";
 

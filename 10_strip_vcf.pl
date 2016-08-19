@@ -34,7 +34,4 @@ while ( <IF> ) {
 close IF;
 
 
-print "next run\n";
-print "java -jar  /home/ivana/third/jannovar/jannovar-cli/target/jannovar-cli-0.17.jar  annotate -d /home/ivana/third/jannovar/data/hg19_ucsc.ser  --no-3-prime-shifting    -i  $outf\n";
-print "\n";
-print " ... follofed by  vcf anno ...\n";
+print "current pipe:  next run 12_jannovar.pl $outf\n";

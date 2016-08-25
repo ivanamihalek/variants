@@ -35,6 +35,5 @@ while (<IF> ) {
 close OF;
 close IF;
 
-print "wrote jannovar.cleaned.vcf\n";
 
 print "current pipe:  next run 14_vcfanno.pl $final_filename\n";

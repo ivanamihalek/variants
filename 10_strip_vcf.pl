@@ -24,7 +24,11 @@ while ( <IF> ) {
     } else {
 	@aux = split '\t';
 	$newline = join "\t", @aux [0 .. 6];
-	$newline .= "\tinfo\t";   # jannovar insists that this should not be of zero length
+	if $newline =~ /(DP=\d+)/ {
+	     $newline .= "\t$1\t"; 
+	} else {
+	    $newline .= "\tinfo\t";   # jannovar insists that this should not be of zero length
+	}
 	$newline .= join "\t", @aux [8 .. 9];
 	print OF $newline;
     }

@@ -14,4 +14,4 @@ my $stripped_filename  = strip_vcf($filename);
 my $jannovar_filename  = jannovar ($stripped_filename);
 my $annotated_filename = vcfanno  ($jannovar_filename);
 
-printf "final annptated file: $annotated_filename\n";
+printf "\nfinal annotated file: $annotated_filename\n\n";

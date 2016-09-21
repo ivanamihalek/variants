@@ -41,4 +41,6 @@ sub strip_vcf (@) {
 
     close IF;
     close OF;
+
+    return $outf;
 }

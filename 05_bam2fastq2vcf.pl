@@ -4,7 +4,7 @@
     die "Usage:  $0  <file name> \n";
 my $bamfile = $ARGV[0];
 my $qsort = $bamfile;
-$qsort =~ s/\.bam$/.qsort$/;
+$qsort =~ s/\.bam$/.qsort/;
 die "$bamfile  $qsort\n";
 
 ############

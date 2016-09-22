@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
-@ARGV>1 ||
+@ARGV ||
     die "Usage:  $0  <file name> \n";
-my @filename = @ARGV[0];
+my @filename = $ARGV[0];
 
 ############
 $samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";

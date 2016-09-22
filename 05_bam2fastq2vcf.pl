@@ -2,7 +2,10 @@
 
 @ARGV ||
     die "Usage:  $0  <file name> \n";
-my @filename = $ARGV[0];
+my $bamfile = $ARGV[0];
+my $qsort = $bamfile;
+$qsort =~ 's/\.bam$/.qsort$/';
+die "$bamfile  $qsort\n";
 
 ############
 $samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";
@@ -12,3 +15,5 @@ $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
 foreach ($samtools, $bam2fastq, $seqmule) {
     -e $_ || die "$_ not found\n";
 }
+
+$cmd = "$samtools sort -n ";

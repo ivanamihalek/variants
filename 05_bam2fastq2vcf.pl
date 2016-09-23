@@ -37,7 +37,7 @@ if (-e $fq1 && ! -z $fq1 && -e $fq2 && ! -z $fq2) {
 
 # here checking becomse a bot more involved,
 #  but then seqmule does its own checking
-$cmd  = "seqmule pipeline -N2 -capture default -threads 4 -e ";
+$cmd  = "seqmule pipeline -N 2 -capture default -threads 4 -e ";
 $cmd .= " --prefix $prefix -a $fq1 -b $fq2";
 print "running $cmd ...\n";
 (system $cmd) && die "error: $!\n";

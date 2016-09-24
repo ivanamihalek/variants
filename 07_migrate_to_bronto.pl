@@ -3,7 +3,7 @@
 
 
 @fastq_files = split "\n", `ls *end*fastq`;
-if (@fastq != 2) { 
+if (@fastq_files != 2) { 
     my $currentdir = `pwd`; chomp $currentdir;
     print "I expected exactyl 2 paired end fastq files.\n";
     print "Am I in the right directory? ($currentdir)\n";
@@ -15,12 +15,12 @@ mkdir 'movables';
 # collect fastq files
 foreach my $file (@fastq_files)  { 
    `gzip $file`;
-   `mv $filw movables`;
+   `mv $file movables`;
 }
 
 # collect alignment and variant files
-`mv *result/*.vcf* movables`
-`mv *result/*.realn.bam* movables`
+`mv *result/*.vcf* movables`;
+`mv *result/*.realn.bam* movables`;
 
 # caclulate md5sum and migrate
 chdir 'movables';

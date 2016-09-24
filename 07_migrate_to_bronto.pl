@@ -8,5 +8,5 @@ chdir 'movables';
 foreach $file (@files)  { 
     print "$file\n";
     `md5sum $file >> md5sums.bison`;
-    `scp  $file  ivana@brontosaurus.tch.harvard.edu:tray/`;
+    `scp  $file  ivana\@brontosaurus.tch.harvard.edu:tray/`;
 } 

@@ -24,9 +24,10 @@ foreach my $file (@fastq_files)  {
 
 # caclulate md5sum and migrate
 chdir 'movables';
+@files  = split "\n", `ls`;
+
 `touch md5sums.bison`;
 
-@files  = split "\n", `ls`;
 foreach my $file (@files)  { 
     print "$file\n";
     `md5sum $file >> md5sums.bison`;

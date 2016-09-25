@@ -46,4 +46,4 @@ foreach my $file (@files)  {
 
 `scp  md5sums.bison  ivana\@brontosaurus.tch.harvard.edu:tray/`;
 
-print "Next: data management pipeline, md5sum check\n";
+print "Next (on bronto): data management pipeline, md5sum check\n";

@@ -1,20 +1,26 @@
 #!/usr/bin/perl -w
 # `` = { } 
 
+@gzipped_fastq_files = split "\n", `ls *end*fastq.gz`;
+if (@gzipped_fastq_files != 2) { 
 
-@fastq_files = split "\n", `ls *end*fastq`;
-if (@fastq_files != 2) { 
-    my $currentdir = `pwd`; chomp $currentdir;
-    print "I expected exactyl 2 paired end fastq files.\n";
-    print "Am I in the right directory? ($currentdir)\n";
-    exit;
+    @fastq_files = split "\n", `ls *end*fastq`;
+    if (@fastq_files != 2) { 
+	my $currentdir = `pwd`; chomp $currentdir;
+	print "I expected exactyl 2 paired end fastq files.\n";
+	print "Am I in the right directory? ($currentdir)\n";
+	exit;
+    }
+    @gzipped_fastq_file  =  ();
+    foreach my $file (@fastq_files)  { 
+	`gzip $file`;
+	push @gzipped_fastq_file, $file.".gz";
+    }
 }
-
 mkdir 'movables';
 
 # collect fastq files
-foreach my $file (@fastq_files)  { 
-   `gzip $file`;
+foreach my $file (@gzipped_fastq_files)  { 
    `mv $file movables`;
 }
 

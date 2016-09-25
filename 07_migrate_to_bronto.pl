@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 # `` = { } [ ]
 $move_fastqs = 0;
-@ARGV && $ARGV[0] eq "fastq" && $move_fastqs = 1;
+@ARGV && $ARGV[0] eq "fastq" && ($move_fastqs = 1);
 
 mkdir 'movables';
 

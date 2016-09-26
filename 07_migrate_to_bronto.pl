@@ -18,7 +18,7 @@ if ($move_fastqs) {
 	    print "Am I in the right directory? ($currentdir)\n";
 	    exit;
 	}
-	@gzipped_fastq_file  =  ();
+	@gzipped_fastq_files  =  ();
 	foreach my $file (@fastq_files)  { 
 	    `gzip $file`;
 	    push @gzipped_fastq_files, $file.".gz";

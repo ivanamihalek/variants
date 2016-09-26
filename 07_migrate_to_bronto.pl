@@ -21,7 +21,7 @@ if ($move_fastqs) {
 	@gzipped_fastq_file  =  ();
 	foreach my $file (@fastq_files)  { 
 	    `gzip $file`;
-	    push @gzipped_fastq_file, $file.".gz";
+	    push @gzipped_fastq_files, $file.".gz";
 	}
     }
     # collect fastq files

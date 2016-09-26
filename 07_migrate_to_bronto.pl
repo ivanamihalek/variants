@@ -6,9 +6,11 @@ $move_fastqs = 0;
 mkdir 'movables';
 
 if ($move_fastqs) { 
-    @gzipped_fastq_files = split "\n", `ls *end*fastq.gz`;
+    my @gzipped_fastq_files = ();
+    my $ret  =  `ls *end*fastq.gz 2>/dev/null`;
+    $ret && (@gzipped_fastq_files = split "\n", `ls *end*fastq.gz`);
     if (@gzipped_fastq_files != 2) { 
-
+	
 	@fastq_files = split "\n", `ls *end*fastq`;
 	if (@fastq_files != 2) { 
 	    my $currentdir = `pwd`; chomp $currentdir;

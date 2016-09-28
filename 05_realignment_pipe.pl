@@ -21,8 +21,18 @@ for my $dir  ( '/data01', '/data02') {
 }
 
 $homedir || die "home dir not found for the year $year\n";
-#my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
 my $casedir = "$homedir/$year/$caseno";
 my $cmd     = "ls -d $casedir"; 
 my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-print "$ret \n";
+$ret==$casedir || die "$casedir not found\n";
+
+my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
+my $individual_dir = "$casedir/$boid";
+$cmd  = "ls -d $individual_dir"; 
+$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+$ret==$individual_dir || die "$individual_dir  not found\n";
+
+# find fastq - if we have fastq we start from there
+$cmd  = "find $individual_dir -name \"*fastq*\" "; 
+$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+print $ret;

@@ -80,6 +80,8 @@ my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
 
+    die "bleep\n";
+
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
     my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";

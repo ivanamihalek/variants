@@ -35,4 +35,11 @@ $ret eq $individual_dir || die "$individual_dir  not found\n";
 # find fastq - if we have fastq we start from there
 $cmd  = "find $individual_dir -name \"*fastq*\" "; 
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-print $ret;
+$ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
+
+foreach (split '\n', $ret) {
+    my @aux = split '\/';
+    my $fnm = pop @aux;
+    my $path = join "/", @aux;
+    print " $path  $fnm \n";
+}

@@ -54,9 +54,20 @@ foreach (split '\n', $ret) {
     $ret ||  die "No md5sum found for $path/$fnm\n";
     my $md5sum_bronto = $ret; chomp $md5sum_bronto;
     # downnload and check md5sum
-    `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
+    (-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
-    push @fastqs, $fnm;
     print "downloaded $fnm, checksum checks\n";
+    # decmpress bz2; seqmule knows how to read gz itself
+    $fnm =~ /bz2$/ && `bz2 -d $fnm`;
+    push @fastqs, $fnm;
 }
+   
+my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
+
+my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
+(-e $seqmule && ! -z $seqmule) || die "$seqmule  not found";
+$cmd  = "$seqmule pipeline -N 2 -capture default -threads 4 -e ";
+$cmd .= "-prefix $boid -a $fastqs_sorted_alphabetically[0] -b $fastqs_sorted_alphabetically[1]";
+print "running:\n$cmd\n...\n";
+(system $cmd) && die "error: $!\n";

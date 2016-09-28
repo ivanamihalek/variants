@@ -9,12 +9,20 @@ use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 
 my ($year, $caseno, $individual) = @ARGV;
 
-for my  $cmd  ( 'ls /data01', 'ls /data02') {
+my $homedir = "";
+for my $dir  ( '/data01', 'data02') {
+    my $cmd = 'ls $dir';
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 
     foreach (split '\n', $ret) {
 	/$year/ || next;
-	print "$_\n";
+	$homedir = $dir;
     }
-
 }
+
+$homedir || die "home dir not found for the year $year\n";
+
+my $casedir = "$homedir/$year/$caseno";
+my $cmd     = 'ls $casedir'; 
+my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+print "$ret \n";

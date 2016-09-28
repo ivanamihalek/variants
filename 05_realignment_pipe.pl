@@ -23,6 +23,6 @@ for my $dir  ( '/data01', '/data02') {
 $homedir || die "home dir not found for the year $year\n";
 #my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
 my $casedir = "$homedir/$year/$caseno";
-my $cmd     = "ls $casedir"; 
+my $cmd     = "ls -d $casedir"; 
 my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 print "$ret \n";

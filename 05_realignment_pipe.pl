@@ -80,8 +80,6 @@ my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
 
-    die "bleep\n";
-
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
     my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
@@ -109,8 +107,6 @@ for ($vcf_path, $bam_path ) {
     $cmd = "mkdir -p $_/md5sums";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 }
-
-exit;
 
 foreach my $fnm (@uploadables) {
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;

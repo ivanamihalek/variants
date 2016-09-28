@@ -10,7 +10,7 @@ use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 my ($year, $caseno, $individual) = @ARGV;
 
 my $homedir = "";
-for my $dir  ( '/data01', 'data02') {
+for my $dir  ( '/data01', '/data02') {
     my $cmd = "ls $dir";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 

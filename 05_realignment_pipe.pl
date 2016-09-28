@@ -24,13 +24,13 @@ $homedir || die "home dir not found for the year $year\n";
 my $casedir = "$homedir/$year/$caseno";
 my $cmd     = "ls -d $casedir"; 
 my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-$ret==$casedir || die "$casedir not found\n";
+$ret eq $casedir || die "$casedir not found\n";
 
 my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
 my $individual_dir = "$casedir/$boid";
 $cmd  = "ls -d $individual_dir"; 
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-$ret==$individual_dir || die "$individual_dir  not found\n";
+$ret eq $individual_dir || die "$individual_dir  not found\n";
 
 # find fastq - if we have fastq we start from there
 $cmd  = "find $individual_dir -name \"*fastq*\" "; 

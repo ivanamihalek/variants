@@ -108,6 +108,8 @@ for ($vcf_path, $bam_path ) {
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 }
 
+exit;
+
 foreach my $fnm (@uploadables) {
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
     my $path = $bam_path;;

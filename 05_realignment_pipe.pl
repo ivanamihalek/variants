@@ -5,9 +5,9 @@ use variant_utils_pl::bam2fastq2vcf qw(bam2fastq2vcf);
 use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 
 
-@ARGV > 2 || die "Usage: $0 <year> <case number>\n";
+@ARGV ==3  || die "Usage: $0 <year> <case number> <individual>\n";
 
-my ($year, $caseno) = @ARGV;
+my ($year, $caseno, $individual) = @ARGV;
 
 for my  $cmd  ( 'ls /data01', 'ls /data02') {
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;

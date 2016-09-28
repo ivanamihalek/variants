@@ -47,7 +47,7 @@ foreach (split '\n', $ret) {
     my $path = join "/", @aux;
     print " $path  $fnm \n";
     # md5sum
-    $cmd = "cat $path/md5sums/$fnm.md5";
+    $cmd = "cat $path/md5sums/$fnm.md7";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    print "md5sum :", $ret;
+    print "md5sum: ", $ret;
 }

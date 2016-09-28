@@ -74,6 +74,7 @@ foreach (split '\n', $ret) {
 	}
     }
 }
+@fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
 
 my $logfile = "$boid.script";
 
@@ -91,4 +92,36 @@ if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
 
 `tail -n1 $logfile` =~ "finished" || die "there was a problem completing\n$cmd\ncheck the logfile $boid.script\n";
 
-# check if 
+chdir  "$boid\_result";
+my @uploadables = split '\n', `ls *vcf`;
+my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
+my $bai = $bam.".bai"; ; push @uploadables, $bai;
+my $vcf_path = "$casedir/wes/variants/called_by_seqmule_pipeline/";
+my $bam_path = "$casedir/wes/alignments/by_seqmule_pipeline/";
+
+for ($vcf_path, $bam_path ) {
+    $cmd = "mkdir -p $_";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    $cmd = "mkdir -p $_/md5sums";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+}
+
+foreach my $fnm (@uploadables) {
+    my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
+    my $path = $bam_path;;
+     (/vcf$/)  && ($path = $vcf_path);
+ 
+    `scp $fnm  ivana\@brontosaurus.tch.harvard.edu:$path`;
+    $cmd = "md5sum $fnm | cut -d ' ' -f 1 > $path/md5sums/$fnm.md5";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+
+    # checksum local
+    $cmd = "cat $path/md5sums/$fnm.md5";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    $ret ||  die "No md5sum found for $path/$fnm; it should have been calculated right now.\n";
+    my $md5sum_bronto = $ret; chomp $md5sum_bronto;
+
+    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
+    print "uploaded  $fnm, checksum checks\n";
+    
+}

@@ -13,6 +13,7 @@ for my  $cmd  ( 'ls /data01', 'ls /data02') {
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 
     foreach (split '\n', $ret) {
+	/$year/ || next;
 	print "$_\n";
     }
 

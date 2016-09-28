@@ -96,25 +96,26 @@ chdir  "$boid\_result";
 my @uploadables = split '\n', `ls *vcf`;
 my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
 my $bai = $bam.".bai"; ; push @uploadables, $bai;
-my $vcf_path = "$casedir/wes/variants/called_by_seqmule_pipeline/";
-my $bam_path = "$casedir/wes/alignments/by_seqmule_pipeline/";
+my $vcf_path = "$casedir/wes/variants/called_by_seqmule_pipeline";
+my $bam_path = "$casedir/wes/alignments/by_seqmule_pipeline";
 
 for ($vcf_path, $bam_path ) {
-    print "making path $vcf_path\n";
+    print "making path $_\n";
     $cmd = "mkdir -p $_";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-    print "making path $bam_path\n";
+    print "making path $_/md5sums\n";
     $cmd = "mkdir -p $_/md5sums";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 }
 
 foreach my $fnm (@uploadables) {
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
-    my $path = $bam_path;;
+    my $path = $bam_path;
     ($fnm =~ /vcf$/)  && ($path = $vcf_path);
  
     `scp $fnm  ivana\@brontosaurus.tch.harvard.edu:$path`;
     $cmd = "md5sum $fnm | cut -d ' ' -f 1 > $path/md5sums/$fnm.md5";
+    print "running on bronto: $cmd\n";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 
     # checksum local

@@ -11,7 +11,7 @@ my ($year, $caseno, $individual) = @ARGV;
 
 my $homedir = "";
 for my $dir  ( '/data01', 'data02') {
-    my $cmd = 'ls $dir';
+    my $cmd = "ls $dir";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 
     foreach (split '\n', $ret) {

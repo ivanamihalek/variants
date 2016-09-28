@@ -100,8 +100,10 @@ my $vcf_path = "$casedir/wes/variants/called_by_seqmule_pipeline/";
 my $bam_path = "$casedir/wes/alignments/by_seqmule_pipeline/";
 
 for ($vcf_path, $bam_path ) {
+    print "making path $vcf_path\n";
     $cmd = "mkdir -p $_";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    print "making path $bam_path\n";
     $cmd = "mkdir -p $_/md5sums";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 }
@@ -109,7 +111,7 @@ for ($vcf_path, $bam_path ) {
 foreach my $fnm (@uploadables) {
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
     my $path = $bam_path;;
-     (/vcf$/)  && ($path = $vcf_path);
+    ($fnm =~ /vcf$/)  && ($path = $vcf_path);
  
     `scp $fnm  ivana\@brontosaurus.tch.harvard.edu:$path`;
     $cmd = "md5sum $fnm | cut -d ' ' -f 1 > $path/md5sums/$fnm.md5";

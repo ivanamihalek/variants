@@ -33,8 +33,12 @@ $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp 
 $ret eq $individual_dir || die "$individual_dir  not found\n";
 
 # find fastq - if we have fastq we start from there
-$cmd  = "find $individual_dir -name \"*fastq*\" "; 
+$cmd  = "find $individual_dir -name \"*fastq.bz2\" "; 
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+if (!$ret) {    
+    $cmd  = "find $individual_dir -name \"*fastq.gz\" "; 
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+}
 $ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
 
 foreach (split '\n', $ret) {
@@ -42,4 +46,8 @@ foreach (split '\n', $ret) {
     my $fnm = pop @aux;
     my $path = join "/", @aux;
     print " $path  $fnm \n";
+    # md5sum
+    $cmd = "cat $path/md5sums/$fnm.md5";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    print "md5sum :", $ret;
 }

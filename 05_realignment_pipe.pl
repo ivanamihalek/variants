@@ -59,7 +59,7 @@ foreach (split '\n', $ret) {
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
     print "downloaded $fnm, checksum checks\n";
     # decmpress bz2; seqmule knows how to read gz itself
-    $fnm =~ /bz2$/ && `bz2 -d $fnm`;
+    $fnm =~ /bz2$/ && `bzip2 -d $fnm`;
     push @fastqs, $fnm;
 }
    

@@ -41,6 +41,8 @@ if (!$ret) {
 }
 $ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
 
+my @fastqs = ();
+
 foreach (split '\n', $ret) {
     my @aux = split '\/';
     my $fnm = pop @aux;
@@ -49,5 +51,12 @@ foreach (split '\n', $ret) {
     # md5sum
     $cmd = "cat $path/md5sums/$fnm.md7";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    print "md5sum: ", $ret;
+    $ret =~ "No such file"  && die "No md5sum found for $path/$fnm\n";
+    my $md5sum_bronto = $ret; chomp $md5sum_bronto;
+    # downnload and check md5sum
+    `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
+    my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
+    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
+    push @fastqs, $fnm;
+    print "downloaded $fnm, checksum checks\n";
 }

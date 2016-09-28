@@ -50,8 +50,8 @@ foreach (split '\n', $ret) {
     print " $path  $fnm \n";
     # md5sum
     $cmd = "cat $path/md5sums/$fnm.md7";
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    $ret =~ "No such file"  && die "No md5sum found for $path/$fnm\n";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    $ret ||  die "No md5sum found for $path/$fnm\n";
     my $md5sum_bronto = $ret; chomp $md5sum_bronto;
     # downnload and check md5sum
     `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;

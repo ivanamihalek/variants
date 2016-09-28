@@ -10,10 +10,10 @@ use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 my ($year, $caseno, $individual) = @ARGV;
 
 for my  $cmd  ( 'ls /data01', 'ls /data02') {
-    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 
-    foreach (split "\n", $ret) {
-	print "$ret\n";
+    foreach (split '\n', $ret) {
+	print "$_\n";
     }
 
 }

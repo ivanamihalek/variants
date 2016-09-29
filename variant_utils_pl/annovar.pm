@@ -7,9 +7,8 @@ sub annovar (@) {
     my $filename = $_[0];
 
     my $tmp_filename = "annov$$"; # $$ is the process id
-    $new_filename=~ s/\.vcf/.annov/; # annovar will add .vcf
     my $cmd = "/home/ivana/third/annovar/table_annovar.pl $filename  /home/ivana/third/annovar/humandb/ ";
-    $cmd .= " -buildver hg19 -out  $new_filename -protocol refGene  -operation g  -nastring . -vcfinput ";
+    $cmd .= " -buildver hg19 -out  $tmp_filename -protocol refGene  -operation g  -nastring . -vcfinput ";
    
     system ($cmd) && die "error running $cmd: $!\n";
     my $new_filename = $filename;

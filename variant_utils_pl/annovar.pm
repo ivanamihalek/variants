@@ -17,28 +17,8 @@ sub annovar (@) {
 
     $annovar_filename || die "no annovar output found (expected $tmp_filename*.vcf)\n";
     `mv $annovar_filename $new_filename`;
-    #`rm $tmp_filename*`;
+    `rm $tmp_filename*`;
 
-    exit;
-=pod
-    open (IF, "<$new_filename" ) 
-	|| die "Cno $new_filename: $!.\n";
-
-    my $final_filename = $new_filename;
-    $final_filename=~ s/\.vcf/.cleaned.vcf/;
-
-    open (OF, ">$final_filename" ) 
-	|| die "Cno $final_filename: $!.\n";
-
-    while (<IF> ) {
-
-	s/\(\=\)/?/g;
-	print OF;
-
-    }
-    close OF;
-    close IF;
-=cut
-    return $final_filename;
+    return $new_filename;
 
 }

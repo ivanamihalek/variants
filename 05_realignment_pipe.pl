@@ -114,7 +114,7 @@ foreach my $fnm (@uploadables) {
     ($fnm =~ /vcf$/)  && ($path = $vcf_path);
  
     `scp $fnm  ivana\@brontosaurus.tch.harvard.edu:$path`;
-    $cmd = "\'md5sum $path/$fnm | cut -d  ' ' -f 1 > $path/md5sums/$fnm.md5\'";
+    $cmd = "\"md5sum $path/$fnm | cut -d  ' ' -f 1 > $path/md5sums/$fnm.md5\"";
     print "echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'";
     exit;
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;

@@ -38,8 +38,7 @@ $ret eq $individual_dir || die "$individual_dir  not found\n";
 my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
-    my @fastqs = ();
-    find_fastqs (\@fastqs);
+    my @fastqs =  find_fastqs;
     printf "@fastqs\n";
     exit(1);
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
@@ -95,7 +94,7 @@ foreach my $fnm (@uploadables) {
 #######################################
 sub find_fastqs  {
     # find fastq - if we have fastq we start from there
-    my @fastqs = @{$_[0]};
+    my @fastqs = ();
     my $cmd  = "find $individual_dir -name \"*fastq.bz2\" "; 
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     if (!$ret) {    
@@ -136,4 +135,5 @@ sub find_fastqs  {
 	}
     }
     @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
+    return @fastqs;
 }

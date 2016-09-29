@@ -134,5 +134,6 @@ sub find_fastqs  {
 	}
     }
     printf "@fastqs\n";
+    exit(1);
     @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
 }

@@ -39,7 +39,7 @@ my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     my @fastqs = ();
-    find_fastqs
+    find_fastqs (\@fastqs);
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
     my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
@@ -93,6 +93,7 @@ foreach my $fnm (@uploadables) {
 #######################################
 sub find_fastqs  {
     # find fastq - if we have fastq we start from there
+    my @fastqs = @{$_[0]};
     my $cmd  = "find $individual_dir -name \"*fastq.bz2\" "; 
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     if (!$ret) {    

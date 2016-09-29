@@ -6,14 +6,19 @@ our @EXPORT_OK = qw(annovar);
 sub jannovar (@) {
     my $filename = $_[0];
 
-    my $new_filename = $filename;
+    my $tmp_filename = "annov$$"; # $$ is the process id
     $new_filename=~ s/\.vcf/.annov/; # annovar will add .vcf
     my $cmd = "/home/ivana/third/annovar/table_annovar.pl $filename  /home/ivana/third/annovar/humandb/ ";
     $cmd .= " -buildver hg19 -out  $new_filename -protocol refGene  -operation g  -nastring . -vcfinput ";
    
-    print "runnning: $cmd\n";
-
     system ($cmd) && die "error running $cmd: $!\n";
+    my $new_filename = $filename;
+    $new_filename=~ s/\.vcf/.annov.vcf/; # annovar will add .vcf
+    my $annovar_filename =  `ls $tmp_filename*.vcf`; chomp $annovar_filename;
+
+    $annovar_filename || die "no annovar output found (expected $tmp_filename*.vcf)\n";
+    `mv $annovar_filename $new_filename`;
+    #`rm $tmp_filename*`;
 
     exit;
 =pod

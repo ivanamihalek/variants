@@ -13,6 +13,6 @@ foreach my $filename ( @filenames) {
     my $stripped_filename  = strip_vcf($filename);
     my $annovar_filename   = annovar ($stripped_filename);
     my $annotated_filename = vcfanno  ($annovar_filename);
-
+    `rm  $stripped_filename $annovar_filename `;
     printf "\nfinal annotated file: $annotated_filename\n\n";
 }

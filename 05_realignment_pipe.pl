@@ -102,7 +102,6 @@ sub find_fastqs  {
     }
     $ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
 
-
     foreach (split '\n', $ret) {
 	my @aux = split '\/';
 	my $fnm = pop @aux;
@@ -134,5 +133,6 @@ sub find_fastqs  {
 	    }
 	}
     }
+    printf "@fastqs\n";
     @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
 }

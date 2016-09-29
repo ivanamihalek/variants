@@ -2,7 +2,7 @@
 use strict;
 use lib  '/home/ivana/pypeworks/variants';
 use variant_utils_pl::generic qw(strip_vcf);
-use variant_utils_pl::jannovar qw(jannovar);
+use variant_utils_pl::annovar qw(annovar);
 use variant_utils_pl::vcfanno  qw(vcfanno);
 
 @ARGV ||

@@ -96,8 +96,8 @@ chdir  "$boid\_result";
 my @uploadables = split '\n', `ls *vcf`;
 my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
 my $bai = $bam.".bai"; ; push @uploadables, $bai;
-my $vcf_path = "$casedir/wes/variants/called_by_seqmule_pipeline";
-my $bam_path = "$casedir/wes/alignments/by_seqmule_pipeline";
+my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
+my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 
 for ($vcf_path, $bam_path ) {
     print "making path $_\n";

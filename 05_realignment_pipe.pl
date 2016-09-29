@@ -4,6 +4,7 @@ use lib  '/home/ivana/pypeworks/variants';
 use variant_utils_pl::bam2fastq2vcf qw(bam2fastq2vcf);
 use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 
+sub find_fastqs;
 
 @ARGV ==3  || die "Usage: $0 <year> <case number> <individual>\n";
 
@@ -32,54 +33,13 @@ $cmd  = "ls -d $individual_dir";
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 $ret eq $individual_dir || die "$individual_dir  not found\n";
 
-# find fastq - if we have fastq we start from there
-$cmd  = "find $individual_dir -name \"*fastq.bz2\" "; 
-$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-if (!$ret) {    
-    $cmd  = "find $individual_dir -name \"*fastq.gz\" "; 
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-}
-$ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
 
-my @fastqs = ();
-
-foreach (split '\n', $ret) {
-    my @aux = split '\/';
-    my $fnm = pop @aux;
-    my $path = join "/", @aux;
-    print "$path  $fnm \n";
-    # md5sum
-    $cmd = "cat $path/md5sums/$fnm.md5";
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-    $ret ||  die "No md5sum found for $path/$fnm\n";
-    my $md5sum_bronto = $ret; chomp $md5sum_bronto;
-    # downnload and check md5sum
-    my $unzipped = $fnm;
-    $unzipped  =~ s/\.bz2$//;
-    $unzipped  =~ s/\.gz$//;
-    if ( -e $unzipped && ! -z $unzipped) { 
-	push @fastqs, $unzipped;
-    } else {
-	(-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
-	my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
-	$md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
-	print "downloaded $fnm, checksum checks\n";
-	# decmpress bz2; seqmule knows how to read gz itself
-	if ($fnm =~ /bz2$/) {
-	    printf "unzipping $fnm\n";
-	    `bzip2 -d $fnm`;
-	    push @fastqs, $unzipped;
-	} else {
-	    push @fastqs, $fnm;
-	}
-    }
-}
-@fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
 
 my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
-
+    my @fastqs = ();
+    find_fastqs
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
     my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
@@ -127,4 +87,51 @@ foreach my $fnm (@uploadables) {
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
     print "uploaded  $fnm, checksum checks\n";
     
+}
+
+
+#######################################
+sub find_fastqs  {
+    # find fastq - if we have fastq we start from there
+    my $cmd  = "find $individual_dir -name \"*fastq.bz2\" "; 
+    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    if (!$ret) {    
+	$cmd  = "find $individual_dir -name \"*fastq.gz\" "; 
+	$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    }
+    $ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
+
+
+    foreach (split '\n', $ret) {
+	my @aux = split '\/';
+	my $fnm = pop @aux;
+	my $path = join "/", @aux;
+	print "$path  $fnm \n";
+	# md5sum
+	$cmd = "cat $path/md5sums/$fnm.md5";
+	$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+	$ret ||  die "No md5sum found for $path/$fnm\n";
+	my $md5sum_bronto = $ret; chomp $md5sum_bronto;
+	# downnload and check md5sum
+	my $unzipped = $fnm;
+	$unzipped  =~ s/\.bz2$//;
+	$unzipped  =~ s/\.gz$//;
+	if ( -e $unzipped && ! -z $unzipped) { 
+	    push @fastqs, $unzipped;
+	} else {
+	    (-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
+	    my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
+	    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
+	    print "downloaded $fnm, checksum checks\n";
+	    # decmpress bz2; seqmule knows how to read gz itself
+	    if ($fnm =~ /bz2$/) {
+		printf "unzipping $fnm\n";
+		`bzip2 -d $fnm`;
+		push @fastqs, $unzipped;
+	    } else {
+		push @fastqs, $fnm;
+	    }
+	}
+    }
+    @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
 }

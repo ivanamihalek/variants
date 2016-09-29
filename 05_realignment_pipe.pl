@@ -40,6 +40,8 @@ my $logfile = "$boid.script";
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     my @fastqs = ();
     find_fastqs (\@fastqs);
+    printf "@fastqs\n";
+    exit(1);
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
     my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
@@ -133,7 +135,5 @@ sub find_fastqs  {
 	    }
 	}
     }
-    printf "@fastqs\n";
-    exit(1);
     @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
 }

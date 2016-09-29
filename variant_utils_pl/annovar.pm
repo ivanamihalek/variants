@@ -3,7 +3,7 @@ require Exporter;
 our @ISA = ("Exporter");
 our @EXPORT_OK = qw(annovar);
 
-sub jannovar (@) {
+sub annovar (@) {
     my $filename = $_[0];
 
     my $tmp_filename = "annov$$"; # $$ is the process id

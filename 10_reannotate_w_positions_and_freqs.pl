@@ -5,9 +5,8 @@ use variant_utils_pl::generic qw(strip_vcf);
 use variant_utils_pl::annovar qw(annovar);
 use variant_utils_pl::vcfanno  qw(vcfanno);
 
-@ARGV ||
-    die "Usage:  $0  <file name> [<file name 2> ...] \n";
-my @filenames = @ARGV;
+@ARGV==1 || die "Usage:  $0  <filename file>  \n";
+my @filenames = split "\n", `cat  $ARGV[0]`;
 
 foreach my $filename ( @filenames) {
     my $stripped_filename  = strip_vcf($filename);

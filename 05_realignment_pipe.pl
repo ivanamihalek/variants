@@ -212,6 +212,8 @@ sub fastqs_from_bam () {
 	(system $cmd) && die "error: $!\n";
     }
 
+    # remove bamfiles to make some room on the disk
+    `rm -f *.bam`;
     push @fastqs, $fq1;
     push @fastqs, $fq2;
 

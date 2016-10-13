@@ -5,11 +5,25 @@ use variant_utils_pl::bam2fastq2vcf qw(bam2fastq2vcf);
 use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 
 sub find_fastqs;
+sub fastqs_from_bam;
+
 
 @ARGV ==3  || die "Usage: $0 <year> <case number> <individual>\n";
 
 my ($year, $caseno, $individual) = @ARGV;
 
+##########################################
+# check we have all the tools needed
+$samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";
+$bam2fastq = "/home/ivana/third/bedtools2/bin/bamToFastq";
+$seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
+
+foreach ($samtools, $bam2fastq, $seqmule) {
+    -e $_ || die "$_ not found\n";
+}
+
+##########################################
+# find the directory on bronto
 my $homedir = "";
 for my $dir  ( '/data01', '/data02') {
     my $cmd = "ls $dir";
@@ -34,11 +48,14 @@ $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp 
 $ret eq $individual_dir || die "$individual_dir  not found\n";
 
 
-
+##########################################
+# check if the parts of the pipeline have already completed
 my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     my @fastqs =  find_fastqs;
+    @fastqs || (@fastqs =  fastqs_from_bam);
+    @fastqs || die "I could not locate neither fastq nor the bam file(s). Bailing out.\n";
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
     my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
@@ -51,6 +68,8 @@ if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
 
 `tail -n1 $logfile` =~ "finished" || die "there was a problem completing\n$cmd\ncheck the logfile $boid.script\n";
 
+##########################################
+# create paths on bronto
 chdir  "$boid\_result";
 my @uploadables = split '\n', `ls *vcf`;
 my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
@@ -67,6 +86,8 @@ for ($vcf_path, $bam_path ) {
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 }
 
+##########################################
+# upload to bronto
 foreach my $fnm (@uploadables) {
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
     my $path = $bam_path;
@@ -99,7 +120,10 @@ sub find_fastqs  {
 	$cmd  = "find $individual_dir -name \"*fastq.gz\" "; 
 	$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     }
-    $ret || die "No fastqs found. Write the part of the pipeline to start from *.bam\n";
+    if (!$ret ) {
+	printf "No fastqs (bz2 or gz) found. Will try to start from *.bam\n";
+	return @fastqs;
+    }
 
     foreach (split '\n', $ret) {
 	my @aux = split '\/';
@@ -133,5 +157,59 @@ sub find_fastqs  {
 	}
     }
     @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
+    return @fastqs;
+}
+
+#######################################
+sub fastqs_from_bam () {
+
+    my @fastqs = ();
+    my $cmd  = "find $individual_dir -name \"*.bam\" "; 
+    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    if (!$ret) {    
+	printf "No bam file found either.\n";
+	return @fastqs;
+    }
+    @lines = split '\n', $ret;
+    if ( @lines>1 ) {
+	printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
+	return @fastqs;
+    }
+
+    my @aux = split '\/', $lines[0];
+    my $bamfile = pop @aux;
+    my $path = join "/", @aux;
+    print "$path  $bamfile \n";
+    # md5sum
+    $cmd = "cat $path/md5sums/$bamfile.md5";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    $ret ||  die "No md5sum found for $path/$bamfile\n";
+    my $md5sum_bronto = $ret; chomp $md5sum_bronto;
+    (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;
+    my $md5sum_local = `md5sum $bamfile | cut -d " " -f 1`; chomp $md5sum_local;
+    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $bamfile\n";
+    print "downloaded $bamfile, checksum checks\n";
+
+    my $qsort_root = $bamfile;  $qsort_root =~ s/\.bam$/.qsort/;
+    my $qsort_file = $qsort_root.".bam";
+    if (-e $qsort_file and ! -z $qsort_file ) {
+	print "$qsort_file found.\n"
+    } else {
+	$cmd = "$samtools sort -n $bamfile $qsort_root";
+	print "running $cmd ...\n";
+	(system $cmd) && die "error: $!\n";
+    }
+    
+    if (-e $fq1 && ! -z $fq1 && -e $fq2 && ! -z $fq2) {
+	print "$fq1  and $fq2 files found\n";
+    } else {
+	$cmd = "$bam2fastq -i $qsort_file -fq $fq1  -fq2 $fq2";
+	print "running $cmd ...\n";
+	(system $cmd) && die "error: $!\n";
+    }
+
+    push @fastqs, $fq1;
+    push @fastqs, $fq2;
+
     return @fastqs;
 }

@@ -14,9 +14,9 @@ my ($year, $caseno, $individual) = @ARGV;
 
 ##########################################
 # check we have all the tools needed
-$samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";
-$bam2fastq = "/home/ivana/third/bedtools2/bin/bamToFastq";
-$seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
+my $samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";
+my $bam2fastq = "/home/ivana/third/bedtools2/bin/bamToFastq";
+my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
 
 foreach ($samtools, $bam2fastq, $seqmule) {
     -e $_ || die "$_ not found\n";
@@ -170,7 +170,7 @@ sub fastqs_from_bam () {
 	printf "No bam file found either.\n";
 	return @fastqs;
     }
-    @lines = split '\n', $ret;
+    my @lines = split '\n', $ret;
     if ( @lines>1 ) {
 	printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
 	return @fastqs;
@@ -199,7 +199,11 @@ sub fastqs_from_bam () {
 	print "running $cmd ...\n";
 	(system $cmd) && die "error: $!\n";
     }
-    
+     
+    my $fq1 = $bamfile; $fq1  =~ s/\.bam$/.end1.fastq/;
+    my $fq2 = $bamfile; $fq2  =~ s/\.bam$/.end2.fastq/;
+   
+
     if (-e $fq1 && ! -z $fq1 && -e $fq2 && ! -z $fq2) {
 	print "$fq1  and $fq2 files found\n";
     } else {

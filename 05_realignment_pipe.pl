@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 use lib  '/home/ivana/pypeworks/variants';
+use warnings;
 use variant_utils_pl::bam2fastq2vcf qw(bam2fastq2vcf);
 use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 

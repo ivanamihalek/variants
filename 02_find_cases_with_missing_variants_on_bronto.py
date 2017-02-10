@@ -33,10 +33,10 @@ def main():
         paths = []
         for toplevel_dir in ["/data01", "data02"]:
             paths += [path for path, dir, file in os.walk(toplevel_dir) if boid in dir]
-        if len(path) == 0:
+        if len(paths) == 0:
             print "No data found for %s" % boid
             continue
-        if len(path) > 1:
+        if len(paths) > 1:
             print "Data  for %s found in several places. THis might require some attention" % boid
             print "\n".join(paths)
             continue

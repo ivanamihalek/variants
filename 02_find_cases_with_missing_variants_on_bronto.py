@@ -40,7 +40,7 @@ def main():
             print "Data  for %s found in several places. THis might require some attention" % boid
             print "\n".join(paths)
             continue
-        print boid, path
+        print boid, paths
     return
 
 

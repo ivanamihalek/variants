@@ -40,8 +40,8 @@
       <file leaf-file-name="02_find_cases_with_missing_variants_on_bronto.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/02_find_cases_with_missing_variants_on_bronto.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="33" column="42" lean-forward="false" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+            <state relative-caret-position="1296">
+              <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
               <folding>
                 <element signature="e#19#29#0" expanded="true" />
               </folding>
@@ -71,8 +71,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="588" />
-    <option name="y" value="106" />
+    <option name="x" value="945" />
+    <option name="y" value="155" />
     <option name="width" value="2687" />
     <option name="height" value="1737" />
   </component>
@@ -291,7 +291,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="588" y="106" width="2687" height="1737" extended-state="0" />
+    <frame x="945" y="155" width="2687" height="1737" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2337179" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -340,8 +340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/02_find_cases_with_missing_variants_on_bronto.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="33" column="42" lean-forward="false" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+        <state relative-caret-position="1296">
+          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
           <folding>
             <element signature="e#19#29#0" expanded="true" />
           </folding>

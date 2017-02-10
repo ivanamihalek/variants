@@ -23,24 +23,32 @@ def find_boids_without_variants():
     return boids
 
 ####################################
+def find_dir(boid):
+    # find directory
+    paths = []
+    for toplevel_dir in ["/data01", "/data02"]:
+        paths += [path for path, dir, file in os.walk(toplevel_dir) if boid in dir]
+    if len(paths) == 0:
+        print "No data found for %s" % boid
+        return None
+    if len(paths) > 1:
+        print "Data  for %s found in several places. THis might require some attention" % boid
+        print "\n".join(paths)
+        return None
+
+    return paths[0]
+
+####################################
 def main():
     boids = find_boids_without_variants()
     if len(boids) == 0:
         print "All boids seem to have variants today."
         return
+
     for boid in boids:
-        # find directory
-        paths = []
-        for toplevel_dir in ["/data01", "/data02"]:
-            paths += [path for path, dir, file in os.walk(toplevel_dir) if boid in dir]
-        if len(paths) == 0:
-            print "No data found for %s" % boid
-            continue
-        if len(paths) > 1:
-            print "Data  for %s found in several places. THis might require some attention" % boid
-            print "\n".join(paths)
-            continue
-        print boid, paths
+        boid_dir = find_dir(boid)
+        if not boid_dir: continue
+        print boid, boid_dir
     return
 
 

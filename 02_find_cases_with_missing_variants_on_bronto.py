@@ -29,7 +29,7 @@ def find_dir(boid):
     # find directory
     paths = []
     for toplevel_dir in ["/data01", "/data02"]:
-        paths += [path for path, dir, file in os.walk(toplevel_dir) if boid in dir]
+        paths += [path for path, dirs, files in os.walk(toplevel_dir) if boid in dirs]
     if len(paths) == 0:
         if verbose: print "No data found for %s" % boid
         return None
@@ -52,12 +52,15 @@ def main():
         boid_dir = find_dir(boid)
         if not boid_dir: continue
         # do we have the variants?
-        vcfs = [file for path, dir, file in os.walk(boid_dir+"/"+boid) if "vcf" in file]
-        if len(vcfs) > 0:
-            print boid, boid_dir, vcfs
-        else:
-            bams = [file for path, dir, file in os.walk(boid_dir+"/"+boid) if "bam" in file]
-            print boid, boid_dir, bams
+        vcfs = []
+        bams = []
+        for path, dirs, files in os.walk(boid_dir+"/"+boid):
+            vcfs += [file for file in files if "vcf" in file]
+            bams += [file for file in files if "bam" in file]
+        print boid
+        print "vcfs: ", vcfs
+        print "bams: ", bams
+        print
         # if not, output the name
     return
 

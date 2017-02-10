@@ -53,7 +53,11 @@ def main():
         if not boid_dir: continue
         # do we have the variants?
         vcfs = [file for path, dir, file in os.walk(boid_dir+"/"+boid) if "vcf" in file]
-        print boid, boid_dir, vcfs
+        if len(vcfs) > 0:
+            print boid, boid_dir, vcfs
+        else:
+            bams = [file for path, dir, file in os.walk(boid_dir+"/"+boid) if "bam" in file]
+            print boid, boid_dir, bams
         # if not, output the name
     return
 

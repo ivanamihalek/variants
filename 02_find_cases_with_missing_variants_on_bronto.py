@@ -7,6 +7,8 @@ import  subprocess
 from  variant_utils_py.generic_utils import *
 from  variant_utils_py.mysqldb import *
 
+verbose = False
+
 ####################################
 def find_boids_without_variants():
     boids = []
@@ -29,11 +31,11 @@ def find_dir(boid):
     for toplevel_dir in ["/data01", "/data02"]:
         paths += [path for path, dir, file in os.walk(toplevel_dir) if boid in dir]
     if len(paths) == 0:
-        print "No data found for %s" % boid
+        if verbose: print "No data found for %s" % boid
         return None
     if len(paths) > 1:
-        print "Data  for %s found in several places. THis might require some attention" % boid
-        print "\n".join(paths)
+        if verbose: print "Data  for %s found in several places. This might require some attention" % boid
+        if verbose: print "\n".join(paths)
         return None
 
     return paths[0]
@@ -46,9 +48,13 @@ def main():
         return
 
     for boid in boids:
+        # can we locate where the related data is stored
         boid_dir = find_dir(boid)
         if not boid_dir: continue
-        print boid, boid_dir
+        # do we have the variants?
+        vcfs = [file for path, dir, file in os.walk(boid_dir+"/"+boid) if "vcf" in file]
+        print boid, boid_dir, vcfs
+        # if not, output the name
     return
 
 

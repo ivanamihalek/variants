@@ -31,7 +31,7 @@ def main():
     for boid in boids:
         # find directory
         paths = []
-        for toplevel_dir in ["/data01", "data02"]:
+        for toplevel_dir in ["/data01", "/data02"]:
             paths += [path for path, dir, file in os.walk(toplevel_dir) if boid in dir]
         if len(paths) == 0:
             print "No data found for %s" % boid

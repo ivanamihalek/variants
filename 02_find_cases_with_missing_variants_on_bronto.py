@@ -54,11 +54,18 @@ def main():
         # do we have the variants?
         vcfs = []
         bams = []
+        fastqs = []
         for path, dirs, files in os.walk(boid_dir+"/"+boid):
             vcfs += [file for file in files if "extract_consensus.vcf" in file]
-            bams += [file for file in files if "bam" in file]
-        if len(vcfs)==0:
-            print boid, "bams: ", "  ".join(bams)
+            bams += [file for file in files if file[-3:] == "bam"]
+            fastqs += [file for file in files if "fastq" in file]
+        if len(vcfs)>0: continue
+        print boid,
+        if len(bams)>0:
+            print "  ".join(bams),
+        elif len(fastqs)>0:
+            print  "  ".join(fastqs),
+        print
         # if not, output the name
     return
 

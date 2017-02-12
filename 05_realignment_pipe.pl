@@ -184,13 +184,13 @@ sub fastqs_from_bam () {
     $cmd = "cat $path/md5sums/$bamfile.md5";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
     if (!$ret) {
-        print "No md5sum found for $path/$fnm. Calculating ...\n";
-        $cmd = "\"md5sum $path/$fnm | cut -d  ' ' -f 1 > $path/md5sums/$fnm.md5\"";
+        print "No md5sum found for $path/$bamfile. Calculating ...\n";
+        $cmd = "\"md5sum $path/$bamfile | cut -d  ' ' -f 1 > $path/md5sums/$bamfile.md5\"";
         $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
         # checksum local
-        $cmd = "cat $path/md5sums/$fnm.md5";
+        $cmd = "cat $path/md5sums/$bamfile.md5";
         $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-        $ret || die "No md5sum found for $path/$fnm; it should have been calculated right now.\n";
+        $ret || die "No md5sum found for $path/$bamfile; it should have been calculated right now.\n";
     }
     my $md5sum_bronto = $ret; chomp $md5sum_bronto;
     (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;

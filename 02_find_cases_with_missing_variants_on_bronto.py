@@ -4,8 +4,8 @@ import sys
 import  os
 import  subprocess
 
-from  variant_utils_py.generic_utils import *
-from  variant_utils_py.mysqldb import *
+from variant_utils_py.generic_utils import *
+from variant_utils_py.mysqldb import *
 
 verbose = False
 
@@ -55,11 +55,13 @@ def main():
         vcfs = []
         bams = []
         for path, dirs, files in os.walk(boid_dir+"/"+boid):
-            vcfs += [file for file in files if "vcf" in file]
+            vcfs += [file for file in files if "extract_consensus.vcf" in file]
             bams += [file for file in files if "bam" in file]
         print boid
-        print "vcfs: ", vcfs
-        print "bams: ", bams
+        if len(vcfs)>0:
+            print "vcfs: ", vcfs
+        else:
+            print "bams: ", bams
         print
         # if not, output the name
     return

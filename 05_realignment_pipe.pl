@@ -96,8 +96,6 @@ foreach my $fnm (@uploadables) {
  
     `scp $fnm  ivana\@brontosaurus.tch.harvard.edu:$path`;
     $cmd = "\"md5sum $path/$fnm | cut -d  ' ' -f 1 > $path/md5sums/$fnm.md5\"";
-    #print "echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'";
-    #exit;
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
     # checksum local
     $cmd = "cat $path/md5sums/$fnm.md5";
@@ -182,9 +180,18 @@ sub fastqs_from_bam () {
     my $path = join "/", @aux;
     print "$path  $bamfile \n";
     # md5sum
+    # see if we already have one:
     $cmd = "cat $path/md5sums/$bamfile.md5";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-    $ret ||  die "No md5sum found for $path/$bamfile\n";
+    if (!$ret) {
+        print "No md5sum found for $path/$fnm. Calculating ...\n";
+        $cmd = "\"md5sum $path/$fnm | cut -d  ' ' -f 1 > $path/md5sums/$fnm.md5\"";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+        # checksum local
+        $cmd = "cat $path/md5sums/$fnm.md5";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+        $ret || die "No md5sum found for $path/$fnm; it should have been calculated right now.\n";
+    }
     my $md5sum_bronto = $ret; chomp $md5sum_bronto;
     (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;
     my $md5sum_local = `md5sum $bamfile | cut -d " " -f 1`; chomp $md5sum_local;

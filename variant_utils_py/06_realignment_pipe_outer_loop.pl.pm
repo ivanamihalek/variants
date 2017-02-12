@@ -8,9 +8,12 @@ my ($infile, $orkdir, $year) = @ARGV;
 for ($infile, $orkdir, $year) {
     (-e $_) || die "$_ not found\.n";
 }
+$orkdir =~ "current" || die "workir has no current in its path - sure you want to use it?\n";
 my $yr = substr $year, 2, 2;
 @boids = split "\n", `grep BO$yr $infile`;
 for my $boid (@boids) {
     print $boid, "\n";
+    # parse boid into year/case/individual (year I have already)
+    # run 05_relignment pipe year case individual
 }
 1;

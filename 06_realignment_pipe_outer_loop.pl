@@ -5,8 +5,8 @@ use warnings FATAL => 'all';
 #infile is just alist of boids
 @ARGV==3 || die "Usage: $0  <infile> <workdir> <year>.\n";
 my ($infile, $orkdir, $year) = @ARGV;
-for ($infile, $orkdir, $year) {
-    (-e $_) || die "$_ not found\.n";
+for ($infile, $orkdir) {
+    (-e $_) || die "$_ not found.\n";
 }
 $orkdir =~ "current" || die "workir has no current in its path - sure you want to use it?\n";
 my $yr = substr $year, 2, 2;

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/variant_utils_py/06_realignment_pipe_outer_loop.pl.pm" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe_outer_loop.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe_outer_loop.pl" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,8 +40,8 @@
       <file leaf-file-name="06_realignment_pipe_outer_loop.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe_outer_loop.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="432">
+              <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -79,6 +79,7 @@
         <option value="$PROJECT_DIR$/15_annotation_jumbopype.py" />
         <option value="$PROJECT_DIR$/02_find_cases_with_missing_variants_on_bronto.py" />
         <option value="$PROJECT_DIR$/variant_utils_py/06_realignment_pipe_outer_loop.pl.pm" />
+        <option value="$PROJECT_DIR$/06_realignment_pipe_outer_loop.pl" />
       </list>
     </option>
   </component>
@@ -422,8 +423,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06_realignment_pipe_outer_loop.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
           <folding />
         </state>
       </provider>

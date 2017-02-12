@@ -10,7 +10,7 @@ for ($infile, $orkdir, $year) {
 }
 $orkdir =~ "current" || die "workir has no current in its path - sure you want to use it?\n";
 my $yr = substr $year, 2, 2;
-@boids = split "\n", `grep BO$yr $infile`;
+my @boids = split "\n", `grep BO$yr $infile`;
 for my $boid (@boids) {
     print $boid, "\n";
     # parse boid into year/case/individual (year I have already)

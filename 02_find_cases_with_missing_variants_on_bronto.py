@@ -57,12 +57,8 @@ def main():
         for path, dirs, files in os.walk(boid_dir+"/"+boid):
             vcfs += [file for file in files if "extract_consensus.vcf" in file]
             bams += [file for file in files if "bam" in file]
-        print boid
-        if len(vcfs)>0:
-            print "vcfs: ", vcfs
-        else:
-            print "bams: ", bams
-        print
+        if len(vcfs)==0:
+            print boid, "bams: ", "  ".join(bams)
         # if not, output the name
     return
 

@@ -60,11 +60,12 @@ def main():
             bams += [file for file in files if file[-3:] == "bam"]
             fastqs += [file for file in files if "fastq" in file]
         if len(vcfs)>0: continue
-        print boid,
         if len(bams)>0:
-            print "  ".join(bams),
+            print boid, #"  ".join(bams),
         elif len(fastqs)>0:
-            print  "  ".join(fastqs),
+            print boid, #"  ".join(fastqs),
+        else:
+            print boid,
         print
         # if not, output the name
     return

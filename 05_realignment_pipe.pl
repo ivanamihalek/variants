@@ -179,6 +179,11 @@ sub find_fastqs  {
             print join ("\n", @fastqs);
             die "Unexpected naming convention for multiple fastq files: consider adapting the script. ";
         }
+        for my $i (0..scalar(@{$reads{"right"}}) {
+            print ${$reads{"left"}}[$i] . "      " . ${$reads{"right"}}[$i] ."\n";
+        }
+        exit;
+
         # if that is the case, proceed to unzip if needed, and concatenate
         for my $read_side ( "left", "right") {
             `touch $read_side.fastq`;
@@ -186,11 +191,14 @@ sub find_fastqs  {
                 if (/(.+)\.gz$/) {
                     `gunzip $_`;
                     `cat $1 >> $read_side.fastq`;
+                    #`rm $1`;
                 } elsif (/(.+)\.bz2$/) {
                     `bzip2 -d $_`;
                     `cat $1 >> $read_side.fastq`;
+                    #`rm $1`;
                 } else {
                     `cat $_ >> $read_side.fastq`;
+                    #`rm $_`;
                 }
             }
         }

@@ -139,14 +139,12 @@ sub find_fastqs  {
         printf "No fastqs (bz2 or gz) found. Will try to start from *.bam\n";
         return @fastqs;
     }
-    print " ***** $ret\n";
 
     foreach (split '\n', $ret) {
         my @aux = split '\/';
         my $fnm = pop @aux;
         my $path = join "/", @aux;
         my $unzipped = $fnm;
-        print "$fnm\n";
         $unzipped  =~ s/\.bz2$//;
         $unzipped  =~ s/\.gz$//;
         if ( -e $unzipped && ! -z $unzipped) {

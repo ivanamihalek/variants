@@ -179,11 +179,6 @@ sub find_fastqs  {
             print join ("\n", @fastqs);
             die "Unexpected naming convention for multiple fastq files: consider adapting the script. ";
         }
-        print join "\n", @{$reads{"left"}} ;
-        print "\n";
-        print join "\n", @{$reads{"right"}} ;
-        print "\n";
-        exit;
 
         # if that is the case, proceed to unzip if needed, and concatenate
         for my $read_side ( "left", "right") {

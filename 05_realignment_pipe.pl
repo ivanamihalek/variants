@@ -145,6 +145,7 @@ sub find_fastqs  {
         my $fnm = pop @aux;
         my $path = join "/", @aux;
         my $unzipped = $fnm;
+        print "$fnm\n";
         $unzipped  =~ s/\.bz2$//;
         $unzipped  =~ s/\.gz$//;
         if ( -e $unzipped && ! -z $unzipped) {

@@ -171,7 +171,9 @@ sub find_fastqs  {
         # the fastqs are not concatenated - not sure how that
         # can look in general, but I've seen cases with names labeled _R1_ and _R2_
         # if it is not the case, suggest modification of thei script
-        my %reads = ( "left" =>  grep {/_R1_/} @fastqs, "right" =>  grep {/_R2_/} @fastqs);
+        my %reads = ();
+        @{$reads{"left"}}  =  grep {/_R1_/} @fastqs;
+        @{$reads{"right"}} =  grep {/_R2_/} @fastqs;
 
         if ( scalar(@{$reads{"left"}})  + scalar(@{$reads{"right"}})  != scalar(@fastqs) ) {
             print join ("\n", @fastqs);

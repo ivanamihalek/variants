@@ -20,7 +20,7 @@ my $bam2fastq = "/home/ivana/third/bedtools2/bin/bamToFastq";
 my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
 
 foreach ($samtools, $bam2fastq, $seqmule) {
-    -e $_ || die "$_ not found\n";
+    -e $_ && ! -z $_ || die "$_ not found\n";
 }
 
 ##########################################
@@ -59,8 +59,6 @@ if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     @fastqs || die "I could not locate neither fastq nor the bam file(s). Bailing out.\n";
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
-    my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
-    (-e $seqmule && ! -z $seqmule) || die "$seqmule  not found";
     $cmd  = "$seqmule pipeline -N 2 -capture default -threads 4 -e ";
     $cmd .= "-prefix $boid -a $fastqs_sorted_alphabetically[0] -b $fastqs_sorted_alphabetically[1]";
     print "running:\n$cmd\n...\n";
@@ -108,6 +106,24 @@ foreach my $fnm (@uploadables) {
 
 }
 
+#######################################
+sub find_or_calculate_remote_md5sum(@) {
+    my ($path, $file) = @_;
+    # see if we already have one:
+    my $cmd = "cat $path/md5sums/$file.md5";
+    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    if (!$ret) {
+        print "No md5sum found for $path/$file. Calculating ...\n";
+        $cmd = "\"md5sum $path/$file | cut -d  ' ' -f 1 > $path/md5sums/$file.md5\"";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+        # checksum local
+        $cmd = "cat $path/md5sums/$file.md5";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+        $ret || die "No md5sum found for $path/$file; it should have been calculated right now.\n";
+    }
+    chomp $ret;
+    return  $ret;
+}
 
 #######################################
 sub find_fastqs  {
@@ -128,19 +144,15 @@ sub find_fastqs  {
         my @aux = split '\/';
         my $fnm = pop @aux;
         my $path = join "/", @aux;
-        print "$path  $fnm \n";
-        # md5sum
-        $cmd = "cat $path/md5sums/$fnm.md5";
-        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-        $ret ||  die "No md5sum found for $path/$fnm\n";
-        my $md5sum_bronto = $ret; chomp $md5sum_bronto;
-        # downnload and check md5sum
         my $unzipped = $fnm;
         $unzipped  =~ s/\.bz2$//;
         $unzipped  =~ s/\.gz$//;
         if ( -e $unzipped && ! -z $unzipped) {
             push @fastqs, $unzipped;
         } else {
+            # md5sum
+            my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $fnm);
+            # downnload and check md5sum
             (-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
             my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
             $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
@@ -186,7 +198,6 @@ sub find_fastqs  {
 }
 
 
-
 #######################################
 sub fastqs_from_bam () {
 
@@ -208,19 +219,7 @@ sub fastqs_from_bam () {
     my $path = join "/", @aux;
     print "$path  $bamfile \n";
     # md5sum
-    # see if we already have one:
-    $cmd = "cat $path/md5sums/$bamfile.md5";
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-    if (!$ret) {
-        print "No md5sum found for $path/$bamfile. Calculating ...\n";
-        $cmd = "\"md5sum $path/$bamfile | cut -d  ' ' -f 1 > $path/md5sums/$bamfile.md5\"";
-        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-        # checksum local
-        $cmd = "cat $path/md5sums/$bamfile.md5";
-        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-        $ret || die "No md5sum found for $path/$bamfile; it should have been calculated right now.\n";
-    }
-    my $md5sum_bronto = $ret; chomp $md5sum_bronto;
+    my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $bamfile);
     (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;
     my $md5sum_local = `md5sum $bamfile | cut -d " " -f 1`; chomp $md5sum_local;
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $bamfile\n";

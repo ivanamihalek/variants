@@ -172,15 +172,13 @@ sub find_fastqs  {
         # can look in general, but I've seen cases with names labeled _R1_ and _R2_
         # if it is not the case, suggest modification of thei script
         my %reads = ();
-        @{$reads{"left"}}  =  grep {/_R1_/} @fastqs;
-        @{$reads{"right"}} =  grep {/_R2_/} @fastqs;
+        @{$reads{"left"}}  = sort( grep {/_R1_/} @fastqs );
+        @{$reads{"right"}} = sort( grep {/_R2_/} @fastqs );
 
         if ( scalar(@{$reads{"left"}})  + scalar(@{$reads{"right"}})  != scalar(@fastqs) ) {
             print join ("\n", @fastqs);
             die "Unexpected naming convention for multiple fastq files: consider adapting the script. ";
         }
-        print join "\n", @fastqs;
-        print "\n";
         print join "\n", @{$reads{"left"}} ;
         print "\n";
         print join "\n", @{$reads{"right"}} ;

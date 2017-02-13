@@ -30,8 +30,8 @@
       <file leaf-file-name="05_realignment_pipe.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/05_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="162" column="32" lean-forward="true" selection-start-line="162" selection-start-column="32" selection-end-line="162" selection-end-column="32" />
+            <state relative-caret-position="687">
+              <caret line="163" column="16" lean-forward="false" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="16" />
               <folding>
                 <element signature="e#3264#4070#0#Perl5" expanded="false" />
                 <element signature="e#6612#6665#0#Perl5" expanded="true" />
@@ -500,8 +500,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/05_realignment_pipe.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="162" column="32" lean-forward="true" selection-start-line="162" selection-start-column="32" selection-end-line="162" selection-end-column="32" />
+        <state relative-caret-position="687">
+          <caret line="163" column="16" lean-forward="false" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="16" />
           <folding>
             <element signature="e#3264#4070#0#Perl5" expanded="false" />
             <element signature="e#6612#6665#0#Perl5" expanded="true" />

@@ -22,6 +22,6 @@ for my $boid (@boids) {
     my $case       = substr $boid, 4, 3;
     my $individual = substr $boid, 7, 2;
     `$realn $year $case $individual`;
-    `rm -f BO* seqmule*`;
+    `rm -rf BO* seqmule*`;
 }
 1;

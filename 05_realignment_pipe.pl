@@ -31,20 +31,20 @@ for my $dir  ( '/data01', '/data02') {
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 
     foreach (split '\n', $ret) {
-	/$year/ || next;
-	$homedir = $dir;
+        /$year/ || next;
+        $homedir = $dir;
     }
 }
 
 $homedir || die "home dir not found for the year $year\n";
 my $casedir = "$homedir/$year/$caseno";
-my $cmd     = "ls -d $casedir"; 
+my $cmd     = "ls -d $casedir";
 my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 $ret eq $casedir || die "$casedir not found\n";
 
 my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
 my $individual_dir = "$casedir/$boid";
-$cmd  = "ls -d $individual_dir"; 
+$cmd  = "ls -d $individual_dir";
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 $ret eq $individual_dir || die "$individual_dir  not found\n";
 
@@ -93,7 +93,7 @@ foreach my $fnm (@uploadables) {
     my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
     my $path = $bam_path;
     ($fnm =~ /vcf$/)  && ($path = $vcf_path);
- 
+
     `scp $fnm  ivana\@brontosaurus.tch.harvard.edu:$path`;
     $cmd = "\"md5sum $path/$fnm | cut -d  ' ' -f 1 > $path/md5sums/$fnm.md5\"";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
@@ -105,7 +105,7 @@ foreach my $fnm (@uploadables) {
 
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
     print "uploaded  $fnm, checksum checks\n";
-    
+
 }
 
 
@@ -113,49 +113,49 @@ foreach my $fnm (@uploadables) {
 sub find_fastqs  {
     # find fastq - if we have fastq we start from there
     my @fastqs = ();
-    my $cmd  = "find $individual_dir -name \"*fastq.bz2\" "; 
+    my $cmd  = "find $individual_dir -name \"*fastq.bz2\" ";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    if (!$ret) {    
-	$cmd  = "find $individual_dir -name \"*fastq.gz\" "; 
-	$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    if (!$ret) {
+        $cmd  = "find $individual_dir -name \"*fastq.gz\" ";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     }
     if (!$ret ) {
-	printf "No fastqs (bz2 or gz) found. Will try to start from *.bam\n";
-	return @fastqs;
+        printf "No fastqs (bz2 or gz) found. Will try to start from *.bam\n";
+        return @fastqs;
     }
 
     foreach (split '\n', $ret) {
-	my @aux = split '\/';
-	my $fnm = pop @aux;
-	my $path = join "/", @aux;
-	print "$path  $fnm \n";
-	# md5sum
-	$cmd = "cat $path/md5sums/$fnm.md5";
-	$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-	$ret ||  die "No md5sum found for $path/$fnm\n";
-	my $md5sum_bronto = $ret; chomp $md5sum_bronto;
-	# downnload and check md5sum
-	my $unzipped = $fnm;
-	$unzipped  =~ s/\.bz2$//;
-	$unzipped  =~ s/\.gz$//;
-	if ( -e $unzipped && ! -z $unzipped) { 
-	    push @fastqs, $unzipped;
-	} else {
-	    (-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
-	    my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
-	    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
-	    print "downloaded $fnm, checksum checks\n";
-	    # decmpress bz2; seqmule knows how to read gz itself
-	    if ($fnm =~ /bz2$/) {
-		printf "unzipping $fnm\n";
-		`bzip2 -d $fnm`;
-		push @fastqs, $unzipped;
-	    } else {
-		push @fastqs, $fnm;
-	    }
-	}
+        my @aux = split '\/';
+        my $fnm = pop @aux;
+        my $path = join "/", @aux;
+        print "$path  $fnm \n";
+        # md5sum
+        $cmd = "cat $path/md5sums/$fnm.md5";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+        $ret ||  die "No md5sum found for $path/$fnm\n";
+        my $md5sum_bronto = $ret; chomp $md5sum_bronto;
+        # downnload and check md5sum
+        my $unzipped = $fnm;
+        $unzipped  =~ s/\.bz2$//;
+        $unzipped  =~ s/\.gz$//;
+        if ( -e $unzipped && ! -z $unzipped) {
+            push @fastqs, $unzipped;
+        } else {
+            (-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
+            my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
+            $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
+            print "downloaded $fnm, checksum checks\n";
+            # decmpress bz2; seqmule knows how to read gz itself
+            if ($fnm =~ /bz2$/) {
+                printf "unzipping $fnm\n";
+                `bzip2 -d $fnm`;
+                push @fastqs, $unzipped;
+            } else {
+                push @fastqs, $fnm;
+            }
+        }
     }
-    @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n"; 
+    @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n";
     return @fastqs;
 }
 
@@ -163,16 +163,16 @@ sub find_fastqs  {
 sub fastqs_from_bam () {
 
     my @fastqs = ();
-    my $cmd  = "find $individual_dir -name \"*.bam\" "; 
+    my $cmd  = "find $individual_dir -name \"*.bam\" ";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    if (!$ret) {    
-	printf "No bam file found either.\n";
-	return @fastqs;
+    if (!$ret) {
+        printf "No bam file found either.\n";
+        return @fastqs;
     }
     my @lines = split '\n', $ret;
     if ( @lines>1 ) {
-	printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
-	return @fastqs;
+        printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
+        return @fastqs;
     }
 
     my @aux = split '\/', $lines[0];
@@ -201,23 +201,23 @@ sub fastqs_from_bam () {
     my $qsort_root = $bamfile;  $qsort_root =~ s/\.bam$/.qsort/;
     my $qsort_file = $qsort_root.".bam";
     if (-e $qsort_file and ! -z $qsort_file ) {
-	print "$qsort_file found.\n"
+        print "$qsort_file found.\n"
     } else {
-	$cmd = "$samtools sort -n $bamfile $qsort_root";
-	print "running $cmd ...\n";
-	(system $cmd) && die "error: $!\n";
+        $cmd = "$samtools sort -n $bamfile $qsort_root";
+        print "running $cmd ...\n";
+        (system $cmd) && die "error: $!\n";
     }
-     
+
     my $fq1 = $bamfile; $fq1  =~ s/\.bam$/.end1.fastq/;
     my $fq2 = $bamfile; $fq2  =~ s/\.bam$/.end2.fastq/;
-   
+
 
     if (-e $fq1 && ! -z $fq1 && -e $fq2 && ! -z $fq2) {
-	print "$fq1  and $fq2 files found\n";
+        print "$fq1  and $fq2 files found\n";
     } else {
-	$cmd = "$bam2fastq -i $qsort_file -fq $fq1  -fq2 $fq2";
-	print "running $cmd ...\n";
-	(system $cmd) && die "error: $!\n";
+        $cmd = "$bam2fastq -i $qsort_file -fq $fq1  -fq2 $fq2";
+        print "running $cmd ...\n";
+        (system $cmd) && die "error: $!\n";
     }
 
     # remove bamfiles to make some room on the disk

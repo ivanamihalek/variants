@@ -114,7 +114,7 @@ sub find_fastqs  {
     # find fastq - if we have fastq we start from there
     my @fastqs = ();
     my $cmd  = "find $individual_dir -name \"*fastq.bz2\" ";
-    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    my $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     if (!$ret) {
         $cmd  = "find $individual_dir -name \"*fastq.gz\" ";
         $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
@@ -155,9 +155,37 @@ sub find_fastqs  {
             }
         }
     }
-    @fastqs==2 || die "Unexpected number of fastqs:\n".(join "\n",@fastqs)."\n";
+    if (@fastqs!=2) {
+        # the fastqs are not concatenated - not sure how that
+        # can look in general, but I've seen cases with names labeled _R1_ and _R2_
+        # if it is not the case, suggest modification of thei script
+        my %reads = ( "left" =>  grep {/_R1_/} @fastqs, "right" =>  grep {/_R2_/} @fastqs);
+
+        if ( scalar(@{$reads{"left"}})  + scalar(@{$reads{"right"}})  != scalar(@fastqs) ) {
+            print join ("\n", @fastqs);
+            die "Unexpected naming convention for multiple fastq files: consider adapting the script. ";
+        }
+        # if that is the case, proceed to unzip if needed, and concatenate
+        for my $read_side ( "left", "right") {
+            `touch $read_side.fastq`;
+            for (@{$reads{$read_side}}) {
+                if (/(.+)gz$/) {
+                    `gunzip $_`;
+                    `cat $1 >> $read_side.fastq`
+                } elsif (/(.+)bz2$/) {
+                    `bzip2 -d $_`;
+                    `cat $1 >> $read_side.fastq`
+                } else {
+                    `cat $_ >> $read_side.fastq`
+                }
+            }
+        }
+        @fastqs = ("left.fastq", "right.fastq");
+    }
     return @fastqs;
 }
+
+
 
 #######################################
 sub fastqs_from_bam () {

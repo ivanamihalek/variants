@@ -21,7 +21,7 @@ for my $boid (@boids) {
     # run 05_relignment pipe year c
     my $case       = substr $boid, 4, 3;
     my $individual = substr $boid, 7, 2;
-    `$realn $year $case $individual`;
+    print `$realn $year $case $individual`;
     `rm -rf BO* seqmule*`;
 }
 1;

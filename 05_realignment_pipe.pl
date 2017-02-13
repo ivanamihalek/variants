@@ -179,6 +179,8 @@ sub find_fastqs  {
             print join ("\n", @fastqs);
             die "Unexpected naming convention for multiple fastq files: consider adapting the script. ";
         }
+        print join "\n", @fastqs;
+        print "\n";
         print join "\n", @{$reads{"left"}} ;
         print "\n";
         print join "\n", @{$reads{"right"}} ;

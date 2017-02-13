@@ -30,8 +30,8 @@
       <file leaf-file-name="05_realignment_pipe.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/05_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="175" column="41" lean-forward="false" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
+            <state relative-caret-position="1512">
+              <caret line="188" column="32" lean-forward="false" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
               <folding>
                 <element signature="e#3264#4070#0#Perl5" expanded="false" />
                 <element signature="e#6612#6665#0#Perl5" expanded="true" />
@@ -73,8 +73,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="548" />
-    <option name="y" value="111" />
+    <option name="x" value="316" />
+    <option name="y" value="136" />
     <option name="width" value="2908" />
     <option name="height" value="1978" />
   </component>
@@ -293,7 +293,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="548" y="111" width="2908" height="1978" extended-state="0" />
+    <frame x="316" y="136" width="2908" height="1978" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21595599" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -454,8 +454,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/05_realignment_pipe.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="175" column="41" lean-forward="false" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
+        <state relative-caret-position="1512">
+          <caret line="188" column="32" lean-forward="false" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
           <folding>
             <element signature="e#3264#4070#0#Perl5" expanded="false" />
             <element signature="e#6612#6665#0#Perl5" expanded="true" />

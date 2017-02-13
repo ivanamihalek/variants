@@ -183,14 +183,14 @@ sub find_fastqs  {
         for my $read_side ( "left", "right") {
             `touch $read_side.fastq`;
             for (@{$reads{$read_side}}) {
-                if (/(.+)gz$/) {
+                if (/(.+)\.gz$/) {
                     `gunzip $_`;
-                    `cat $1 >> $read_side.fastq`
-                } elsif (/(.+)bz2$/) {
+                    `cat $1 >> $read_side.fastq`;
+                } elsif (/(.+)\.bz2$/) {
                     `bzip2 -d $_`;
-                    `cat $1 >> $read_side.fastq`
+                    `cat $1 >> $read_side.fastq`;
                 } else {
-                    `cat $_ >> $read_side.fastq`
+                    `cat $_ >> $read_side.fastq`;
                 }
             }
         }

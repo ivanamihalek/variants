@@ -187,14 +187,14 @@ sub find_fastqs  {
                 if (/(.+)\.gz$/) {
                     `gunzip $_`;
                     `cat $1 >> $read_side.fastq`;
-                    #`rm $1`;
+                    `rm $1`;
                 } elsif (/(.+)\.bz2$/) {
                     `bzip2 -d $_`;
                     `cat $1 >> $read_side.fastq`;
-                    #`rm $1`;
+                    `rm $1`;
                 } else {
                     `cat $_ >> $read_side.fastq`;
-                    #`rm $_`;
+                    `rm $_`;
                 }
             }
         }

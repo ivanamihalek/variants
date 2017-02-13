@@ -179,7 +179,7 @@ sub find_fastqs  {
             print join ("\n", @fastqs);
             die "Unexpected naming convention for multiple fastq files: consider adapting the script. ";
         }
-        for my $i (0..scalar(@{$reads{"right"}}) {
+        for my $i (0..scalar(@{$reads{"right"}}) ){
             print ${$reads{"left"}}[$i] . "      " . ${$reads{"right"}}[$i] ."\n";
         }
         exit;

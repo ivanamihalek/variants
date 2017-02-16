@@ -145,6 +145,9 @@ sub find_fastqs  {
         my $fnm = pop @aux;
         my $path = join "/", @aux;
         my $unzipped = $fnm;
+        # the files in archive are empty placeholders - the actual files are on
+        # the archive server (Dropbox in our case)
+        $path =~ /archive/ && next;
         $unzipped  =~ s/\.bz2$//;
         $unzipped  =~ s/\.gz$//;
         if ( -e $unzipped && ! -z $unzipped) {

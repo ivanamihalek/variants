@@ -27,14 +27,8 @@ if ($ARGV[0] eq "all") {
     @filenames = split "\n", `cat  $ARGV[0]`;
 }
 
-
-for my $filename ( @filenames) {
-    print " ***** $filename \n";
-}
-
-exit;
-
 foreach my $filename ( @filenames) {
+    print " ***** running $filename  .... \n";
     my $stripped_filename  = strip_vcf($filename);
     my $annovar_filename   = annovar ($stripped_filename);
     my $annotated_filename = vcfanno  ($annovar_filename);

@@ -9,7 +9,7 @@ use variant_utils_pl::vcfanno  qw(vcfanno);
 (@ARGV==1) || die "Usage:  $0  <filename file>/all  \n";
 
 my @filenames = ();
-if ($ARGV eq "all") {
+if ($ARGV[0] eq "all") {
     foreach my $dir ("/data01", "/data02") {
         my @allfiles = split "\n", `find $dir  -name "*consensus.vcf"`;
         foreach my $file (@allfiles) {

@@ -15,7 +15,7 @@ if ($ARGV[0] eq "all") {
         foreach my $file (@allfiles) {
             my $annotated = $file;
             $annotated =~ s/vcf$/annotated.vcf/;
-            if ( -e $annotated) {
+            if ( -e $annotated && ! -z  $annotated ) {
                 printf "$annotated found \n";
             } else {
                 printf "adding $annotated\n";

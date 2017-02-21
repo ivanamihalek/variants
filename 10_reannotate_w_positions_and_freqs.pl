@@ -19,7 +19,7 @@ if ($ARGV[0] eq "all") {
                 printf "$annotated found \n";
             } else {
                 printf "adding $annotated\n";
-                push @filenames, $annotated;
+                push @filenames, $file;
             }
         }
     }

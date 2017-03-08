@@ -85,7 +85,7 @@ def main():
 	bamfile = bamfiles[0]
 	print
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule";
-	if os.path.exists(seqmule):
+	if not os.path.exists(seqmule):
 		print seqmule, "not found"
 		exit(1)
 	cmd  = "%s pipeline -N 2 -capture default -threads 4 -e " % seqmule

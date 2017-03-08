@@ -1,4 +1,4 @@
-#!/usr/bin/python -w
+#!/usr/bin/python 
 
 # here, in distinction to 05_realignemnt_pipe, we start from bam (seqmule's own)  files,
 # downloaded from Dropbox - that's why it has to be python

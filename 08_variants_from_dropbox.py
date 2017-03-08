@@ -28,7 +28,7 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 			print entry.path_display
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
-			if not os.exists(local_filename): download(dbx, local_filename, dbx_file_path)
+			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
 
 
 ####################################

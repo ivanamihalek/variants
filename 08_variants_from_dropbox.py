@@ -35,28 +35,9 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 				files.append(entry.name)
 	return files, checksums
 ####################################
-def main():
-
-	if len(sys.argv) < 2:
-		print  "usage: %s <BOid>" % sys.argv[0]
-		exit(1)
-	boid =	sys.argv[1]
-
-	topdir = "/raw_data"
-	year   = "20"+boid[2:4]
-	caseno = boid[4:7]
-	dbx_path = "/".join([topdir, year, caseno, boid,"wes/alignments/by_seqmule_pipeline"])
-	if not check_dbx_path(dbx, dbx_path):
-		print  dbx_path, "not found in Dropbox"
-		print "(I checked in %s)" % dbx_path
-		exit(1)
-	print dbx_path, "found in dropbox"
-	local_dir =  os.getcwd()
-
-	# download bamfiles
-	files, checksums = scan_through_folder (dbx, dbx_path, local_dir)
-	# check md5 sums
+def	md5sum_check(files, checksums):
 	for file in files:
+		print file
 		md5file = file+".md5"
 		if not md5file in checksums:
 			print "md5 file not found for", file
@@ -68,7 +49,44 @@ def main():
 		if not md5sum_dropbox == md5sum_dropbox:
 			print "md5sum mismatch"
 			exit(1)
-	return True
+####################################
+
+def main():
+
+	if len(sys.argv) < 2:
+		print  "usage: %s <BOid>" % sys.argv[0]
+		exit(1)
+	boid =	sys.argv[1]
+
+	topdir = "/raw_data"
+	year   = "20"+boid[2:4]
+	caseno = boid[4:7]
+
+	# check that the expected path in the dropbox exists
+	dbx_path = "/".join([topdir, year, caseno, boid,"wes/alignments/by_seqmule_pipeline"])
+	if not check_dbx_path(dbx, dbx_path):
+		print  dbx_path, "not found in Dropbox"
+		print "(I checked in %s)" % dbx_path
+		exit(1)
+	print dbx_path, "found in dropbox"
+	local_dir =  os.getcwd()
+
+	# download bamfiles
+	files, checksums = scan_through_folder (dbx, dbx_path, local_dir)
+	# check md5 sums
+	md5sum_check(files, checksums)
+	bamfiles = filter (lambda f: ".bam" == f[-4:], files)
+	if len(bamfiles)==0:
+		print "no bamfile found"
+		exit(1)
+	if len(bamfiles)>1:
+		print "more than one bamfile found"
+		exit(1)
+	bamfile = bamfiles[0]
+	print bamfile
+
+
+	return 0
 
 
 

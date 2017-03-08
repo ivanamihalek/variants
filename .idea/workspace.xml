@@ -33,11 +33,21 @@
       <file leaf-file-name="08_variants_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/08_variants_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="612">
+              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
               <folding>
                 <element signature="e#169#214#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -644,10 +654,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/08_variants_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="612">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding>
             <element signature="e#169#214#0" expanded="true" />
           </folding>

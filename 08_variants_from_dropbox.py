@@ -8,18 +8,27 @@ from  variant_utils_py.generic_utils import *
 from  variant_utils_py.dropbox_utils import *
 import commands
 
-####################################
-def check_dbx_path(dbx, dbx_path):
-    try:
-        dbx.files_get_metadata(dbx_path)
-        return True
-    except:
-        return False
 
 ####################################
 DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
 
 dbx = dropbox.Dropbox(DROPBOX_TOKEN)
+####################################
+def scan_through_folder (dbx, dbx_path, local_dir):
+
+	try:
+		response = dbx.files_list_folder(dbx_path, recursive = True)
+	except dropbox.exceptions.ApiError as err:
+		print('Folder listing failed for', dbx_path, '-- assumed empty:', err)
+		exit(1)
+	else:
+		for entry in response.entries:
+			if type(entry)!=dropbox.files.FileMetadata: continue
+			print entry.name
+			print entry.path_display
+			#dbx_path = entry.path_display
+			#if not os._exists(local_dir+"/"+entry.name): download(dbx, local_dir, dbx_path)
+
 
 ####################################
 def main():
@@ -30,7 +39,7 @@ def main():
 	boid =	sys.argv[1]
 
 	topdir = "/raw_data"
-	year = "20"+boid[2:4]
+	year   = "20"+boid[2:4]
 	caseno = boid[4:7]
 	dbx_path = "/".join([topdir, year, caseno, boid,"wes/alignments/by_seqmule_pipeline"])
 	if not check_dbx_path(dbx, dbx_path):
@@ -38,7 +47,8 @@ def main():
 		print "(I checked in %s)" % dbx_path
 		exit(1)
 	print dbx_path, "found in dropbox"
-
+	local_dir =  os.getcwd()
+	scan_through_folder (dbx, dbx_path, local_dir)
 
 	return True
 

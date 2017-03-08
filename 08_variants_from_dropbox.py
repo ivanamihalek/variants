@@ -22,15 +22,18 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 		print('Folder listing failed for', dbx_path, '-- assumed empty:', err)
 		exit(1)
 	else:
+		files = []
+		checksums = []
 		for entry in response.entries:
-			if type(entry)!=dropbox.files.FileMetadata: continue
-			print entry.name
-			print entry.path_display
+			if type(entry)!= dropbox.files.FileMetadata: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
 			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
-
-
+			if ".md5" in entry.name:
+				checksums.append(entry.name)
+			else:
+				files.append(entry.name)
+	return files, checksums
 ####################################
 def main():
 
@@ -49,8 +52,22 @@ def main():
 		exit(1)
 	print dbx_path, "found in dropbox"
 	local_dir =  os.getcwd()
-	scan_through_folder (dbx, dbx_path, local_dir)
 
+	# download bamfiles
+	files, checksums = scan_through_folder (dbx, dbx_path, local_dir)
+	# check md5 sums
+	for file in files:
+		md5file = file+".md5"
+		if not md5file in checksums:
+			print "md5 file not found for", file
+			exit(1)
+		md5sum_dropbox = os.popen("cat %s" % md5file).read().strip()
+		md5sum_local = os.popen("md5sum %s | cut -d' ' -f 1" % file).read().strip()
+		print "dbx: ", md5sum_dropbox
+		print "here:", md5sum_local
+		if not md5sum_dropbox == md5sum_dropbox:
+			print "md5sum mismatch"
+			exit(1)
 	return True
 
 

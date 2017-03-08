@@ -26,8 +26,8 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 			if type(entry)!=dropbox.files.FileMetadata: continue
 			print entry.name
 			print entry.path_display
-			#dbx_path = entry.path_display
-			#if not os._exists(local_dir+"/"+entry.name): download(dbx, local_dir, dbx_path)
+			dbx_file_path = entry.path_display
+			if not os._exists(local_dir+"/"+entry.name): download(dbx, local_dir, dbx_file_path)
 
 
 ####################################

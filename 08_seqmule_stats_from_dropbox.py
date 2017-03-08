@@ -88,7 +88,8 @@ def main():
 	if not os.path.exists(seqmule):
 		print seqmule, "not found"
 		exit(1)
-	cmd  = "%s pipeline -N 2 -capture default -threads 4 -e " % seqmule
+	# note here we are running only seqmule stats here
+	cmd  = "%s stats --aln -t 4 " % seqmule
 	cmd += "-prefix %s --bam  %s" % (boid, bamfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)

@@ -69,7 +69,7 @@ def main():
 		print "(I checked in %s)" % dbx_path
 		exit(1)
 	print dbx_path, "found in dropbox"
-	local_dir =  os.getcwd()
+	local_dir = os.getcwd()
 
 	# download bamfiles
 	files, checksums = scan_through_folder (dbx, dbx_path, local_dir)
@@ -83,8 +83,15 @@ def main():
 		print "more than one bamfile found"
 		exit(1)
 	bamfile = bamfiles[0]
-	print bamfile
-
+	print
+	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule";
+	if os.path.exists(seqmule):
+		print seqmule, "not found"
+		exit(1)
+	cmd  = "%s pipeline -N 2 -capture default -threads 4 -e " % seqmule
+	cmd += "-prefix %s --bam  %s" % (boid, bamfile)
+	print "running:\n%s\n...\n" % cmd
+	os.system(cmd)
 
 	return 0
 

@@ -56,7 +56,7 @@ def construct_dbx_path(boid,bam_source):
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]
 	# check that the expected path in the dropbox exists
-	dbx_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % bam_source])
+	dbx_path = "/".join([topdir, year, caseno, boid, "wes/alignments/by_%s" % bam_source])
 	if not check_dbx_path(dbx, dbx_path):
 		print  dbx_path, "not found in Dropbox"
 		print "(I checked in %s)" % dbx_path
@@ -123,7 +123,7 @@ def sort_bam(samtools, bamfile):
 ####################################
 def main():
 
-	if len(sys.argv) < 2:
+	if len(sys.argv) < 3:
 		print  "usage: %s <BOid> seqmule/seq_center" % sys.argv[0]
 		exit(1)
 	[boid, bam_source]=	sys.argv[1:3]

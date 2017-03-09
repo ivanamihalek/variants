@@ -82,11 +82,10 @@ def exists_on_bronto(path):
 
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]
-	case = boid[:-2]
 	caseno = boid[4:7]
 	topdir = None
 	for directory in ["/data01", "/data02"]:
-		if not exists_on_bronto("/".join([directory,year,case])): continue
+		if not exists_on_bronto("/".join([directory,year,caseno])): continue
 		if topdir:
 			print boid, "found in both /data01 and /data02"
 			exit()

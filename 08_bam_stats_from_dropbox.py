@@ -71,12 +71,20 @@ def construct_dbx_path(boid,bam_source):
 	return dbx_path
 
 ####################################
+def exists_on_bronto(path):
+	cmd = "ls -d %s" % path
+	ssh_cmd = "echo %s |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
+	ret = commands.getstatusoutput(ssh_cmd)
+	print ret.rstrip()
+	exit()
+	return ret==path
+
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]
 	topdir = None
 	for directory in ["/data01", "/data02"]:
-		if not os.path.exists("/".join([directory, year,boid])): continue
+		if not exists_on_bronto("/".join([directory,year,boid])): continue
 		if topdir:
 			print boid, "found in both /data01 and /data02"
 			exit()
@@ -85,7 +93,7 @@ def construct_bronto_path(boid,bam_source):
 		print boid, "not found in either /data01 nor /data02"
 		exit()
 	bronto_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % almtdir_name(bam_source)])
-	if not os.path.exists(bronto_path):
+	if not exists_on_bronto (bronto_path):
 		print bronto_path, "not found"
 		exit()
 	return bronto_path
@@ -137,6 +145,10 @@ def main():
 		print "unrecognized bam source: ", bam_source
 		exit()
 
+	construct_bronto_path(boid,bam_source)
+	exit()
+
+
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule"
 	samtools = "/usr/local/bin/samtools"
 	# see in integrator for an idea where did this file came from:
@@ -148,21 +160,24 @@ def main():
 	bamfile = get_bam_from_dropbox(boid, bam_source)
 	if bam_source=='seq_center': sort_bam(samtools, bamfile)
 
-	if False: # this crap actually is serving some rehashed samtools depth results
-		# seqmule
-		cmd  = "%s stats --aln -t 4 " % seqmule
-		cmd += "-prefix %s --bam  %s --capture %s " % ("seqmule_"+boid, bamfile, bedfile)
-		print "running:\n%s\n...\n" % cmd
-		os.system(cmd)
-		# store  to bronto - it should find its way to dropbox in one of the update rounds
-		outfile = "" # the name that the seqmule generates
-		bronto_store(boid, bam_source, outfile)
+	# seqmule - uses samtools depth - which gives depth position by position
+	# do I want to store that?  probably not - so seqmule process is into
+	# cumulative stats (with running sums
+	cmd  = "%s stats --aln -t 4 " % seqmule
+	cmd += "-prefix %s --bam  %s --capture %s " % ("seqmule_"+boid, bamfile, bedfile)
+	print "running:\n%s\n...\n" % cmd
+	os.system(cmd)
+	# store  to bronto - it should find its way to dropbox in one of the update rounds
+	outfile = "" # the name that the seqmule generates
+	bronto_store(boid, bam_source, outfile)
 
-	# samtools bedcov or depth?
-	outfile = "samtools_%s.depth.csv" % bamfile
-	#cmd = "%s  bedcov  %s  %s > samtools_%s.bedcov.csv " % (samtools, bedfile, bamfile, outfile)
+	# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
+	# (it gives the sum of depths, which then need to be divided by the length of the region)
+	# my regions of interest are exons
+	outfile = "samtools_%s.bedcov.csv" % bamfile
+	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	# -a Output all positions (including those with zero depth)
-	cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
+	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	bronto_store(boid, bam_source, outfile)

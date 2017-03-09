@@ -178,9 +178,11 @@ def main():
 	cmd  = "%s stats --aln -t 4 " % seqmule
 	cmd += "-prefix %s --bam  %s --capture %s " % ("seqmule_"+boid, bamfile, bedfile)
 	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
+	#os.system(cmd)
 	# store  to bronto - it should find its way to dropbox in one of the update rounds
-	outfile = "" # the name that the seqmule generates
+	outfile = "seqmule_%s_cov_stat_detail.txt" % boid # the name that the seqmule generates
+	bronto_store(boid, bam_source, outfile)
+	outfile = "seqmule_%s_cov.jpg" % boid # the name that the seqmule generates
 	bronto_store(boid, bam_source, outfile)
 
 	# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
@@ -191,7 +193,7 @@ def main():
 	# -a Output all positions (including those with zero depth)
 	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
+	#os.system(cmd)
 	bronto_store(boid, bam_source, outfile)
 
 	return

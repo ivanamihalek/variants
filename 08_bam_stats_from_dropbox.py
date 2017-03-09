@@ -54,7 +54,7 @@ def almtdir_name(bam_source):
 	if bam_source == 'seqmule':
 		almtdir = "by_seqmule_pipeline"
 	else:
-		almtdir = "by_seqcenter"
+		almtdir = "by_seq_center"
 	return almtdir
 ####################################
 def construct_dbx_path(boid,bam_source):
@@ -159,7 +159,6 @@ def main():
 	if not bam_source in ['seqmule', 'seq_center']:
 		print "unrecognized bam source: ", bam_source
 		exit()
-
 
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule"
 	samtools = "/usr/local/bin/samtools"

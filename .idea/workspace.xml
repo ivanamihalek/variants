@@ -36,8 +36,8 @@
       <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="58" column="72" lean-forward="false" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
+            <state relative-caret-position="1224">
+              <caret line="86" column="102" lean-forward="false" selection-start-line="86" selection-start-column="102" selection-end-line="86" selection-end-column="102" />
               <folding>
                 <element signature="e#169#214#0" expanded="true" />
               </folding>
@@ -734,8 +734,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="58" column="72" lean-forward="false" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
+        <state relative-caret-position="1224">
+          <caret line="86" column="102" lean-forward="false" selection-start-line="86" selection-start-column="102" selection-end-line="86" selection-end-column="102" />
           <folding>
             <element signature="e#169#214#0" expanded="true" />
           </folding>

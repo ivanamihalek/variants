@@ -49,14 +49,20 @@ def	md5sum_check(files, checksums):
 		if not md5sum_dropbox == md5sum_dropbox:
 			print "md5sum mismatch"
 			exit(1)
-
+####################################
+def almtdir_name(bam_source):
+	if bam_source == 'seqmule':
+		almtdir = "by_seqmule_pipeline"
+	else:
+		almtdir = "by_seqcenter"
+	return almtdir
 ####################################
 def construct_dbx_path(boid,bam_source):
 	topdir = "/raw_data"
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]
 	# check that the expected path in the dropbox exists
-	dbx_path = "/".join([topdir, year, caseno, boid, "wes/alignments/by_%s" % bam_source])
+	dbx_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % almtdir_name(bam_source)])
 	if not check_dbx_path(dbx, dbx_path):
 		print  dbx_path, "not found in Dropbox"
 		print "(I checked in %s)" % dbx_path
@@ -78,7 +84,7 @@ def construct_bronto_path(boid,bam_source):
 	if not topdir:
 		print boid, "not found in either /data01 nor /data02"
 		exit()
-	bronto_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % bam_source])
+	bronto_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % almtdir_name(bam_source)])
 	if not os.path.exists(bronto_path):
 		print bronto_path, "not found"
 		exit()

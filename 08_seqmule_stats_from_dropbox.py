@@ -85,7 +85,7 @@ def main():
 	bamfile = bamfiles[0]
 	print
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule";
-	bedfile  = "/home/ivana/third/SeqMule/databases/ensembl_exon_regions.hg19.bed";
+	bedfile  = "/home/ivana/third/SeqMule/database/ensembl_exon_regions.hg19.bed";
 	for f in [seqmule, bedfile]:
 		if not os.path.exists(f):
 			print f, "not found"

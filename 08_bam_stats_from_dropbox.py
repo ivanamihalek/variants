@@ -159,10 +159,10 @@ def main():
 		bronto_store(boid, bam_source, outfile)
 
 	# samtools bedcov or depth?
-	outfile = "samtools_%s.bedcov.csv " % bamfile
+	outfile = "samtools_%s.depth.csv" % bamfile
 	#cmd = "%s  bedcov  %s  %s > samtools_%s.bedcov.csv " % (samtools, bedfile, bamfile, outfile)
 	# -a Output all positions (including those with zero depth)
-	cmd = "%s  depth -a  -b %s  %s > samtools_%s.depth.csv " % (samtools, bedfile, bamfile, outfile)
+	cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	bronto_store(boid, bam_source, outfile)

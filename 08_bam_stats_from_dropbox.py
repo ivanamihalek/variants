@@ -147,7 +147,7 @@ def main():
 		print "unrecognized bam source: ", bam_source
 		exit()
 
-	construct_bronto_path(boid,bam_source)
+	print construct_bronto_path(boid,bam_source)
 	exit()
 
 

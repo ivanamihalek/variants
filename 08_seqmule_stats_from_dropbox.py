@@ -91,8 +91,8 @@ def main():
 			print f, "not found"
 			exit(1)
 	# note here we are running only seqmule stats here
-	cmd  = "%s stats --aln --capture -t 4 " % seqmule
-	cmd += "-prefix %s --bam  %s --bed %s " % (boid, bamfile, bedfile)
+	cmd  = "%s stats --aln -t 4 " % seqmule
+	cmd += "-prefix %s --bam  %s --capture %s " % (boid, bamfile, bedfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 

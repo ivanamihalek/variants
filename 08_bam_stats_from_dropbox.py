@@ -74,6 +74,7 @@ def construct_dbx_path(boid,bam_source):
 def exists_on_bronto(path):
 	cmd = "ls -d %s" % path
 	ssh_cmd = "echo %s |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
+	# this returns a tuple
 	ret = commands.getstatusoutput(ssh_cmd)
 	print ret
 	exit()
@@ -81,10 +82,11 @@ def exists_on_bronto(path):
 
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]
+	case = boid[:-2]
 	caseno = boid[4:7]
 	topdir = None
 	for directory in ["/data01", "/data02"]:
-		if not exists_on_bronto("/".join([directory,year,boid])): continue
+		if not exists_on_bronto("/".join([directory,year,case])): continue
 		if topdir:
 			print boid, "found in both /data01 and /data02"
 			exit()

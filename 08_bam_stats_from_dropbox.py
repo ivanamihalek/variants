@@ -74,11 +74,12 @@ def construct_dbx_path(boid,bam_source):
 def exists_on_bronto(path):
 	cmd = "ls -d %s" % path
 	ssh_cmd = "echo %s |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
-	# this returns a tuple
+	# this returns a tuple (exit code, ret value)
 	ret = commands.getstatusoutput(ssh_cmd)
-	print ret
+	if ret[0] == 0:
+		return True
 
-	return ret[1].rstrip()==path
+	return False
 
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]

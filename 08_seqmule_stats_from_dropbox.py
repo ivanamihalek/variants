@@ -85,12 +85,14 @@ def main():
 	bamfile = bamfiles[0]
 	print
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule";
-	if not os.path.exists(seqmule):
-		print seqmule, "not found"
-		exit(1)
+	bedfile  = "/home/ivana/third/SeqMule/databases/ensembl_exon_regions.hg19.bed";
+	for f in [seqmule, bedfile]:
+		if not os.path.exists(f):
+			print f, "not found"
+			exit(1)
 	# note here we are running only seqmule stats here
 	cmd  = "%s stats --aln --capture -t 4 " % seqmule
-	cmd += "-prefix %s --bam  %s" % (boid, bamfile)
+	cmd += "-prefix %s --bam  %s --bed %s " % (boid, bamfile, bedfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 

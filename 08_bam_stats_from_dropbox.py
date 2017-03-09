@@ -73,13 +73,23 @@ def construct_dbx_path(boid,bam_source):
 ####################################
 def exists_on_bronto(path):
 	cmd = "ls -d %s" % path
-	ssh_cmd = "echo %s |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
+	ssh_cmd = "echo %s |  ssh ivana@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
+	# this returns a tuple (exit code, ret value)
+	ret = commands.getstatusoutput(ssh_cmd)
+	if ret[0] == 0:
+		return True
+	return False
+
+def make_on_bronto(path):
+	cmd = "mkdir %s" % path
+	ssh_cmd = "echo %s |  ssh ivana@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
 	# this returns a tuple (exit code, ret value)
 	ret = commands.getstatusoutput(ssh_cmd)
 	if ret[0] == 0:
 		return True
 
 	return False
+
 
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]
@@ -123,7 +133,10 @@ def bronto_store(boid, bam_source, uploadfile):
 	bronto_path = construct_bronto_path(boid, bam_source)
 	# make sure that we have stats folder - make one if we don't
 	statspath = bronto_path+"/stats"
-	if not os.path.exist(statspath): os.makedirs(statspath)
+	if not exists_on_bronto(statspath):
+		if not make_on_bronto(statspath):
+			print "failed to male", statspath, "onn bronto"
+			exit()
 	# upload to stats folder
 	cmd = "scp %s ivana@brontosaurus.tch.harvard.edu:%s" % (uploadfile, statspath)
 	os.system(cmd)
@@ -146,9 +159,6 @@ def main():
 	if not bam_source in ['seqmule', 'seq_center']:
 		print "unrecognized bam source: ", bam_source
 		exit()
-
-	print construct_bronto_path(boid,bam_source)
-	exit()
 
 
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule"

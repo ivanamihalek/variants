@@ -146,6 +146,7 @@ def bronto_store(boid, bam_source, uploadfile):
 def sort_bam(samtools, bamfile):
 	sortedfile = bamfile[0:-3]+"sorted.bam"
 	cmd = "%s sort -o %s %s " % (samtools, sortedfile, bamfile)
+	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	return
 

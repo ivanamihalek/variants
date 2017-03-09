@@ -75,7 +75,7 @@ def exists_on_bronto(path):
 	cmd = "ls -d %s" % path
 	ssh_cmd = "echo %s |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
 	ret = commands.getstatusoutput(ssh_cmd)
-	print ret.rstrip()
+	print ret
 	exit()
 	return ret==path
 

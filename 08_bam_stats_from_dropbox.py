@@ -78,7 +78,7 @@ def exists_on_bronto(path):
 	ret = commands.getstatusoutput(ssh_cmd)
 	print ret
 
-	return ret[1].rsstrip()==path
+	return ret[1].rstrip()==path
 
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]

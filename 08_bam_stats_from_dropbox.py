@@ -145,10 +145,13 @@ def bronto_store(boid, bam_source, uploadfile):
 ####################################
 def sort_bam(samtools, bamfile):
 	sortedfile = bamfile[0:-3]+"sorted.bam"
-	cmd = "%s sort -o %s %s " % (samtools, sortedfile, bamfile)
-	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
-	return
+	if os.path.exists(sortedfile):
+		print sortedfile, "found"
+	else:
+		cmd = "%s sort -o %s %s " % (samtools, sortedfile, bamfile)
+		print "running:\n%s\n...\n" % cmd
+		os.system(cmd)
+	return sortedfile
 
 ####################################
 def main():
@@ -170,7 +173,8 @@ def main():
 			print f, "not found"
 			exit(1)
 	bamfile = get_bam_from_dropbox(boid, bam_source)
-	if bam_source=='seq_center': sort_bam(samtools, bamfile)
+	if bam_source=='seq_center':
+		bamfile = sort_bam(samtools, bamfile)
 
 	# seqmule - uses samtools depth - which gives depth position by position
 	# do I want to store that?  probably not - so seqmule process is into

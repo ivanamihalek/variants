@@ -76,7 +76,7 @@ def construct_bronto_path(boid,bam_source):
 	caseno = boid[4:7]
 	topdir = None
 	for directory in ["/data01", "/data02"]:
-		if not os.path.exists("/".join([topdir, year,boid])): continue
+		if not os.path.exists("/".join([directory, year,boid])): continue
 		if topdir:
 			print boid, "found in both /data01 and /data02"
 			exit()
@@ -148,15 +148,15 @@ def main():
 	bamfile = get_bam_from_dropbox(boid, bam_source)
 	if bam_source=='seq_center': sort_bam(samtools, bamfile)
 
-	# seqmule
-	cmd  = "%s stats --aln -t 4 " % seqmule
-	cmd += "-prefix %s --bam  %s --capture %s " % ("seqmule_"+boid, bamfile, bedfile)
-	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
-
-	# store  to bronto - it should find its way to dropbox in one of the update rounds
-	outfile = "" # the name that the seqmule generates
-	bronto_store(boid, bam_source, outfile)
+	if False: # this crap actually is serving some rehashed samtools depth results
+		# seqmule
+		cmd  = "%s stats --aln -t 4 " % seqmule
+		cmd += "-prefix %s --bam  %s --capture %s " % ("seqmule_"+boid, bamfile, bedfile)
+		print "running:\n%s\n...\n" % cmd
+		os.system(cmd)
+		# store  to bronto - it should find its way to dropbox in one of the update rounds
+		outfile = "" # the name that the seqmule generates
+		bronto_store(boid, bam_source, outfile)
 
 	# samtools bedcov or depth?
 	outfile = "samtools_%s.bedcov.csv " % bamfile

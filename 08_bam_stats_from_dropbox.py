@@ -151,6 +151,15 @@ def sort_bam(samtools, bamfile):
 		cmd = "%s sort -o %s %s " % (samtools, sortedfile, bamfile)
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)
+
+	indexfile = sortedfile+".bai"
+	if os.path.exists(indexfile):
+		print indexfile, "found"
+	else:
+		cmd = "%s index %s " % (samtools, sortedfile)
+		print "running:\n%s\n...\n" % cmd
+		os.system(cmd)
+
 	return sortedfile
 
 ####################################

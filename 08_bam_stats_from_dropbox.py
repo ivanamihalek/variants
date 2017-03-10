@@ -79,7 +79,7 @@ def exists_on_bronto(path):
 	if ret[0] == 0:
 		return True
 	return False
-
+#####
 def make_on_bronto(path):
 	cmd = "mkdir %s" % path
 	ssh_cmd = "echo %s |  ssh ivana@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
@@ -87,10 +87,8 @@ def make_on_bronto(path):
 	ret = commands.getstatusoutput(ssh_cmd)
 	if ret[0] == 0:
 		return True
-
 	return False
-
-
+#####
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]

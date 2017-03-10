@@ -194,7 +194,10 @@ def main():
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
 	cmd  = "%s stats --aln -t 4 " % seqmule
-	prefix = "seqmule_"+boid
+	if bam_source=='seqmule':
+		prefix = "seqmule_"+boid
+	else:
+		prefix = "seqcenter_"+boid
 	if agilent: prefix = "agilent_" + prefix
 	cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile)
 	print "running:\n%s\n...\n" % cmd
@@ -207,17 +210,18 @@ def main():
 	if agilent: outfile = "agilent_"+outfile
 	bronto_store(boid, bam_source, outfile)
 
-	# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
-	# (it gives the sum of depths, which then need to be divided by the length of the region)
-	# my regions of interest are exons
-	outfile = "samtools_%s.bedcov.csv" % boid
-	if agilent: outfile = "agilent_"+outfile
-	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
-	# -a Output all positions (including those with zero depth)
-	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
-	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
-	bronto_store(boid, bam_source, outfile)
+	if False:
+		# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
+		# (it gives the sum of depths, which then need to be divided by the length of the region)
+		# my regions of interest are exons
+		outfile = "samtools_%s.bedcov.csv" % boid
+		if agilent: outfile = "agilent_"+outfile
+		cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
+		# -a Output all positions (including those with zero depth)
+		#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
+		print "running:\n%s\n...\n" % cmd
+		os.system(cmd)
+		bronto_store(boid, bam_source, outfile)
 
 	return
 

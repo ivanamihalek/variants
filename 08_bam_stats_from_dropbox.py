@@ -194,7 +194,9 @@ def main():
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
 	cmd  = "%s stats --aln -t 4 " % seqmule
-	cmd += "-prefix %s --bam  %s --capture %s " % ("seqmule_"+boid, bamfile, bedfile)
+	prefix = "seqmule_"+boid
+	if agilent: prefix = "agilent_" + prefix
+	cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	# store  to bronto - it should find its way to dropbox in one of the update rounds

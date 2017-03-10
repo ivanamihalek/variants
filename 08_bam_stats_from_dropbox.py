@@ -198,10 +198,10 @@ def main():
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	# store  to bronto - it should find its way to dropbox in one of the update rounds
-	outfile = "seqmule_%s_cov_stat_detail.txt" % boid # the name that the seqmule generates
+	outfile = "%s_%s_cov_stat_detail.txt" % (bam_source, boid) # the name that the seqmule generates
 	if agilent: outfile = "agilent_"+outfile
 	bronto_store(boid, bam_source, outfile)
-	outfile = "seqmule_%s_cov.jpg" % boid # the name that the seqmule generates
+	outfile = "%s_%s_cov.jpg" % (bam_source, boid) # the name that the seqmule generates
 	if agilent: outfile = "agilent_"+outfile
 	bronto_store(boid, bam_source, outfile)
 
@@ -209,7 +209,7 @@ def main():
 		# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
 		# (it gives the sum of depths, which then need to be divided by the length of the region)
 		# my regions of interest are exons
-		outfile = "samtools_%s.bedcov.csv" % boid
+		outfile = "bam_source_%s.bedcov.csv" % (bam_source, boid)
 		if agilent: outfile = "agilent_"+outfile
 		cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 		# -a Output all positions (including those with zero depth)

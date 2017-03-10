@@ -166,17 +166,22 @@ def sort_bam(samtools, bamfile):
 def main():
 
 	if len(sys.argv) < 3:
-		print  "usage: %s <BOid> seqmule/seq_center" % sys.argv[0]
+		print  "usage: %s <BOid> seqmule/seq_center [agilent]" % sys.argv[0]
 		exit(1)
 	[boid, bam_source]=	sys.argv[1:3]
 	if not bam_source in ['seqmule', 'seq_center']:
 		print "unrecognized bam source: ", bam_source
 		exit()
 
+	agilent = (len(sys.argv) > 3 and sys.argv[3] == 'agilent')
+
 	seqmule  = "/home/ivana/third/SeqMule/bin/seqmule"
 	samtools = "/usr/local/bin/samtools"
 	# see in integrator for an idea where did this file came from:
-	bedfile  = "/databases/ucsc/ensembl_exon_regions.hg19.bed"
+	if agilent:
+		bedfile  = "/databases/agilent/v5_plus_5utr/regions_plain.bed"
+	else:
+		bedfile  = "/databases/ucsc/ensembl_exon_regions.hg19.bed"
 	for f in [seqmule, bedfile, samtools]:
 		if not os.path.exists(f):
 			print f, "not found"
@@ -194,14 +199,17 @@ def main():
 	os.system(cmd)
 	# store  to bronto - it should find its way to dropbox in one of the update rounds
 	outfile = "seqmule_%s_cov_stat_detail.txt" % boid # the name that the seqmule generates
+	if agilent: outfile = "agilent_"+outfile
 	bronto_store(boid, bam_source, outfile)
 	outfile = "seqmule_%s_cov.jpg" % boid # the name that the seqmule generates
+	if agilent: outfile = "agilent_"+outfile
 	bronto_store(boid, bam_source, outfile)
 
 	# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
 	# (it gives the sum of depths, which then need to be divided by the length of the region)
 	# my regions of interest are exons
 	outfile = "samtools_%s.bedcov.csv" % boid
+	if agilent: outfile = "agilent_"+outfile
 	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	# -a Output all positions (including those with zero depth)
 	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)

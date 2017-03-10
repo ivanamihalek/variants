@@ -166,10 +166,10 @@ def sort_bam(samtools, bamfile):
 def main():
 
 	if len(sys.argv) < 3:
-		print  "usage: %s <BOid> seqmule/seq_center [agilent]" % sys.argv[0]
+		print  "usage: %s <BOid> seqmule/seqcenter [agilent]" % sys.argv[0]
 		exit(1)
 	[boid, bam_source]=	sys.argv[1:3]
-	if not bam_source in ['seqmule', 'seq_center']:
+	if not bam_source in ['seqmule', 'seqcenter']:
 		print "unrecognized bam source: ", bam_source
 		exit()
 
@@ -187,17 +187,14 @@ def main():
 			print f, "not found"
 			exit(1)
 	bamfile = get_bam_from_dropbox(boid, bam_source)
-	if bam_source=='seq_center':
+	if bam_source=='seqcenter':
 		bamfile = sort_bam(samtools, bamfile)
 
 	# seqmule - uses samtools depth - which gives depth position by position
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
 	cmd  = "%s stats --aln -t 4 " % seqmule
-	if bam_source=='seqmule':
-		prefix = "seqmule_"+boid
-	else:
-		prefix = "seqcenter_"+boid
+	prefix = bam_source+ "_"+boid
 	if agilent: prefix = "agilent_" + prefix
 	cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile)
 	print "running:\n%s\n...\n" % cmd

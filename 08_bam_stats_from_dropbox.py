@@ -195,7 +195,6 @@ def do_stats (boid):
 	# my regions of interest are exons;
 	# do only ensembl here because ccds is a subset
 	outfile = "ensembl_%s_%s.bedcov.csv" % (bam_source, boid)
-	outfile = "ensembl_" + outfile
 	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile_ensembl, bamfile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
@@ -203,17 +202,6 @@ def do_stats (boid):
 	os.system("rm %s" % outfile)
 	os.system("rm %s" % bamfile)
 	return
-
-####################################
-#def main():
-#	if len(sys.argv) < 3:
-#		print  "usage: %s <BOid> seqmule/seqcenter [agilent]" % sys.argv[0]
-#		exit(1)
-#	[boid, bam_source]=	sys.argv[1:3]
-#	if not bam_source in ['seqmule', 'seqcenter']:
-#		print "unrecognized bam source: ", bam_source
-#		exit()
-#	agilent = (len(sys.argv) > 3 and sys.argv[3] == 'agilent')
 
 ####################################
 def main():

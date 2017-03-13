@@ -181,14 +181,14 @@ def do_stats (boid):
 	bedfile = {"ccds": bedfile_ccds, "ensembl": bedfile_ensembl}
 	for reference in ["ccds", "ensembl"]:
 		cmd  = "%s stats --aln -t 4 " % seqmule
-		prefix = reference  + "  " + bam_source+ "_"+boid
+		prefix = reference  + "_" + bam_source + "_"+boid
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)
 		# store  to bronto - it should find its way to dropbox in one of the update rounds
 		for outfile in ["%s_cov_stat_detail.txt" % prefix, "%s_cov.jpg" % prefix]:# the name that the seqmule generates
 			bronto_store(boid, bam_source, outfile)
-		os.sytem("rm *txt *jpg")
+		os.system("rm *txt *jpg")
 	# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
 	# (it gives the sum of depths, which then need to be divided by the length of the region)
 	# my regions of interest are exons;
@@ -201,8 +201,8 @@ def do_stats (boid):
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	bronto_store(boid, bam_source, outfile)
-	os.sytem("rm %s" % outfile)
-	os.sytem("rm %s" % bamfile)
+	os.system("rm %s" % outfile)
+	os.system("rm %s" % bamfile)
 	return
 
 ####################################

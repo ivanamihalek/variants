@@ -179,8 +179,7 @@ def do_stats (boid):
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
 	bedfile = {"ccds": bedfile_ccds, "ensembl": bedfile_ensembl}
-	#for reference in ["ccds", "ensembl"]:
-	for reference in []:
+	for reference in ["ccds", "ensembl"]:
 		cmd  = "%s stats --aln -t 4 " % seqmule
 		prefix = reference  + "_" + bam_source + "_"+boid
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])

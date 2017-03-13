@@ -196,9 +196,7 @@ def do_stats (boid):
 	# do only ensembl here because ccds is a subset
 	outfile = "ensembl_%s_%s.bedcov.csv" % (bam_source, boid)
 	outfile = "ensembl_" + outfile
-	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
-	# -a Output all positions (including those with zero depth)
-	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
+	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile_ensembl, bamfile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	bronto_store(boid, bam_source, outfile)

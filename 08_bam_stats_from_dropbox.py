@@ -200,7 +200,7 @@ def do_stats (boid):
 	os.system(cmd)
 	bronto_store(boid, bam_source, outfile)
 	os.system("rm %s" % outfile)
-	os.system("rm %s" % bamfile)
+	os.system("rm %s *bai *md5" % bamfile)
 	return
 
 ####################################

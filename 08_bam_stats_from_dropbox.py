@@ -179,7 +179,8 @@ def do_stats (boid):
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
 	bedfile = {"ccds": bedfile_ccds, "ensembl": bedfile_ensembl}
-	for reference in ["ccds", "ensembl"]:
+	#for reference in ["ccds", "ensembl"]:
+	for reference in []:
 		cmd  = "%s stats --aln -t 4 " % seqmule
 		prefix = reference  + "_" + bam_source + "_"+boid
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])
@@ -193,7 +194,7 @@ def do_stats (boid):
 	# (it gives the sum of depths, which then need to be divided by the length of the region)
 	# my regions of interest are exons;
 	# do only ensembl here because ccds is a subset
-	outfile = "bam_source_%s.bedcov.csv" % (bam_source, boid)
+	outfile = "ensembl_%s_%s.bedcov.csv" % (bam_source, boid)
 	outfile = "ensembl_" + outfile
 	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	# -a Output all positions (including those with zero depth)

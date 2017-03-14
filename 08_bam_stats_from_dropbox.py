@@ -199,8 +199,6 @@ def do_stats (boid):
 		if stats_file_processed(boid, bam_source,"%s_cov_stat_detail.txt" % prefix):
 			print "%s_cov_stat_detail.txt" % prefix, "processed already"
 			continue
-		print "processing  %s_cov_stat_detail.txt" % prefix
-		exit()
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)
@@ -213,12 +211,15 @@ def do_stats (boid):
 	# my regions of interest are exons;
 	# do only ensembl here because ccds is a subset
 	outfile = "ensembl_%s_%s.bedcov.csv" % (bam_source, boid)
-	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile["ensembl"], bamfile, outfile)
-	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
-	bronto_store(boid, bam_source, outfile)
-	os.system("rm %s" % outfile)
-	os.system("rm %s *bai *md5" % bamfile)
+	if  stats_file_processed(boid, bam_source,outfile):
+		print outfile, "processed already"
+	else:
+		cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile["ensembl"], bamfile, outfile)
+		print "running:\n%s\n...\n" % cmd
+		os.system(cmd)
+		bronto_store(boid, bam_source, outfile)
+	os.system("rm -f %s" % outfile)
+	os.system("rm -f %s *bai *md5" % bamfile)
 	return
 
 ####################################

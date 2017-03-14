@@ -38,9 +38,9 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
 			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
-			if ".md5" in entry.name:
+			if entry.name[-4:] == ".md5":
 				checksums.append(entry.name)
-			else:
+			elif entry.name[-4:] in [".bam",".bai"]:
 				files.append(entry.name)
 	return files, checksums
 

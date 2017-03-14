@@ -43,6 +43,7 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 			else:
 				files.append(entry.name)
 	return files, checksums
+
 ####################################
 def	md5sum_check(files, checksums):
 	for file in files:
@@ -58,6 +59,7 @@ def	md5sum_check(files, checksums):
 		if not md5sum_dropbox == md5sum_dropbox:
 			print "md5sum mismatch"
 			exit(1)
+
 ####################################
 def almtdir_name(bam_source):
 	if bam_source == 'seqmule':
@@ -65,6 +67,7 @@ def almtdir_name(bam_source):
 	else:
 		almtdir = "by_seq_center"
 	return almtdir
+
 ####################################
 def construct_dbx_path(boid,bam_source):
 	topdir = "/raw_data"
@@ -88,6 +91,7 @@ def exists_on_bronto(path):
 	if ret[0] == 0:
 		return True
 	return False
+
 #####
 def make_on_bronto(path):
 	cmd = "mkdir %s" % path
@@ -97,6 +101,7 @@ def make_on_bronto(path):
 	if ret[0] == 0:
 		return True
 	return False
+
 #####
 def construct_bronto_path(boid,bam_source):
 	year = "20" + boid[2:4]
@@ -170,6 +175,12 @@ def sort_bam(samtools, bamfile):
 	return sortedfile
 
 ####################################
+def stats_file_processed(boid, bam_source, filename):
+	bronto_path = construct_bronto_path(boid, bam_source)
+	# make sure that we have stats folder - make one if we don't
+	path = bronto_path+"/stats/"+filename
+	return exists_on_bronto(path)
+####################################
 def do_stats (boid):
 	bamfile = get_bam_from_dropbox(boid, bam_source)
 	if bam_source=='seqcenter':
@@ -182,6 +193,13 @@ def do_stats (boid):
 	for reference in ["ccds", "ensembl"]:
 		cmd  = "%s stats --aln -t 4 " % seqmule
 		prefix = reference  + "_" + bam_source + "_"+boid
+		# have we done this already? properly I should check the creation date,
+		# but now I am leaving it for some better times
+		if stats_file_processed("%s_cov_stat_detail.txt" % prefix):
+			print "%s_cov_stat_detail.txt" % prefix, "processed already"
+			exit()
+			continue
+		exit()
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)

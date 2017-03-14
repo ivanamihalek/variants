@@ -14,8 +14,9 @@ import commands
 seqmule = "/home/ivana/third/SeqMule/bin/seqmule"
 samtools = "/usr/local/bin/samtools"
 # see in integrator for an idea where did this file came from:
-bedfile_ccds   = "/databases/ccds/15/ccds_exon_regions.hg19.bed"
-bedfile_ensembl = "/databases/ucsc/ensembl_exon_regions.hg19.bed"
+bedfile = {"ccds": "/databases/ccds/15/ccds_exon_regions.hg19.bed",
+		   "ensembl": "/databases/ucsc/ensembl_exon_regions.hg19.bed",
+		   "agilent": "/databases/agilent/v5_plus_5utr/regions_plain.bed"}
 
 bam_source = "seqmule"
 ####################################
@@ -190,8 +191,7 @@ def do_stats (boid):
 	# seqmule - uses samtools depth - which gives depth position by position
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
-	bedfile = {"ccds": bedfile_ccds, "ensembl": bedfile_ensembl}
-	for reference in ["ccds", "ensembl"]:
+	for reference in ["ccds", "ensembl", "agilent"]:
 		cmd  = "%s stats --aln -t 4 " % seqmule
 		prefix = reference  + "_" + bam_source + "_"+boid
 		# have we done this already? properly I should check the creation date,
@@ -200,6 +200,7 @@ def do_stats (boid):
 			print "%s_cov_stat_detail.txt" % prefix, "processed already"
 			exit()
 			continue
+		print "processing  %s_cov_stat_detail.txt" % prefix
 		exit()
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])
 		print "running:\n%s\n...\n" % cmd
@@ -213,7 +214,7 @@ def do_stats (boid):
 	# my regions of interest are exons;
 	# do only ensembl here because ccds is a subset
 	outfile = "ensembl_%s_%s.bedcov.csv" % (bam_source, boid)
-	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile_ensembl, bamfile, outfile)
+	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile["ensembl"], bamfile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	bronto_store(boid, bam_source, outfile)
@@ -235,7 +236,7 @@ def main():
 		print "unrecognized bam source: ", bam_source
 		exit()
 
-	for f in [bedfile_ccds, bedfile_ensembl, seqmule, samtools]:
+	for f in bedfile.values() + [seqmule, samtools]:
 		if not os.path.exists(f):
 			print f, "not found"
 			exit(1)

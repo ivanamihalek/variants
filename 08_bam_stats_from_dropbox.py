@@ -198,7 +198,6 @@ def do_stats (boid):
 		# but now I am leaving it for some better times
 		if stats_file_processed(boid, bam_source,"%s_cov_stat_detail.txt" % prefix):
 			print "%s_cov_stat_detail.txt" % prefix, "processed already"
-			exit()
 			continue
 		print "processing  %s_cov_stat_detail.txt" % prefix
 		exit()

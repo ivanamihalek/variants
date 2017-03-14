@@ -180,6 +180,7 @@ def stats_file_processed(boid, bam_source, filename):
 	# make sure that we have stats folder - make one if we don't
 	path = bronto_path+"/stats/"+filename
 	return exists_on_bronto(path)
+
 ####################################
 def do_stats (boid):
 	bamfile = get_bam_from_dropbox(boid, bam_source)
@@ -195,7 +196,7 @@ def do_stats (boid):
 		prefix = reference  + "_" + bam_source + "_"+boid
 		# have we done this already? properly I should check the creation date,
 		# but now I am leaving it for some better times
-		if stats_file_processed("%s_cov_stat_detail.txt" % prefix):
+		if stats_file_processed(boid, bam_source,"%s_cov_stat_detail.txt" % prefix):
 			print "%s_cov_stat_detail.txt" % prefix, "processed already"
 			exit()
 			continue

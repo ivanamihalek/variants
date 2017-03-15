@@ -217,7 +217,7 @@ sub fastqs_from_bam {
         printf "Bam file(s) not found on bronto either. Checking Dropbox ...\n";
         $bamfile = `$bam_from_dropbox seqcenter $boid`;
         chomp $bamfile;
-        $bamfile =~ /.bam$/  &&  return @fastqs;
+        $bamfile =~ /.bam$/  ||  return @fastqs;
     }
 
     my $qsort_root = $bamfile;  $qsort_root =~ s/\.bam$/.qsort/;

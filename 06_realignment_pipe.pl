@@ -212,7 +212,7 @@ sub fastqs_from_bam{
 
     my @fastqs = ();
 
-    my $bamfile =  bam_from_bronto ();
+    my $bamfile =  bam_from_bronto;
     if (!$bamfile) {
         printf "Bam file(s) not found on bronto either. Checking Dropbox ...\n";
         $bamfile = `$bam_from_dropbox seqcenter $boid`;

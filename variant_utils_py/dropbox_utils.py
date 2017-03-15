@@ -43,7 +43,7 @@ def almtdir_name(bam_source):
 	return almtdir
 
 ####################################
-def construct_dbx_path(boid,bam_source):
+def construct_dbx_path(boid,bam_source, verbose=False):
 	topdir = "/raw_data"
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]
@@ -53,21 +53,20 @@ def construct_dbx_path(boid,bam_source):
 		print  dbx_path, "not found in Dropbox"
 		print "(I checked in %s)" % dbx_path
 		exit(1)
-	print dbx_path, "found in dropbox"
+	if verbose: print dbx_path, "found in dropbox"
 	return dbx_path
 
 ####################################
-def	md5sum_check(files, checksums):
+def	md5sum_check(files, checksums, verbose=False):
 	for file in files:
-		print file
 		md5file = file+".md5"
 		if not md5file in checksums:
 			print "md5 file not found for", file
 			exit(1)
 		md5sum_dropbox = os.popen("cat %s" % md5file).read().strip()
 		md5sum_local = os.popen("md5sum %s | cut -d' ' -f 1" % file).read().strip()
-		print "dbx: ", md5sum_dropbox
-		print "here:", md5sum_local
+		if verbose: print "dbx: ", md5sum_dropbox
+		if verbose: print "here:", md5sum_local
 		if not md5sum_dropbox == md5sum_dropbox:
 			print "md5sum mismatch"
 			exit(1)

@@ -7,7 +7,7 @@ use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 
 sub find_fastqs;
 sub fastqs_from_bam;
-
+sub bam_from_bronto;
 
 @ARGV ==3  || die "Usage: $0 <year> <case number> <individual>\n";
 
@@ -214,10 +214,10 @@ sub fastqs_from_bam () {
 
     my $bamfile =  bam_from_bronto ();
     if (!$bamfile) {
-        printf "Bam file(s) not found on bronto either.\n";
+        printf "Bam file(s) not found on bronto either. Checking Dropbox ...\n";
         $bamfile = `$bam_from_dropbox seqcenter $boid`;
         chomp $bamfile;
-        $bamfile eq "none"  &&  return @fastqs;
+        $bamfile =~ /.bam$/  &&  return @fastqs;
     }
 
     my $qsort_root = $bamfile;  $qsort_root =~ s/\.bam$/.qsort/;

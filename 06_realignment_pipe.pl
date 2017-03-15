@@ -215,8 +215,9 @@ sub fastqs_from_bam {
     my $bamfile =  bam_from_bronto;
     if (!$bamfile) {
         printf "Bam file(s) not found on bronto either. Checking Dropbox ...\n";
-        $bamfile = `$bam_from_dropbox seqcenter $boid`;
-        chomp $bamfile;
+        #$bamfile = `$bam_from_dropbox seqcenter $boid`;
+        #chomp $bamfile;
+        $bamfile = "BO140231A_Chorea_1334971.bam";
         $bamfile =~ /.bam$/  ||  return @fastqs;
     }
 
@@ -256,10 +257,8 @@ sub bam_from_bronto {
     my @fastqs = ();
     my $cmd  = "find $individual_dir -name \"*.bam\" ";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    if (!$ret) {
-        printf "Bam file(s) not found on bronto either in either.\n";
-        return "";
-    }
+    $ret || return "";
+
     my @lines = split '\n', $ret;
     if ( @lines>1 ) {
         printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";

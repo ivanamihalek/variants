@@ -5,7 +5,7 @@ use warnings FATAL => 'all';
 #infile is just alist of boids
 @ARGV==3 || die "Usage: $0  <infile> <workdir> <year>.\n";
 my ($infile, $workdir, $year) = @ARGV;
-my $realn = "/home/ivana/pypeworks/variants/05_realignment_pipe.pl";
+my $realn = "/home/ivana/pypeworks/variants/06_realignment_pipe.pl";
 
 for ($infile, $workdir, $realn) {
     (-e $_) || die "$_ not found.\n";

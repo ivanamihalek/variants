@@ -18,8 +18,8 @@ my ($year, $caseno, $individual) = @ARGV;
 my $samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";
 my $bam2fastq = "/home/ivana/third/bedtools2/bin/bamToFastq";
 my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
-
-foreach ($samtools, $bam2fastq, $seqmule) {
+my $bam_from_dropbox = "/home/ivana/pypeworks/variants/05_bam_from_dropbox.py";
+foreach ($samtools, $bam2fastq, $seqmule, $bam_from_dropbox) {
     -e $_ && ! -z $_ || die "$_ not found\n";
 }
 
@@ -35,18 +35,18 @@ for my $dir  ( '/data01', '/data02') {
         $homedir = $dir;
     }
 }
+$homedir || die "home dir not found on brontofor the year $year\n";
 
-$homedir || die "home dir not found for the year $year\n";
 my $casedir = "$homedir/$year/$caseno";
 my $cmd     = "ls -d $casedir";
 my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-$ret eq $casedir || die "$casedir not found\n";
+$ret eq $casedir || die "$casedir not found on bronto\n";
 
 my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
 my $individual_dir = "$casedir/$boid";
 $cmd  = "ls -d $individual_dir";
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-$ret eq $individual_dir || die "$individual_dir  not found\n";
+$ret eq $individual_dir || die "$individual_dir  not found on bronto\n";
 
 
 ##########################################
@@ -211,28 +211,14 @@ sub find_fastqs  {
 sub fastqs_from_bam () {
 
     my @fastqs = ();
-    my $cmd  = "find $individual_dir -name \"*.bam\" ";
-    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    if (!$ret) {
-        printf "No bam file found either.\n";
-        return @fastqs;
-    }
-    my @lines = split '\n', $ret;
-    if ( @lines>1 ) {
-        printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
-        return @fastqs;
-    }
 
-    my @aux = split '\/', $lines[0];
-    my $bamfile = pop @aux;
-    my $path = join "/", @aux;
-    print "$path  $bamfile \n";
-    # md5sum
-    my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $bamfile);
-    (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;
-    my $md5sum_local = `md5sum $bamfile | cut -d " " -f 1`; chomp $md5sum_local;
-    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $bamfile\n";
-    print "downloaded $bamfile, checksum checks\n";
+    my $bamfile =  bam_from_bronto ();
+    if (!$bamfile) {
+        printf "Bam file(s) not found on bronto either.\n";
+        $bamfile = `$bam_from_dropbox seqcenter $boid`;
+        chomp $bamfile;
+        $bamfile eq "none"  &&  return @fastqs;
+    }
 
     my $qsort_root = $bamfile;  $qsort_root =~ s/\.bam$/.qsort/;
     my $qsort_file = $qsort_root.".bam";
@@ -263,3 +249,33 @@ sub fastqs_from_bam () {
 
     return @fastqs;
 }
+
+#######################################
+sub bams_from_bronto () {
+
+    my @fastqs = ();
+    my $cmd  = "find $individual_dir -name \"*.bam\" ";
+    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    if (!$ret) {
+        printf "Bam file(s) not found on bronto either in either.\n";
+        return "";
+    }
+    my @lines = split '\n', $ret;
+    if ( @lines>1 ) {
+        printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
+        return  "";
+    }
+
+    my @aux = split '\/', $lines[0];
+    my $bamfile = pop @aux;
+    my $path = join "/", @aux;
+    # md5sum
+    my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $bamfile);
+    (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;
+    my $md5sum_local = `md5sum $bamfile | cut -d " " -f 1`; chomp $md5sum_local;
+    $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $bamfile\n";
+    print "downloaded $bamfile from bronto, checksum checks\n";
+
+    return $bamfile;
+}
+

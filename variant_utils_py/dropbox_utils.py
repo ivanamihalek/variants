@@ -8,6 +8,90 @@ MAX_RETRIES   = 20
 
 
 ####################################
+DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
+
+dbx = dropbox.Dropbox(DROPBOX_TOKEN)
+
+####################################
+def scan_through_folder (dbx, dbx_path, local_dir):
+
+	try:
+		response = dbx.files_list_folder(dbx_path, recursive = True)
+	except dropbox.exceptions.ApiError as err:
+		print('Folder listing failed for', dbx_path, '-- assumed empty:', err)
+		exit(1)
+	else:
+		files = []
+		checksums = []
+		for entry in response.entries:
+			if type(entry)!= dropbox.files.FileMetadata: continue
+			dbx_file_path = entry.path_display
+			local_filename = local_dir+"/"+entry.name
+			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
+			if entry.name[-4:] == ".md5":
+				checksums.append(entry.name)
+			elif entry.name[-4:] in [".bam",".bai"]:
+				files.append(entry.name)
+	return files, checksums
+
+####################################
+def almtdir_name(bam_source):
+	if bam_source == 'seqmule':
+		almtdir = "by_seqmule_pipeline"
+	else:
+		almtdir = "by_seq_center"
+	return almtdir
+
+####################################
+def construct_dbx_path(boid,bam_source):
+	topdir = "/raw_data"
+	year = "20" + boid[2:4]
+	caseno = boid[4:7]
+	# check that the expected path in the dropbox exists
+	dbx_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % almtdir_name(bam_source)])
+	if not check_dbx_path(dbx, dbx_path):
+		print  dbx_path, "not found in Dropbox"
+		print "(I checked in %s)" % dbx_path
+		exit(1)
+	print dbx_path, "found in dropbox"
+	return dbx_path
+
+####################################
+def	md5sum_check(files, checksums):
+	for file in files:
+		print file
+		md5file = file+".md5"
+		if not md5file in checksums:
+			print "md5 file not found for", file
+			exit(1)
+		md5sum_dropbox = os.popen("cat %s" % md5file).read().strip()
+		md5sum_local = os.popen("md5sum %s | cut -d' ' -f 1" % file).read().strip()
+		print "dbx: ", md5sum_dropbox
+		print "here:", md5sum_local
+		if not md5sum_dropbox == md5sum_dropbox:
+			print "md5sum mismatch"
+			exit(1)
+
+####################################
+def get_bam_from_dropbox(boid, bam_source):
+
+	dbx_path = construct_dbx_path(boid,bam_source)
+	local_dir = os.getcwd()
+	# download bamfiles
+	files, checksums = scan_through_folder(dbx, dbx_path, local_dir)
+	# check md5 sums
+	md5sum_check(files, checksums)
+	bamfiles = filter(lambda f: ".bam" == f[-4:], files)
+	if len(bamfiles) == 0:
+		print "no bamfile found"
+		exit(1)
+	if len(bamfiles) > 1:
+		print "more than one bamfile found"
+		exit(1)
+	return bamfiles[0]
+
+
+####################################
 def check_dbx_path(dbx, dbx_path):
     try:
         dbx.files_get_metadata(dbx_path)

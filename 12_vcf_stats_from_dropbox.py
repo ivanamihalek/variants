@@ -18,7 +18,6 @@ bcftools = "/usr/local/bin/bcftools"
 bedfile_agilent = "/databases/agilent/v5_plus_5utr/regions_plain.bed"
 bedfile_ensembl = "/databases/ucsc/ensembl_exon_regions.hg19.bed"
 
-bam_source = "seqmule"
 ####################################
 DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
 
@@ -172,35 +171,7 @@ def sort_bam(samtools, bamfile):
 
 ####################################
 def do_stats (boid):
-	bamfile = get_bam_from_dropbox(boid, bam_source)
-	if bam_source=='seqcenter':
-		bamfile = sort_bam(samtools, bamfile)
-
-	# seqmule - uses samtools depth - which gives depth position by position
-	# do I want to store that?  probably not - so seqmule process is into
-	# cumulative stats (with running sums
-	cmd  = "%s stats --aln -t 4 " % seqmule
-	prefix = bam_source+ "_"+boid
-	if agilent: prefix = "agilent_" + prefix
-	cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile)
-	print "running:\n%s\n...\n" % cmd
-	os.system(cmd)
-	# store  to bronto - it should find its way to dropbox in one of the update rounds
-	outfile = "%s_%s_cov_stat_detail.txt" % (bam_source, boid) # the name that the seqmule generates
-	if agilent: outfile = "agilent_"+outfile
-	bronto_store(boid, bam_source, outfile)
-	outfile = "%s_%s_cov.jpg" % (bam_source, boid) # the name that the seqmule generates
-	if agilent: outfile = "agilent_"+outfile
-	bronto_store(boid, bam_source, outfile)
-
-	# samtools bedcov or depth? bedcov gives what is in principle average coverage in a region
-	# (it gives the sum of depths, which then need to be divided by the length of the region)
-	# my regions of interest are exons
-	outfile = "bam_source_%s.bedcov.csv" % (bam_source, boid)
-	if agilent:
-		outfile = "agilent_"+outfile
-	else:
-		outfile = "ensembl_"+outfile
+	vcffile = get_vcf _from_dropbox(boid, bam_source)
 	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
 	# -a Output all positions (including those with zero depth)
 	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
@@ -209,17 +180,6 @@ def do_stats (boid):
 	bronto_store(boid, bam_source, outfile)
 
 	return
-
-####################################
-#def main():
-#	if len(sys.argv) < 3:
-#		print  "usage: %s <BOid> seqmule/seqcenter [agilent]" % sys.argv[0]
-#		exit(1)
-#	[boid, bam_source]=	sys.argv[1:3]
-#	if not bam_source in ['seqmule', 'seqcenter']:
-#		print "unrecognized bam source: ", bam_source
-#		exit()
-#	agilent = (len(sys.argv) > 3 and sys.argv[3] == 'agilent')
 
 ####################################
 def main():
@@ -231,11 +191,8 @@ def main():
 	# bam source here is  hardcoded on top
 	# aside fromt the fact that seqmule removes duplicates,
 	# there does not seem to be much difference
-	if not bam_source in ['seqmule', 'seqcenter']:
-		print "unrecognized bam source: ", bam_source
-		exit()
 
-	for f in [bedfile_agilent, bedfile_ensembl,  seqmule, samtools, bcftools]:
+	for f in [bedfile_agilent, bedfile_ensembl, bcftools]:
 		if not os.path.exists(f):
 			print f, "not found"
 			exit(1)

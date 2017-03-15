@@ -208,7 +208,7 @@ sub find_fastqs  {
 
 
 #######################################
-sub fastqs_from_bam{
+sub fastqs_from_bam {
 
     my @fastqs = ();
 
@@ -251,7 +251,7 @@ sub fastqs_from_bam{
 }
 
 #######################################
-sub bams_from_bronto {
+sub bam_from_bronto {
 
     my @fastqs = ();
     my $cmd  = "find $individual_dir -name \"*.bam\" ";

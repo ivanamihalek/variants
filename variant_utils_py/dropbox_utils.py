@@ -13,6 +13,7 @@ DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
 dbx = dropbox.Dropbox(DROPBOX_TOKEN)
 
 ####################################
+# this is part of bam downloding - it is not general
 def scan_through_folder (dbx, dbx_path, local_dir):
 
 	try:
@@ -25,6 +26,7 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 		checksums = []
 		for entry in response.entries:
 			if type(entry)!= dropbox.files.FileMetadata: continue
+			if not entry.name[-4:] in [".md5",".bam",".bai"]: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
 			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)

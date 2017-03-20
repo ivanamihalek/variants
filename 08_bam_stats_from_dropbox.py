@@ -60,7 +60,6 @@ def construct_bronto_path(boid,bam_source):
 		exit()
 	return bronto_path
 
-
 ####################################
 def bronto_store(boid, bam_source, uploadfile):
 	bronto_path = construct_bronto_path(boid, bam_source)
@@ -131,7 +130,7 @@ def do_stats (boid):
 	# my regions of interest are exons;
 	# do only ensembl here because ccds is a subset
 	outfile = "ensembl_%s_%s.bedcov.csv" % (bam_source, boid)
-	if  stats_file_processed(boid, bam_source,outfile):
+	if stats_file_processed(boid, bam_source,outfile):
 		print outfile, "processed already"
 	else:
 		cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile["ensembl"], bamfile, outfile)

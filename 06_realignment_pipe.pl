@@ -72,8 +72,6 @@ if ($bamfile =~ /.bam$/) {
     exit (0);
 }
 
-exit;
-
 ##########################################
 # check if the parts of the pipeline have already completed
 my $logfile = "$boid.script";

@@ -58,12 +58,13 @@ $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp 
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam";
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-
-    print $ret, " found on bronto \n";
-
-    exit (0);
+    $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+    if ($ret =~ /.bam$/) {
+        print $ret, " found on bronto \n";
+        exit (0);
+    }
 }
+
 # also check on Dropbox
 my $bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
 chomp $bamfile;
@@ -71,7 +72,6 @@ if ($bamfile =~ /.bam$/) {
     print $bamfile, " found in Dropbox\n";
     exit (0);
 }
-
 exit;
 
 

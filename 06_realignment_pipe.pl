@@ -71,7 +71,6 @@ if ($bamfile =~ /.bam$/) {
     print $bamfile, " found in Dropbox\n";
     exit (0);
 }
-exit;
 
 
 ##########################################

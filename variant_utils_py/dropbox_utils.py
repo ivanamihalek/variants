@@ -80,7 +80,6 @@ def	md5sum_check(files, checksums, verbose=False):
 def get_bam_from_dropbox(boid, bam_source, download_requested=True):
 
 	dbx_path  = construct_dbx_path(boid,bam_source)
-	print "looking for ", dbx_path
 	local_dir = os.getcwd()
 	# download bamfiles
 	files, checksums = scan_through_folder(dbx, dbx_path, local_dir, download_requested)

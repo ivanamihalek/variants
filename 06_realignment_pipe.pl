@@ -52,7 +52,7 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 # do we have something in here, by any chance?
 $cmd = "ls -d $bam_path 2> /dev/null";
 $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-p
+
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";

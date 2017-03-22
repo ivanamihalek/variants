@@ -27,7 +27,7 @@ def scan_through_folder (dbx, dbx_path, local_dir, download_requested):
 		checksums = []
 		for entry in response.entries:
 			if type(entry) != dropbox.files.FileMetadata: continue
-			print entry.path_lower
+			if 'archive' in entry.path_lower: continue
 			if not entry.name[-4:] in [".md5",".bam",".bai"]: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name

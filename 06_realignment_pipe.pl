@@ -63,11 +63,13 @@ if ($ret eq $bam_path) {
     $cmd  = "ls -f $bam_path/*bam ";
     $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`; chomp $ret;
     print " >>>>>>>>>>>>>>>>   4 \n";
-
+    print "$ret\n";
+    print " >>>>>>>>>>>>>>>>   5 \n";
     foreach (split '\n', $ret) {
+        print " >>>>>>>>>>>>>>>>   6: $_ \n";
         /.bam$/ || next;
         print $ret, " found on bronto \n";
-        print " >>>>>>>>>>>>>>>>   5 \n";
+        print " >>>>>>>>>>>>>>>>   7 \n";
         exit (0);
     }
 }

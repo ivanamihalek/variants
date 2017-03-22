@@ -52,13 +52,13 @@ $ret eq $individual_dir || die "$individual_dir  not found on bronto\n";
 my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
 my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 # do we have something in here, by any chance?
-$cmd  = "ls -d $bam_path";
-$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+$cmd = "ls -d $bam_path 2> /dev/null";
+$ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
-    $cmd  = "ls -f $bam_path/*bam";
-    $ret  = `ssh ivana\@brontosaurus.tch.harvard.edu "bash -s $cmd 2> /dev/null"`; chomp $ret;
+    $cmd  = "ls -f $bam_path/*bam 2> /dev/null";
+    $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
     foreach (split '\n', $ret) {
         /.bam$/ || next;
         print $ret, " found on bronto \n";

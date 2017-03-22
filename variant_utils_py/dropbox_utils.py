@@ -14,7 +14,7 @@ dbx = dropbox.Dropbox(DROPBOX_TOKEN)
 
 ####################################
 # this is part of bam downloding - it is not general
-def scan_through_folder (dbx, dbx_path, local_dir, download):
+def scan_through_folder (dbx, dbx_path, local_dir, download_requested):
 
 	# if download is false, we are just checking for the existence
 	try:
@@ -30,7 +30,7 @@ def scan_through_folder (dbx, dbx_path, local_dir, download):
 			if not entry.name[-4:] in [".md5",".bam",".bai"]: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
-			if download and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
+			if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
 			if entry.name[-4:] == ".md5":
 				checksums.append(entry.name)
 			elif entry.name[-4:] in [".bam",".bai"]:
@@ -76,12 +76,12 @@ def	md5sum_check(files, checksums, verbose=False):
 
 
 ####################################
-def get_bam_from_dropbox(boid, bam_source, download=True):
+def get_bam_from_dropbox(boid, bam_source, download_requested=True):
 
 	dbx_path = construct_dbx_path(boid,bam_source)
 	local_dir = os.getcwd()
 	# download bamfiles
-	files, checksums = scan_through_folder(dbx, dbx_path, local_dir, download)
+	files, checksums = scan_through_folder(dbx, dbx_path, local_dir, download_requested)
 	# check md5 sums
 	md5sum_check(files, checksums)
 	bamfiles = filter(lambda f: ".bam" == f[-4:], files)

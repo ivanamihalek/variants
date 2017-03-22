@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/05_bam_from_dropbox.py" afterPath="$PROJECT_DIR$/05_bam_from_dropbox.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" afterPath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="64" column="5" lean-forward="true" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+            <state relative-caret-position="-396">
+              <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
               <folding>
                 <element signature="e#2751#3266#0#Perl5" expanded="false" />
               </folding>
@@ -32,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="05_bam_from_dropbox.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="05_bam_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/05_bam_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="16" column="66" lean-forward="true" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
+            <state relative-caret-position="612">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#85#130#0" expanded="true" />
               </folding>
@@ -57,8 +58,8 @@
       <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1908">
-              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#233#269#0" expanded="false" />
@@ -89,8 +90,8 @@
       <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1304">
-              <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+            <state relative-caret-position="1252">
+              <caret line="83" column="87" lean-forward="false" selection-start-line="83" selection-start-column="87" selection-end-line="83" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -133,15 +134,15 @@
         <option value="$PROJECT_DIR$/08_seqmule_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/12_vcf_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
+        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
         <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
         <option value="$PROJECT_DIR$/05_bam_from_dropbox.py" />
-        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="583" />
-    <option name="y" value="100" />
+    <option name="x" value="609" />
+    <option name="y" value="113" />
     <option name="width" value="3131" />
     <option name="height" value="1911" />
   </component>
@@ -377,7 +378,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="583" y="100" width="3131" height="1911" extended-state="0" />
+    <frame x="609" y="113" width="3131" height="1911" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23487544" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -768,28 +769,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1304">
-          <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-          <folding />
+        <state relative-caret-position="-396">
+          <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+          <folding>
+            <element signature="e#2751#3266#0#Perl5" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/05_bam_from_dropbox.py">
+    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="16" column="66" lean-forward="true" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
-          <folding>
-            <element signature="e#85#130#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1252">
+          <caret line="83" column="87" lean-forward="false" selection-start-line="83" selection-start-column="87" selection-end-line="83" selection-end-column="87" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1908">
-          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
@@ -824,12 +825,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+    <entry file="file://$PROJECT_DIR$/05_bam_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="64" column="5" lean-forward="true" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+        <state relative-caret-position="612">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#2751#3266#0#Perl5" expanded="false" />
+            <element signature="e#85#130#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -57,8 +57,8 @@ $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $
 
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
-    $cmd  = "ls -f $bam_path/*bam 2> /dev/null";
-    $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+    $cmd  = "ls -f $bam_path/*bam ";
+    $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`; chomp $ret;
     foreach (split '\n', $ret) {
         /.bam$/ || next;
         print $ret, " found on bronto \n";

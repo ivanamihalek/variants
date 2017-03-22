@@ -58,11 +58,16 @@ print " >>>>>>>>>>>>>>>>   2 \n";
 
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
+    print " >>>>>>>>>>>>>>>>   3 \n";
+
     $cmd  = "ls -f $bam_path/*bam ";
     $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`; chomp $ret;
+    print " >>>>>>>>>>>>>>>>   4 \n";
+
     foreach (split '\n', $ret) {
         /.bam$/ || next;
         print $ret, " found on bronto \n";
+        print " >>>>>>>>>>>>>>>>   5 \n";
         exit (0);
     }
 }

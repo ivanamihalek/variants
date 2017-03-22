@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" afterPath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
@@ -87,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="73" column="35" lean-forward="true" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+            <state relative-caret-position="540">
+              <caret line="20" column="68" lean-forward="true" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -135,15 +135,15 @@
         <option value="$PROJECT_DIR$/08_seqmule_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/12_vcf_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
-        <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
         <option value="$PROJECT_DIR$/05_bam_from_dropbox.py" />
         <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
+        <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="894" />
-    <option name="y" value="137" />
+    <option name="x" value="915" />
+    <option name="y" value="124" />
     <option name="width" value="2687" />
     <option name="height" value="1922" />
   </component>
@@ -379,7 +379,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="894" y="137" width="2687" height="1922" extended-state="0" />
+    <frame x="915" y="124" width="2687" height="1922" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25086385" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -841,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="73" column="35" lean-forward="true" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/05_bam_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -867,6 +859,14 @@
             <element signature="e#837#879#0#Perl5" expanded="true" />
             <element signature="e#2853#3368#0#Perl5" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="20" column="68" lean-forward="true" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>

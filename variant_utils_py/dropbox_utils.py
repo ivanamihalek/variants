@@ -26,7 +26,8 @@ def scan_through_folder (dbx, dbx_path, local_dir, download_requested):
 		files = []
 		checksums = []
 		for entry in response.entries:
-			if type(entry)!= dropbox.files.FileMetadata: continue
+			if type(entry) != dropbox.files.FileMetadata: continue
+			print entry.path_lower
 			if not entry.name[-4:] in [".md5",".bam",".bai"]: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name

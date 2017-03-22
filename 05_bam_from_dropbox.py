@@ -2,7 +2,6 @@
 
 # bam download has to be python, because Dropbox speaks  python
 
-
 from  variant_utils_py.dropbox_utils import *
 import commands
 
@@ -10,7 +9,7 @@ import commands
 def main():
 
 	if len(sys.argv) < 3:
-		print  "usage: %s  seqmule/seqcenter <boid> [nodwld]" % sys.argv[0]
+		print  "usage: %s seqmule/seqcenter <boid> [nodwld]" % sys.argv[0]
 		exit(1)
 	[bam_source, boid] = sys.argv[1:3]
 	download_requested = True   # the default is to download but we might be just checking

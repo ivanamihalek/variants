@@ -78,12 +78,12 @@ def	md5sum_check(files, checksums, verbose=False):
 ####################################
 def get_bam_from_dropbox(boid, bam_source, download_requested=True):
 
-	dbx_path = construct_dbx_path(boid,bam_source)
+	dbx_path  = construct_dbx_path(boid,bam_source)
 	local_dir = os.getcwd()
 	# download bamfiles
 	files, checksums = scan_through_folder(dbx, dbx_path, local_dir, download_requested)
 	# check md5 sums
-	md5sum_check(files, checksums)
+	if download_requested: md5sum_check(files, checksums)
 	bamfiles = filter(lambda f: ".bam" == f[-4:], files)
 	if len(bamfiles) == 0:
 		print "no bamfile found"

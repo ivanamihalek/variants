@@ -47,29 +47,19 @@ $cmd = "ls -d $individual_dir";
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 $ret eq $individual_dir || die "$individual_dir  not found on bronto\n";
 
-print " >>>>>>>>>>>>>>>>   1 \n";
-
 my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
 my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 # do we have something in here, by any chance?
 $cmd = "ls -d $bam_path 2> /dev/null";
 $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-print " >>>>>>>>>>>>>>>>   2 \n";
-
+p
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
-    print " >>>>>>>>>>>>>>>>   3 \n";
-
     $cmd  = "ls -f $bam_path/*bam ";
     $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`; chomp $ret;
-    print " >>>>>>>>>>>>>>>>   4 \n";
-    print "$ret\n";
-    print " >>>>>>>>>>>>>>>>   5 \n";
     foreach (split '\n', $ret) {
-        print " >>>>>>>>>>>>>>>>   6: $_ \n";
         /.bam$/ || next;
         print $ret, " found on bronto \n";
-        print " >>>>>>>>>>>>>>>>   7 \n";
         exit (0);
     }
 }

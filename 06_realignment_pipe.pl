@@ -63,7 +63,7 @@ if ($ret eq $bam_path) {
     return 0;
 }
 # also check on Dropbox
-$bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
+my $bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
 chomp $bamfile;
 if ($bamfile =~ /.bam$/) {
     print $bamfile, " found in Dropbox\n";

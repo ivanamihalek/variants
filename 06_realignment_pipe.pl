@@ -35,7 +35,7 @@ for my $dir  ( '/data01', '/data02') {
         $homedir = $dir;
     }
 }
-$homedir || die "home dir not found on brontofor the year $year\n";
+$homedir || die "home dir not found on bronto for the year $year\n";
 
 my $casedir = "$homedir/$year/$caseno";
 my $cmd     = "ls -d $casedir";
@@ -47,6 +47,30 @@ my $individual_dir = "$casedir/$boid";
 $cmd  = "ls -d $individual_dir";
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 $ret eq $individual_dir || die "$individual_dir  not found on bronto\n";
+
+
+my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
+my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
+# do we have something in here, by any chance?
+$cmd  = "ls -d $bam_path";
+$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+if ($ret eq $bam_path) {
+    # bam directory found - does it contain anything?
+    $cmd  = "ls $bam_path/*bam";
+    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+    print $ret, " found in Dropbox \n";
+
+    return 0;
+}
+# also check on Dropbox
+$bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
+chomp $bamfile;
+if ($bamfile =~ /.bam$/) {
+    print $bamfile, " found in Dropbox\n";
+    return 0;
+}
+
+exit
 
 
 ##########################################
@@ -73,8 +97,6 @@ chdir  "$boid\_result";
 my @uploadables = split '\n', `ls *vcf`;
 my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
 my $bai = $bam.".bai"; ; push @uploadables, $bai;
-my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
-my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 
 for ($vcf_path, $bam_path ) {
     print "making path $_\n";

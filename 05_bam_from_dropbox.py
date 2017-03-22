@@ -10,9 +10,11 @@ import commands
 def main():
 
 	if len(sys.argv) < 3:
-		print  "usage: %s  seqmule/seqcenter <boid> " % sys.argv[0]
+		print  "usage: %s  seqmule/seqcenter <boid> [nodwld]" % sys.argv[0]
 		exit(1)
 	[bam_source, boid] = sys.argv[1:3]
+	download = True   # the default is to download but we might be just checking
+	if  len(sys.argv)>3 and sys.argv[3]=="nodwld": download =False
 
 	if not bam_source in ['seqmule', 'seqcenter']:
 		print "unrecognized bam source: ", bam_source

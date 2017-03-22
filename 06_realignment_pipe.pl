@@ -54,7 +54,7 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 # do we have something in here, by any chance?
 $cmd  = "ls -d $bam_path";
 $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-print "bronto says: $re\n";
+print "bronto says: $ret\n";
 exit;
 
 if ($ret eq $bam_path) {

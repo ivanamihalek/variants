@@ -52,18 +52,15 @@ def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
 		for entry in response.entries:
 			if type(entry) != dropbox.files.FileMetadata: continue
 			if 'archive' in entry.path_lower: continue
-			print " >>>> 1", entry.name
 			if not entry.name[-3:] in ["md5", "bz2", "stq", ".gz"]: continue
-			print " >>>> 2", entry.name
 			dbx_file_path = entry.path_display
-			print " >>>> 3", entry.name
 			local_filename = local_dir + "/" + entry.name
-			print " >>>> 4", entry.name
 			if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
 			print " >>>> 5", entry.name
 			if entry.name[-4:] == ".md5":
 				checksums.append(entry.name)
 			elif entry.name[-10:]==".fastq.bz2" or entry.name[-9:]==".fastq.gz" or entry.name[-6:]==".fastq":
+				print " >>>> 6", entry.name
 				files.append(entry.name)
 	return files, checksums
 

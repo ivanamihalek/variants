@@ -170,7 +170,6 @@ sub find_fastqs  {
     }
 
     foreach (split '\n', $ret) {
-        print $_,"\n";
         my @aux  = split '\/';
         my $fnm  = pop @aux;
         my $path = join "/", @aux;
@@ -204,7 +203,6 @@ sub find_fastqs  {
             }
         }
     }
-    exit;
 
     if (@fastqs!=2) {
         # the fastqs are not concatenated - not sure how that

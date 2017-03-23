@@ -125,7 +125,6 @@ foreach my $fnm (@uploadables) {
 
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
     print "uploaded  $fnm, checksum checks\n";
-
 }
 
 ###################################################################################
@@ -161,8 +160,9 @@ sub find_fastqs  {
     my $brontofiles = 0;
     if (!$ret) {
         printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
-        #$ret = `$fastq_from_dropbox $boid`;
-        $ret = `ls *.bz2`;
+        $ret = `$fastq_from_dropbox $boid nodwld`;
+        print $ret;
+        exit;
         if ($ret =~ /^none/) {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
@@ -173,8 +173,8 @@ sub find_fastqs  {
 
     foreach (split '\n', $ret) {
         print $_,"\n";
-        my @aux = split '\/';
-        my $fnm = pop @aux;
+        my @aux  = split '\/';
+        my $fnm  = pop @aux;
         my $path = join "/", @aux;
         my $unzipped = $fnm;
         # the files in archive are empty placeholders - the actual files are on

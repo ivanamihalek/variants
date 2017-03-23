@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/04_fastq_from_dropbox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" afterPath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4752">
-              <caret line="21" column="66" lean-forward="false" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+            <state relative-caret-position="1008">
+              <caret line="191" column="67" lean-forward="true" selection-start-line="191" selection-start-column="67" selection-end-line="191" selection-end-column="67" />
               <folding>
                 <element signature="e#944#977#0#Perl5" expanded="true" />
                 <element signature="e#2002#2044#0#Perl5" expanded="true" />
@@ -104,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="58" column="41" lean-forward="true" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+            <state relative-caret-position="-180">
+              <caret line="36" column="40" lean-forward="true" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -156,14 +153,14 @@
         <option value="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/05_bam_from_dropbox.py" />
         <option value="$PROJECT_DIR$/04_fastq_from_dropbox.py" />
-        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
         <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
+        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="566" />
-    <option name="y" value="185" />
+    <option name="x" value="275" />
+    <option name="y" value="134" />
     <option name="width" value="2986" />
     <option name="height" value="1810" />
   </component>
@@ -404,7 +401,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="566" y="185" width="2986" height="1810" extended-state="0" />
+    <frame x="275" y="134" width="2986" height="1810" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13068567" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -921,21 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4752">
-          <caret line="21" column="66" lean-forward="false" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
-          <folding>
-            <element signature="e#944#977#0#Perl5" expanded="true" />
-            <element signature="e#2002#2044#0#Perl5" expanded="true" />
-            <element signature="e#2766#2808#0#Perl5" expanded="true" />
-            <element signature="e#3594#3636#0#Perl5" expanded="true" />
-            <element signature="e#4185#4227#0#Perl5" expanded="true" />
-            <element signature="e#5086#5169#0#Perl5" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/04_fastq_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
@@ -946,9 +928,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="58" column="41" lean-forward="true" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+        <state relative-caret-position="-180">
+          <caret line="36" column="40" lean-forward="true" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="191" column="67" lean-forward="true" selection-start-line="191" selection-start-column="67" selection-end-line="191" selection-end-column="67" />
+          <folding>
+            <element signature="e#944#977#0#Perl5" expanded="true" />
+            <element signature="e#2002#2044#0#Perl5" expanded="true" />
+            <element signature="e#2766#2808#0#Perl5" expanded="true" />
+            <element signature="e#3594#3636#0#Perl5" expanded="true" />
+            <element signature="e#4185#4227#0#Perl5" expanded="true" />
+            <element signature="e#5086#5169#0#Perl5" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

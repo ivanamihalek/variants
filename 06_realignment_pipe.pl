@@ -158,6 +158,7 @@ sub find_fastqs  {
         $cmd  = "find $individual_dir -name \"*fastq.gz\" ";
         $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     }
+    my $brontofiles = 0;
     if (!$ret) {
         printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
         $ret = `$fastq_from_dropbox $boid`;
@@ -165,6 +166,8 @@ sub find_fastqs  {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
         }
+    } else {
+        $brontofiles = 1;
     }
 
     foreach (split '\n', $ret) {
@@ -180,13 +183,17 @@ sub find_fastqs  {
         if ( -e $unzipped && ! -z $unzipped) {
             push @fastqs, $unzipped;
         } else {
-            # md5sum
-            my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $fnm);
-            # downnload and check md5sum
-            (-e $fnm && ! -z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
-            my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`; chomp $md5sum_local;
-            $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
-            print "downloaded $fnm, checksum checks\n";
+            # if the files are coming from Dropbox, I checked the md5 on the pyhton side
+            if ($brontofiles) {
+                # md5sum
+                my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $fnm);
+                # downnload and check md5sum
+                (-e $fnm && !-z $fnm) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$fnm .`;
+                my $md5sum_local = `md5sum $fnm | cut -d " " -f 1`;
+                chomp $md5sum_local;
+                $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
+                print "downloaded $fnm, checksum checks\n";
+            }
             # decmpress bz2; seqmule knows how to read gz itself
             if ($fnm =~ /bz2$/) {
                 printf "unzipping $fnm\n";
@@ -197,6 +204,8 @@ sub find_fastqs  {
             }
         }
     }
+
+
     if (@fastqs!=2) {
         # the fastqs are not concatenated - not sure how that
         # can look in general, but I've seen cases with names labeled _R1_ and _R2_

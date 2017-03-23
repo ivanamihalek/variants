@@ -161,8 +161,6 @@ sub find_fastqs  {
     if (!$ret) {
         printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
         $ret = `$fastq_from_dropbox $boid nodwld`;
-        print $ret;
-        exit;
         if ($ret =~ /^none/) {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
@@ -292,7 +290,7 @@ sub fastqs_from_bam {
 sub bam_from_bronto {
 
     my @fastqs = ();
-    my $cmd  = "find $individual_dir -name \"*.bam\" ";
+    my $cmd = "find $individual_dir -name \"*.bam\" ";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     $ret || return "";
 

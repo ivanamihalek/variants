@@ -55,7 +55,7 @@ def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
 			if not entry.name[-3:] in ["md5", "bz2", "stq", ".gz"]: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir + "/" + entry.name
-			if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
+			#if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
 			if entry.name[-4:] == ".md5":
 				checksums.append(entry.name)
 			elif entry.name[-10:]==".fastq.bz2" or entry.name[-9:]==".fastq.gz" or entry.name[-6:]==".fastq":

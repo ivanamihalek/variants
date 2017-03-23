@@ -23,7 +23,7 @@ foreach ($samtools, $bam2fastq, $seqmule, $bam_from_dropbox) {
     -e $_ && ! -z $_ || die "$_ not found\n";
 }
 
-##########################################
+#################################
 # find the directory on bronto
 my $homedir = "";
 for my $dir  ( '/data01', '/data02') {
@@ -49,10 +49,12 @@ $ret eq $individual_dir || die "$individual_dir  not found on bronto\n";
 
 my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
 my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
-# do we have something in here, by any chance?
+
+
+##########################################
+# do we have something already processed by seqmule, by any chance?
 $cmd = "ls -d $bam_path 2> /dev/null";
 $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";
@@ -63,8 +65,7 @@ if ($ret eq $bam_path) {
         exit (0);
     }
 }
-
-# also check on Dropbox
+# also check in Dropbox
 my $bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
 chomp $bamfile;
 if ($bamfile =~ /.bam$/) {
@@ -73,12 +74,12 @@ if ($bamfile =~ /.bam$/) {
 }
 
 ##########################################
-# check if the parts of the pipeline have already completed
+# check whether the parts of the pipeline have already completed
 my $logfile = "$boid.script";
 
 if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     my @fastqs =  find_fastqs;
-    @fastqs || (@fastqs =  fastqs_from_bam);
+    @fastqs || (@fastqs = fastqs_from_bam);
     @fastqs || die "I could not locate neither fastq nor the bam file(s). Bailing out.\n";
     my @fastqs_sorted_alphabetically =  sort { $a cmp $b}  @fastqs; # taking a leap of faith here
 
@@ -87,7 +88,6 @@ if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     print "running:\n$cmd\n...\n";
     (system $cmd) && die "error: $!\n";
 }
-
 `tail -n1 $logfile` =~ "finished" || die "there was a problem completing\n$cmd\ncheck the logfile $boid.script\n";
 
 ##########################################
@@ -98,10 +98,10 @@ my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
 my $bai = $bam.".bai"; ; push @uploadables, $bai;
 
 for ($vcf_path, $bam_path ) {
-    print "making path $_\n";
+    print  "making path $_\n";
     $cmd = "mkdir -p $_";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-    print "making path $_/md5sums\n";
+    print  "making path $_/md5sums\n";
     $cmd = "mkdir -p $_/md5sums";
     $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
 }
@@ -127,6 +127,7 @@ foreach my $fnm (@uploadables) {
 
 }
 
+###################################################################################
 #######################################
 sub find_or_calculate_remote_md5sum(@) {
     my ($path, $file) = @_;
@@ -156,9 +157,14 @@ sub find_fastqs  {
         $cmd  = "find $individual_dir -name \"*fastq.gz\" ";
         $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     }
+    if (!$ret) {
+        # check Dropbox
+    }
+
+
     if (!$ret ) {
         printf "No fastqs (bz2 or gz) found. Will try to start from *.bam\n";
-        return @fastqs;
+        return ();
     }
 
     foreach (split '\n', $ret) {
@@ -238,7 +244,7 @@ sub fastqs_from_bam {
         printf "Bam file(s) not found on bronto either. Checking Dropbox ...\n";
         $bamfile = `$bam_from_dropbox seqcenter $boid`;
         chomp $bamfile;
-        $bamfile =~ /.bam$/  ||  return @fastqs;
+        $bamfile =~ /.bam$/  ||  return ();
     }
 
     my $qsort_root = $bamfile;  $qsort_root =~ s/\.bam$/.qsort/;

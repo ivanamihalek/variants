@@ -13,8 +13,7 @@ DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
 dbx = dropbox.Dropbox(DROPBOX_TOKEN)
 
 ####################################
-# this is part of bam downloding - it is not general
-def scan_through_folder (dbx, dbx_path, local_dir, download_requested):
+def find_bams_in_dbx (dbx, dbx_path, local_dir, download_requested):
 
 	# if download is false, we are just checking for the existence
 	try:
@@ -39,6 +38,34 @@ def scan_through_folder (dbx, dbx_path, local_dir, download_requested):
 	return files, checksums
 
 ####################################
+def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
+
+	# if download is false, we are just checking for the existence
+	try:
+		response = dbx.files_list_folder(dbx_path, recursive = True)
+	except dropbox.exceptions.ApiError as err:
+		print('Folder listing failed for', dbx_path, '-- assumed empty:', err)
+		exit(1)
+	else:
+		files = []
+		checksums = []
+		for entry in response.entries:
+			if type(entry) != dropbox.files.FileMetadata: continue
+			if 'archive' in entry.path_lower: continue
+			if not entry.name[-3:] in ["md5", "bz2", "stq", ".gz"]: continue
+			dbx_file_path = entry.path_display
+			local_filename = local_dir + "/" + entry.name
+			if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
+			if entry.name[-4:] == ".md5":
+				checksums.append(entry.name)
+			elif entry.name[-10:]==".fastq.bz2" or entry.name[-9:]==".fastq.gz" or entry.name[-6:]==".fastq":
+				files.append(entry.name)
+	return files, checksums
+
+
+
+
+####################################
 def almtdir_name(bam_source):
 	if bam_source == 'seqmule':
 		almtdir = "by_seqmule_pipeline"
@@ -47,7 +74,7 @@ def almtdir_name(bam_source):
 	return almtdir
 
 ####################################
-def construct_dbx_path(boid,bam_source, verbose=False):
+def construct_bam_dbx_path(boid, bam_source, verbose=False):
 	topdir = "/raw_data"
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]
@@ -59,6 +86,21 @@ def construct_dbx_path(boid,bam_source, verbose=False):
 		exit(1)
 	if verbose: print dbx_path, "found in dropbox"
 	return dbx_path
+
+####################################
+def construct_fastq_dbx_path(boid, verbose=False):
+	topdir = "/raw_data"
+	year = "20" + boid[2:4]
+	caseno = boid[4:7]
+	# check that the expected path in the dropbox exists
+	dbx_path = "/".join([topdir, year, caseno, boid, "wes/reads" ])
+	if not check_dbx_path(dbx, dbx_path):
+		print  dbx_path, "not found in Dropbox"
+		print "(I checked in %s)" % dbx_path
+		exit(1)
+	if verbose: print dbx_path, "found in dropbox"
+	return dbx_path
+
 
 ####################################
 def	md5sum_check(files, checksums, verbose=False):
@@ -79,10 +121,10 @@ def	md5sum_check(files, checksums, verbose=False):
 ####################################
 def get_bam_from_dropbox(boid, bam_source, download_requested=True):
 
-	dbx_path  = construct_dbx_path(boid,bam_source)
+	dbx_path  = construct_bam_dbx_path(boid, bam_source)
 	local_dir = os.getcwd()
 	# download bamfiles
-	files, checksums = scan_through_folder(dbx, dbx_path, local_dir, download_requested)
+	files, checksums = find_bams_in_dbx(dbx, dbx_path, local_dir, download_requested)
 	# check md5 sums
 	if download_requested: md5sum_check(files, checksums)
 	bamfiles = filter(lambda f: ".bam" == f[-4:], files)
@@ -96,12 +138,27 @@ def get_bam_from_dropbox(boid, bam_source, download_requested=True):
 
 
 ####################################
+def get_fastq_from_dropbox(boid, download_requested=True):
+
+	dbx_path  = construct_fastq_dbx_path(boid)
+	local_dir = os.getcwd()
+	# download bamfiles
+	files, checksums = find_fastqs_in_dbx(dbx, dbx_path, local_dir, download_requested)
+	# check md5 sums
+	if download_requested: md5sum_check(files, checksums)
+	fastqfiles = filter(lambda f: ".fastq" == f[-6:], files)
+	if len(fastqfiles) == 0:
+		print "no fastqfile found"
+		exit(1)
+	return fastqfiles
+
+####################################
 def check_dbx_path(dbx, dbx_path):
-    try:
-        dbx.files_get_metadata(dbx_path)
-        return True
-    except:
-        return False
+	try:
+		dbx.files_get_metadata(dbx_path)
+		return True
+	except:
+		return False
 
 ####################################
 def download(dbx, scratch_path, dbx_path):

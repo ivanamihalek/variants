@@ -18,8 +18,9 @@ my ($year, $caseno, $individual) = @ARGV;
 my $samtools  = "/home/ivana/third/SeqMule/exe/samtools/samtools";
 my $bam2fastq = "/home/ivana/third/bedtools2/bin/bamToFastq";
 my $seqmule   = "/home/ivana/third/SeqMule/bin/seqmule";
-my $bam_from_dropbox = "/home/ivana/pypeworks/variants/05_bam_from_dropbox.py";
-foreach ($samtools, $bam2fastq, $seqmule, $bam_from_dropbox) {
+my $bam_from_dropbox   = "/home/ivana/pypeworks/variants/05_bam_from_dropbox.py";
+my $fastq_from_dropbox = "/home/ivana/pypeworks/variants/04_fastq_from_dropbox.py";
+foreach ($samtools, $bam2fastq, $seqmule, $bam_from_dropbox, $fastq_from_dropbox) {
     -e $_ && ! -z $_ || die "$_ not found\n";
 }
 
@@ -158,13 +159,12 @@ sub find_fastqs  {
         $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     }
     if (!$ret) {
-        # check Dropbox
-    }
-
-
-    if (!$ret ) {
-        printf "No fastqs (bz2 or gz) found. Will try to start from *.bam\n";
-        return ();
+        printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
+        $ret = `$fastq_from_dropbox $boid`;
+        if ($ret =~ /^none/) {
+            printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
+            return ();
+        }
     }
 
     foreach (split '\n', $ret) {

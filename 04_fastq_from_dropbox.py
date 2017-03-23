@@ -14,7 +14,7 @@ def main():
 
 	boid = sys.argv[1]
 	download_requested = True  # the default is to download but we might be just checking
-	if len(sys.argv)>3 and sys.argv[2]=="nodwld": download_requested=False
+	if len(sys.argv)>2 and sys.argv[2]=="nodwld": download_requested=False
 
 	fastqfiles = get_fastq_from_dropbox(boid, download_requested)
 

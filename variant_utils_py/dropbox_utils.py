@@ -56,11 +56,9 @@ def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
 			dbx_file_path = entry.path_display
 			local_filename = local_dir + "/" + entry.name
 			if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
-			print " >>>> 5", entry.name
 			if entry.name[-4:] == ".md5":
 				checksums.append(entry.name)
 			elif entry.name[-10:]==".fastq.bz2" or entry.name[-9:]==".fastq.gz" or entry.name[-6:]==".fastq":
-				print " >>>> 6", entry.name
 				files.append(entry.name)
 	return files, checksums
 
@@ -145,10 +143,9 @@ def get_fastq_from_dropbox(boid, download_requested=True):
 	dbx_path  = construct_fastq_dbx_path(boid)
 	local_dir = os.getcwd()
 	# download bamfiles
-	files, checksums = find_fastqs_in_dbx(dbx, dbx_path, local_dir, download_requested)
+	fastqfiles, checksums = find_fastqs_in_dbx(dbx, dbx_path, local_dir, download_requested)
 	# check md5 sums
-	if download_requested: md5sum_check(files, checksums)
-	fastqfiles = filter(lambda f: ".fastq" == f[-6:], files)
+	if download_requested: md5sum_check(fastqfiles, checksums)
 	if len(fastqfiles) == 0:
 		print "no fastqfile found"
 		exit(1)

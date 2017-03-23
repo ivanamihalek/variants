@@ -161,7 +161,8 @@ sub find_fastqs  {
     my $brontofiles = 0;
     if (!$ret) {
         printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
-        $ret = `$fastq_from_dropbox $boid`;
+        #$ret = `$fastq_from_dropbox $boid`;
+        $ret = `ls *.bz2`;
         if ($ret =~ /^none/) {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
@@ -171,6 +172,7 @@ sub find_fastqs  {
     }
 
     foreach (split '\n', $ret) {
+        print $_,"\n";
         my @aux = split '\/';
         my $fnm = pop @aux;
         my $path = join "/", @aux;
@@ -204,7 +206,7 @@ sub find_fastqs  {
             }
         }
     }
-
+    exit;
 
     if (@fastqs!=2) {
         # the fastqs are not concatenated - not sure how that

@@ -1,10 +1,13 @@
 #!/usr/bin/perl -w
+package variant_utils_pl::md5;
+our @EXPORT_OK = qw(get_md5sum);
+
 use strict;
 use lib  '/home/ivana/pypeworks/variants';
 use warnings FATAL => 'all';
 use variant_utils_pl::generic qw(strip_vcf);
 use variant_utils_pl::annovar qw(annovar);
-use variant_utils_pl::vcfanno  qw(vcfanno);
+use variant_utils_pl::vcfanno qw(vcfanno);
 
 (@ARGV==1) || die "Usage:  $0  <filename file>/all  \n";
 
@@ -33,5 +36,8 @@ foreach my $filename ( @filenames) {
     my $annovar_filename   = annovar ($stripped_filename);
     my $annotated_filename = vcfanno  ($annovar_filename);
     `rm  $stripped_filename $annovar_filename `;
-    printf "\nfinal annotated file: $annotated_filename\n\n";
+    printf "\nfinal annotated file: $annotated_filename\n";
+    # md5sum - 0 is for not expcting to have an old version of md5
+    my ($md5,$md5sum_file) = get_md5sum (0, $annotated_filename);
+    printf "md5sum written to $md5sum_file\n\n";
 }

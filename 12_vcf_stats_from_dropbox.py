@@ -41,7 +41,7 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 			if type(entry)!= dropbox.files.FileMetadata: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
-			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
+			#if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
 			if "consensus.annotated.vcf.md5" in entry.name:
 				checksums.append(entry.name)
 			elif "consensus.annotated.vcf" in entry.name:
@@ -133,6 +133,8 @@ def get_vcf_from_dropbox(boid, variant_caller):
 	local_dir = os.getcwd()
 	# download vcf files
 	files, checksums = scan_through_folder(dbx, dbx_path, local_dir)
+	print files
+	exit()
 	# check md5 sums
 	md5sum_check(files, checksums)
 	vcffiles = filter(lambda f: ".vcf" == f[-4:], files)

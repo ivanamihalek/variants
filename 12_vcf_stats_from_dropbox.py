@@ -211,7 +211,7 @@ def main():
 			exit(1)
 
 	for line in open(boid_list,"r"):
-		boid = list.rstrip()
+		boid = line.rstrip()
 		do_stats (boid, variant_caller)
 
 

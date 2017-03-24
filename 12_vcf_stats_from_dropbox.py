@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
-# here, in distinction to 05_realignemnt_pipe, we start from bam (seqmule's own)  files,
+# here, in distinction to 05_realignemnt_pipe, we start from vcf (seqmule's own)  files,
 # downloaded from Dropbox - that's why it has to be python
 
-# CHANGE EVERYTHING TO LOOK FOR ANNOTATED VCFs INST of BAMS
+# CHANGE EVERYTHING TO LOOK FOR ANNOTATED VCFs INST of vcfS
 
 from  variant_utils_py.generic_utils import *
 from  variant_utils_py.dropbox_utils import *
@@ -14,9 +14,7 @@ import commands
 # we will check the existence of these in the main file
 # calculate ROHs
 bcftools = "/usr/local/bin/bcftools"
-# see in integrator for an idea where did this file came from:
-bedfile_agilent = "/databases/agilent/v5_plus_5utr/regions_plain.bed"
-bedfile_ensembl = "/databases/ucsc/ensembl_exon_regions.hg19.bed"
+variant_caller = "seqmule"
 
 ####################################
 DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
@@ -24,6 +22,12 @@ DROPBOX_TOKEN = os.environ['DROPBOX_TOKEN']
 dbx = dropbox.Dropbox(DROPBOX_TOKEN)
 ####################################
 def scan_through_folder (dbx, dbx_path, local_dir):
+
+
+	if (variant_caller != "seqmule"):
+		print "from scan_through_folder:"
+		print "this implementation knows only how to handle seqmule case"
+		exit()
 
 	try:
 		response = dbx.files_list_folder(dbx_path, recursive = True)
@@ -38,11 +42,14 @@ def scan_through_folder (dbx, dbx_path, local_dir):
 			dbx_file_path = entry.path_display
 			local_filename = local_dir+"/"+entry.name
 			if not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
-			if ".md5" in entry.name:
+			if "consensus.annotated.vcf.md5" in entry.name:
 				checksums.append(entry.name)
-			else:
+			elif "consensus.annotated.vcf" in entry.name:
 				files.append(entry.name)
+
 	return files, checksums
+
+
 ####################################
 def	md5sum_check(files, checksums):
 	for file in files:
@@ -59,19 +66,20 @@ def	md5sum_check(files, checksums):
 			print "md5sum mismatch"
 			exit(1)
 ####################################
-def almtdir_name(bam_source):
-	if bam_source == 'seqmule':
-		almtdir = "by_seqmule_pipeline"
+def variant_dir_name(vcf_source):
+	if vcf_source == 'seqmule':
+		almtdir = "called_by_seqmule_pipeline"
 	else:
-		almtdir = "by_seq_center"
+		almtdir = "called_by_seq_center"
 	return almtdir
+
 ####################################
-def construct_dbx_path(boid,bam_source):
+def construct_dbx_path(boid, variant_caller):
 	topdir = "/raw_data"
-	year = "20" + boid[2:4]
+	year   = "20" + boid[2:4]
 	caseno = boid[4:7]
 	# check that the expected path in the dropbox exists
-	dbx_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % almtdir_name(bam_source)])
+	dbx_path = "/".join([topdir, year, caseno, boid, "wes/variants/%s" % variant_dir_name(variant_caller)])
 	if not check_dbx_path(dbx, dbx_path):
 		print  dbx_path, "not found in Dropbox"
 		print "(I checked in %s)" % dbx_path
@@ -98,7 +106,7 @@ def make_on_bronto(path):
 		return True
 	return False
 #####
-def construct_bronto_path(boid,bam_source):
+def construct_bronto_path(boid,vcf_source):
 	year = "20" + boid[2:4]
 	caseno = boid[4:7]
 	topdir = None
@@ -111,33 +119,34 @@ def construct_bronto_path(boid,bam_source):
 	if not topdir:
 		print boid, "not found in either /data01 nor /data02"
 		exit()
-	bronto_path = "/".join([topdir, year, caseno, boid, "wes/alignments/%s" % almtdir_name(bam_source)])
+	bronto_path = "/".join([topdir, year, caseno, boid, "wes/variants/%s" % variant_dir_name(vcf_source)])
 	if not exists_on_bronto (bronto_path):
 		print bronto_path, "not found"
 		exit()
 	return bronto_path
 
 ####################################
-def get_bam_from_dropbox(boid, bam_source):
+def get_vcf_from_dropbox(boid, variant_caller):
 
-	dbx_path = construct_dbx_path(boid,bam_source)
+
+	dbx_path = construct_dbx_path(boid, variant_caller)
 	local_dir = os.getcwd()
-	# download bamfiles
+	# download vcf files
 	files, checksums = scan_through_folder(dbx, dbx_path, local_dir)
 	# check md5 sums
 	md5sum_check(files, checksums)
-	bamfiles = filter(lambda f: ".bam" == f[-4:], files)
-	if len(bamfiles) == 0:
-		print "no bamfile found"
+	vcffiles = filter(lambda f: ".vcf" == f[-4:], files)
+	if len(vcffiles) == 0:
+		print "no vcffile found"
 		exit(1)
-	if len(bamfiles) > 1:
-		print "more than one bamfile found"
+	if len(vcffiles) > 1:
+		print "more than one vcffile found"
 		exit(1)
-	return bamfiles[0]
+	return vcffiles[0]
 
 ####################################
-def bronto_store(boid, bam_source, uploadfile):
-	bronto_path = construct_bronto_path(boid, bam_source)
+def bronto_store(boid, vcf_source, uploadfile):
+	bronto_path = construct_bronto_path(boid, vcf_source)
 	# make sure that we have stats folder - make one if we don't
 	statspath = bronto_path+"/stats"
 	if not exists_on_bronto(statspath):
@@ -150,12 +159,12 @@ def bronto_store(boid, bam_source, uploadfile):
 	return
 
 ####################################
-def sort_bam(samtools, bamfile):
-	sortedfile = bamfile[0:-3]+"sorted.bam"
+def sort_vcf(samtools, vcffile):
+	sortedfile = vcffile[0:-3]+"sorted.vcf"
 	if os.path.exists(sortedfile):
 		print sortedfile, "found"
 	else:
-		cmd = "%s sort -o %s %s " % (samtools, sortedfile, bamfile)
+		cmd = "%s sort -o %s %s " % (samtools, sortedfile, vcffile)
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)
 
@@ -170,36 +179,40 @@ def sort_bam(samtools, bamfile):
 	return sortedfile
 
 ####################################
-def do_stats (boid):
-	vcffile = get_vcf _from_dropbox(boid, bam_source)
-	cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
-	# -a Output all positions (including those with zero depth)
-	#cmd = "%s  depth -a  -b %s  %s > %s " % (samtools, bedfile, bamfile, outfile)
+def do_stats (boid, variant_caller):
+	vcffile = get_vcf_from_dropbox(boid, variant_caller)
+	outfile = boid+".seqmule_vcf.bcftools_roh.cvs"
+	cmd = "%s  roh   -G30 --AF-dflt 0.4    %s  > %s " % (bcftools, vcffile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
-	bronto_store(boid, bam_source, outfile)
+	bronto_store(boid, variant_caller, outfile)
 
 	return
 
 ####################################
 def main():
 
+
+	if (variant_caller != "seqmule"):
+		print "this implementation knows only how to handle seqmulr case"
+		exit()
+
 	if len(sys.argv) < 2:
 		print  "usage: %s <BOid list> " % sys.argv[0]
 		exit(1)
 	boid_list =	sys.argv[1]
-	# bam source here is  hardcoded on top
+	# vcf source here is  hardcoded on top
 	# aside fromt the fact that seqmule removes duplicates,
 	# there does not seem to be much difference
 
-	for f in [bedfile_agilent, bedfile_ensembl, bcftools]:
+	for f in [bcftools]:
 		if not os.path.exists(f):
 			print f, "not found"
 			exit(1)
 
 	for line in open(boid_list,"r"):
 		boid = list.rstrip()
-		do_stats (boid)
+		do_stats (boid, variant_caller)
 
 
 

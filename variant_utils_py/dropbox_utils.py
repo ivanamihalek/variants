@@ -63,8 +63,6 @@ def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
 	return files, checksums
 
 
-
-
 ####################################
 def almtdir_name(bam_source):
 	if bam_source == 'seqmule':

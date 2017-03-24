@@ -1,13 +1,13 @@
 #!/usr/bin/perl -w
-package variant_utils_pl::md5;
-our @EXPORT_OK = qw(get_md5sum);
 
 use strict;
 use lib  '/home/ivana/pypeworks/variants';
+
 use warnings FATAL => 'all';
 use variant_utils_pl::generic qw(strip_vcf);
 use variant_utils_pl::annovar qw(annovar);
 use variant_utils_pl::vcfanno qw(vcfanno);
+use variant_utils_pl::md5     qw(get_md5sum);
 
 (@ARGV==1) || die "Usage:  $0  <filename file>/all  \n";
 

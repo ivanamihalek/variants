@@ -181,13 +181,15 @@ def sort_vcf(samtools, vcffile):
 
 ####################################
 def do_stats (boid, variant_caller):
+
 	vcffile = get_vcf_from_dropbox(boid, variant_caller)
 	outfile = boid+".seqmule_vcf.bcftools_roh.cvs"
 	cmd = "%s  roh   -G30 --AF-dflt 0.4    %s  > %s " % (bcftools, vcffile, outfile)
 	print "running:\n%s\n...\n" % cmd
 	os.system(cmd)
 	bronto_store(boid, variant_caller, outfile)
-
+	os.system("rm -f %s" % outfile)
+	os.system("rm -f %s  %s.md5" % (vcffile, vcffile))
 	return
 
 ####################################
@@ -195,7 +197,7 @@ def main():
 
 
 	if (variant_caller != "seqmule"):
-		print "this implementation knows only how to handle seqmulr case"
+		print "this implementation knows only how to handle seqmule case"
 		exit()
 
 	if len(sys.argv) < 2:

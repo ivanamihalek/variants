@@ -32,7 +32,7 @@ def exists_on_bronto(path):
 
 #####
 def make_on_bronto(path):
-	cmd = "mkdir %s" % path
+	cmd = "mkdir -p %s" % path
 	ssh_cmd = "echo %s |  ssh ivana@brontosaurus.tch.harvard.edu 'bash -s ' " % cmd
 	# this returns a tuple (exit code, ret value)
 	ret = commands.getstatusoutput(ssh_cmd)
@@ -67,8 +67,8 @@ def bronto_store(boid, bam_source, uploadfile):
 	statspath = bronto_path+"/stats"
 	if not exists_on_bronto(statspath):
 		if not make_on_bronto(statspath):
-			print "failed to male", statspath, "onn bronto"
-			exit()
+			print "failed to make", statspath, "on bronto"
+			exit(1)
 	# upload to stats folder
 	cmd = "scp %s ivana@brontosaurus.tch.harvard.edu:%s" % (uploadfile, statspath)
 	os.system(cmd)
@@ -157,7 +157,7 @@ def main():
 
 	for f in bedfile.values() + [seqmule, samtools]:
 		if not os.path.exists(f):
-			print f, "not found"
+			print f, " not found"
 			exit(1)
 
 	for line in open(boid_list,"r"):

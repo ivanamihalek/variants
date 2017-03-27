@@ -47,14 +47,13 @@
       <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+            <state relative-caret-position="936">
+              <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#233#269#0" expanded="false" />
                 <element signature="e#1968#2007#0" expanded="false" />
-                <element signature="e#4033#4105#0" expanded="false" />
-                <element signature="e#5280#5335#0" expanded="false" />
+                <element signature="e#5611#5666#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -63,7 +62,7 @@
       <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2232">
+            <state relative-caret-position="-1224">
               <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
               <folding />
             </state>
@@ -119,8 +118,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="841" />
-    <option name="y" value="65" />
+    <option name="x" value="645" />
+    <option name="y" value="96" />
     <option name="width" value="3131" />
     <option name="height" value="1826" />
   </component>
@@ -362,7 +361,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="841" y="65" width="3131" height="1826" extended-state="0" />
+    <frame x="645" y="96" width="3131" height="1826" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26075703" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -734,14 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2232">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/md5.pm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -770,16 +761,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1224">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+        <state relative-caret-position="936">
+          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#1968#2007#0" expanded="false" />
-            <element signature="e#4033#4105#0" expanded="false" />
-            <element signature="e#5280#5335#0" expanded="false" />
+            <element signature="e#5611#5666#0" expanded="false" />
           </folding>
         </state>
       </provider>

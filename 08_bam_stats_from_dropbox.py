@@ -105,15 +105,23 @@ def stats_file_processed(boid, bam_source, filename):
 	return exists_on_bronto(path)
 
 ####################################
-def do_stats (boid):
+def check_and_fetch_bam_if_not_present(boid, bam_source):
+
+	bamfile = "%s.0_bwamem.sort.rmdup.readfiltered.realn.bam"
+	if os.path.exists(bamfile): return bamfile
 	bamfile = get_bam_from_dropbox(boid, bam_source)
 	if bam_source=='seqcenter':
 		bamfile = sort_bam(samtools, bamfile)
 
+	return bamfile
+
+####################################
+def do_stats (boid):
+
 	# seqmule - uses samtools depth - which gives depth position by position
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
-	for reference in ["ccds", "ensembl", "agilent"]:
+	for reference in bedfile.keys():
 		cmd  = "%s stats --aln -t 4 " % seqmule
 		prefix = reference  + "_" + bam_source + "_"+boid
 		# have we done this already? properly I should check the creation date,
@@ -121,6 +129,7 @@ def do_stats (boid):
 		if stats_file_processed(boid, bam_source,"%s_cov_stat_detail.txt" % prefix):
 			print "%s_cov_stat_detail.txt" % prefix, "processed already"
 			continue
+		bamfile = check_and_fetch_bam_if_not_present(boid, bam_source)
 		cmd += "-prefix %s --bam  %s --capture %s " % (prefix, bamfile, bedfile[reference])
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)
@@ -136,6 +145,7 @@ def do_stats (boid):
 	if stats_file_processed(boid, bam_source,outfile):
 		print outfile, "processed already"
 	else:
+		bamfile = check_and_fetch_bam_if_not_present(boid, bam_source)
 		cmd = "%s  bedcov  %s  %s > %s " % (samtools, bedfile["ensembl"], bamfile, outfile)
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)

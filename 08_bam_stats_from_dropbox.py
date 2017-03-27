@@ -150,8 +150,10 @@ def do_stats (boid):
 		print "running:\n%s\n...\n" % cmd
 		os.system(cmd)
 		bronto_store(boid, bam_source, outfile)
-	os.system("rm -f %s" % outfile)
-	os.system("rm -f %s *bai *md5" % bamfile)
+
+	if os.path.exists(outfile): os.system("rm -f %s" % outfile)
+	if os.path.exists(bamfile): os.system("rm -f %s *bai *md5" % bamfile)
+	exit()
 	return
 
 ####################################

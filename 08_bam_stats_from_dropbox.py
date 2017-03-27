@@ -18,7 +18,7 @@ bedfile = {"ccds": "/databases/ccds/15/ccds_exon_regions.hg19.bed",
 		   "agilent": "/databases/agilent/v5_plus_5utr/regions_plain.bed",
 		   "hgmd": "/databases/ensembl/hg19/human_pheno_associated.bed"}
 
-bedfile = {"hgmdb": "/databases/ensembl/hg19/human_pheno_associated.bed"}
+bedfile = {"hgmd": "/databases/ensembl/hg19/human_pheno_associated.bed"}
 
 bam_source = "seqmule"
 

@@ -47,14 +47,14 @@
       <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+            <state relative-caret-position="540">
+              <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#233#269#0" expanded="false" />
-                <element signature="e#1969#2008#0" expanded="false" />
-                <element signature="e#4034#4106#0" expanded="false" />
-                <element signature="e#5281#5336#0" expanded="false" />
+                <element signature="e#1968#2007#0" expanded="false" />
+                <element signature="e#4033#4105#0" expanded="false" />
+                <element signature="e#5280#5335#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,8 +119,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="514" />
-    <option name="y" value="90" />
+    <option name="x" value="841" />
+    <option name="y" value="65" />
     <option name="width" value="3131" />
     <option name="height" value="1826" />
   </component>
@@ -362,7 +362,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="514" y="90" width="3131" height="1826" extended-state="0" />
+    <frame x="841" y="65" width="3131" height="1826" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26075703" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -772,14 +772,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        <state relative-caret-position="540">
+          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
-            <element signature="e#1969#2008#0" expanded="false" />
-            <element signature="e#4034#4106#0" expanded="false" />
-            <element signature="e#5281#5336#0" expanded="false" />
+            <element signature="e#1968#2007#0" expanded="false" />
+            <element signature="e#4033#4105#0" expanded="false" />
+            <element signature="e#5280#5335#0" expanded="false" />
           </folding>
         </state>
       </provider>

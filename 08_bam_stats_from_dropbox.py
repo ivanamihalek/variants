@@ -155,7 +155,6 @@ def do_stats (boid):
 
 	if outfile and os.path.exists(outfile): os.system("rm -f %s" % outfile)
 	if bamfile and os.path.exists(bamfile): os.system("rm -f %s *bai *md5" % bamfile)
-	exit()
 	return
 
 ####################################

@@ -47,13 +47,13 @@
       <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="155" column="10" lean-forward="false" selection-start-line="155" selection-start-column="10" selection-end-line="155" selection-end-column="10" />
+            <state relative-caret-position="468">
+              <caret line="155" column="19" lean-forward="false" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#233#269#0" expanded="false" />
                 <element signature="e#1968#2007#0" expanded="false" />
-                <element signature="e#5676#5731#0" expanded="false" />
+                <element signature="e#5732#5787#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -771,13 +771,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="155" column="10" lean-forward="false" selection-start-line="155" selection-start-column="10" selection-end-line="155" selection-end-column="10" />
+        <state relative-caret-position="468">
+          <caret line="155" column="19" lean-forward="false" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#1968#2007#0" expanded="false" />
-            <element signature="e#5676#5731#0" expanded="false" />
+            <element signature="e#5732#5787#0" expanded="false" />
           </folding>
         </state>
       </provider>

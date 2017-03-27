@@ -121,6 +121,8 @@ def do_stats (boid):
 	# seqmule - uses samtools depth - which gives depth position by position
 	# do I want to store that?  probably not - so seqmule process is into
 	# cumulative stats (with running sums
+	bamfile = None
+	outfile = None
 	for reference in bedfile.keys():
 		cmd  = "%s stats --aln -t 4 " % seqmule
 		prefix = reference  + "_" + bam_source + "_"+boid
@@ -151,8 +153,8 @@ def do_stats (boid):
 		os.system(cmd)
 		bronto_store(boid, bam_source, outfile)
 
-	if os.path.exists(outfile): os.system("rm -f %s" % outfile)
-	if os.path.exists(bamfile): os.system("rm -f %s *bai *md5" % bamfile)
+	if outfile and os.path.exists(outfile): os.system("rm -f %s" % outfile)
+	if bamfile and os.path.exists(bamfile): os.system("rm -f %s *bai *md5" % bamfile)
 	exit()
 	return
 

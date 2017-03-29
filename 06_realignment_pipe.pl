@@ -73,7 +73,7 @@ if ($ret eq $bam_path) {
     }
 }
 # also check in Dropbox
-print "bam_from_dropbox seqmule $boid nodwld\n";
+print "$bam_from_dropbox seqmule $boid nodwld\n";
 exit;
 my $bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
 chomp $bamfile;

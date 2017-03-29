@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" afterPath="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,51 +20,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="12_roh_stats_from_dropbox.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/12_roh_stats_from_dropbox.py">
+      <file leaf-file-name="07_realignment_pipe_outer_loop.pl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/07_realignment_pipe_outer_loop.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3888">
-              <caret line="110" column="27" lean-forward="false" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
-              <folding>
-                <element signature="e#229#274#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="10_reannotate_w_positions_and_freqs.pl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/10_reannotate_w_positions_and_freqs.pl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="828">
-              <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-              <folding>
-                <element signature="e#105#149#0#Perl5" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#233#269#0" expanded="false" />
-                <element signature="e#1894#1933#0" expanded="false" />
-                <element signature="e#5650#5705#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2232">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1024">
+              <caret line="62" column="20" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
+              <folding>
+                <element signature="e#88#142#0#Perl5" expanded="true" />
+                <element signature="e#379#421#0#Perl5" expanded="true" />
+                <element signature="e#944#977#0#Perl5" expanded="true" />
+                <element signature="e#2002#2044#0#Perl5" expanded="true" />
+                <element signature="e#2816#2858#0#Perl5" expanded="true" />
+                <element signature="e#3644#3686#0#Perl5" expanded="true" />
+                <element signature="e#4235#4277#0#Perl5" expanded="true" />
+                <element signature="e#5135#5218#0#Perl5" expanded="true" />
+                <element signature="e#7061#7132#0#Perl5" expanded="true" />
+                <element signature="e#8358#8411#0#Perl5" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,18 +90,18 @@
         <option value="$PROJECT_DIR$/08_seqmule_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/05_bam_from_dropbox.py" />
         <option value="$PROJECT_DIR$/04_fastq_from_dropbox.py" />
-        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
         <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
         <option value="$PROJECT_DIR$/variant_utils_pl/md5.pm" />
         <option value="$PROJECT_DIR$/10_reannotate_w_positions_and_freqs.pl" />
         <option value="$PROJECT_DIR$/12_vcf_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
+        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="645" />
-    <option name="y" value="201" />
+    <option name="x" value="681" />
+    <option name="y" value="108" />
     <option name="width" value="3131" />
     <option name="height" value="1826" />
   </component>
@@ -361,7 +343,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="645" y="201" width="3131" height="1826" extended-state="0" />
+    <frame x="681" y="108" width="3131" height="1826" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2588159" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -493,6 +475,33 @@
         <state relative-caret-position="2232">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/07_realignment_pipe_outer_loop.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1024">
+          <caret line="62" column="20" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
+          <folding>
+            <element signature="e#88#142#0#Perl5" expanded="true" />
+            <element signature="e#379#421#0#Perl5" expanded="true" />
+            <element signature="e#944#977#0#Perl5" expanded="true" />
+            <element signature="e#2002#2044#0#Perl5" expanded="true" />
+            <element signature="e#2816#2858#0#Perl5" expanded="true" />
+            <element signature="e#3644#3686#0#Perl5" expanded="true" />
+            <element signature="e#4235#4277#0#Perl5" expanded="true" />
+            <element signature="e#5135#5218#0#Perl5" expanded="true" />
+            <element signature="e#7061#7132#0#Perl5" expanded="true" />
+            <element signature="e#8358#8411#0#Perl5" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

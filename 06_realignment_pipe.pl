@@ -55,10 +55,12 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 ##########################################
 # do we have something already processed by seqmule, by any chance?
 $cmd = "ls -d $bam_path 2> /dev/null";
+print " *** $cmd\n";
 $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";
+    print " *** *** $cmd\n";
     $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`; chomp $ret;
     foreach (split '\n', $ret) {
         /.bam$/ || next;

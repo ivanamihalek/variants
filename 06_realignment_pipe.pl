@@ -73,14 +73,13 @@ if ($ret eq $bam_path) {
     }
 }
 # also check in Dropbox
-print "$bam_from_dropbox seqmule $boid nodwld\n";
-exit;
 my $bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
 chomp $bamfile;
 if ($bamfile =~ /.bam$/) {
     print $bamfile, " found in Dropbox\n";
     exit (0);
 }
+exit;
 
 ##########################################
 # check whether the parts of the pipeline have already completed

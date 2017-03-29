@@ -33,20 +33,20 @@
       <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1296">
-              <caret line="75" column="8" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+            <state relative-caret-position="1332">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding>
                 <element signature="e#88#142#0#Perl5" expanded="true" />
                 <element signature="e#276#324#0#Perl5" expanded="true" />
                 <element signature="e#514#556#0#Perl5" expanded="true" />
                 <element signature="e#1079#1112#0#Perl5" expanded="true" />
                 <element signature="e#2137#2179#0#Perl5" expanded="true" />
-                <element signature="e#3034#3076#0#Perl5" expanded="true" />
-                <element signature="e#3862#3904#0#Perl5" expanded="true" />
-                <element signature="e#4453#4495#0#Perl5" expanded="true" />
-                <element signature="e#5353#5436#0#Perl5" expanded="true" />
-                <element signature="e#7279#7350#0#Perl5" expanded="true" />
-                <element signature="e#8576#8629#0#Perl5" expanded="true" />
+                <element signature="e#2984#3026#0#Perl5" expanded="true" />
+                <element signature="e#3812#3854#0#Perl5" expanded="true" />
+                <element signature="e#4403#4445#0#Perl5" expanded="true" />
+                <element signature="e#5303#5386#0#Perl5" expanded="true" />
+                <element signature="e#7229#7300#0#Perl5" expanded="true" />
+                <element signature="e#8526#8579#0#Perl5" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,8 +158,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/variant_utils_pl" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/variant_utils_pl" />
     </key>
   </component>
   <component name="RunManager">
@@ -415,12 +415,12 @@
             <element signature="e#514#556#0#Perl5" expanded="true" />
             <element signature="e#1079#1112#0#Perl5" expanded="true" />
             <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#3034#3076#0#Perl5" expanded="true" />
-            <element signature="e#3862#3904#0#Perl5" expanded="true" />
-            <element signature="e#4453#4495#0#Perl5" expanded="true" />
-            <element signature="e#5353#5436#0#Perl5" expanded="true" />
-            <element signature="e#7279#7350#0#Perl5" expanded="true" />
-            <element signature="e#8576#8629#0#Perl5" expanded="true" />
+            <element signature="e#2984#3026#0#Perl5" expanded="true" />
+            <element signature="e#3812#3854#0#Perl5" expanded="true" />
+            <element signature="e#4403#4445#0#Perl5" expanded="true" />
+            <element signature="e#5303#5386#0#Perl5" expanded="true" />
+            <element signature="e#7229#7300#0#Perl5" expanded="true" />
+            <element signature="e#8526#8579#0#Perl5" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -491,20 +491,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1296">
-          <caret line="75" column="8" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+        <state relative-caret-position="1332">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="e#88#142#0#Perl5" expanded="true" />
             <element signature="e#276#324#0#Perl5" expanded="true" />
             <element signature="e#514#556#0#Perl5" expanded="true" />
             <element signature="e#1079#1112#0#Perl5" expanded="true" />
             <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#3034#3076#0#Perl5" expanded="true" />
-            <element signature="e#3862#3904#0#Perl5" expanded="true" />
-            <element signature="e#4453#4495#0#Perl5" expanded="true" />
-            <element signature="e#5353#5436#0#Perl5" expanded="true" />
-            <element signature="e#7279#7350#0#Perl5" expanded="true" />
-            <element signature="e#8576#8629#0#Perl5" expanded="true" />
+            <element signature="e#2984#3026#0#Perl5" expanded="true" />
+            <element signature="e#3812#3854#0#Perl5" expanded="true" />
+            <element signature="e#4403#4445#0#Perl5" expanded="true" />
+            <element signature="e#5303#5386#0#Perl5" expanded="true" />
+            <element signature="e#7229#7300#0#Perl5" expanded="true" />
+            <element signature="e#8526#8579#0#Perl5" expanded="true" />
           </folding>
         </state>
       </provider>

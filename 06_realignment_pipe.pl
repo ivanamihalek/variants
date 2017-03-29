@@ -163,7 +163,7 @@ sub find_fastqs  {
     if (!$ret) {
         printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
         $ret = `$fastq_from_dropbox $boid`;
-        if ($ret =~ /^none/) {
+        if (!$ret || $ret =~ /^none/ || $ret =~ "not found" ) {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
         }

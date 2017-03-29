@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" afterPath="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,13 +47,13 @@
       <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+            <state relative-caret-position="540">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#233#269#0" expanded="false" />
-                <element signature="e#1968#2007#0" expanded="false" />
-                <element signature="e#5724#5779#0" expanded="false" />
+                <element signature="e#1894#1933#0" expanded="false" />
+                <element signature="e#5650#5705#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -441,8 +441,8 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
-            <element signature="e#1968#2007#0" expanded="false" />
-            <element signature="e#5724#5779#0" expanded="false" />
+            <element signature="e#1894#1933#0" expanded="false" />
+            <element signature="e#5650#5705#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -477,13 +477,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+        <state relative-caret-position="540">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
-            <element signature="e#1968#2007#0" expanded="false" />
-            <element signature="e#5724#5779#0" expanded="false" />
+            <element signature="e#1894#1933#0" expanded="false" />
+            <element signature="e#5650#5705#0" expanded="false" />
           </folding>
         </state>
       </provider>

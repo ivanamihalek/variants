@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="" />
+    <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,19 +33,20 @@
       <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1024">
-              <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+            <state relative-caret-position="936">
+              <caret line="62" column="21" lean-forward="false" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
               <folding>
                 <element signature="e#88#142#0#Perl5" expanded="true" />
-                <element signature="e#379#421#0#Perl5" expanded="true" />
-                <element signature="e#944#977#0#Perl5" expanded="true" />
-                <element signature="e#2002#2044#0#Perl5" expanded="true" />
-                <element signature="e#2816#2858#0#Perl5" expanded="true" />
-                <element signature="e#3644#3686#0#Perl5" expanded="true" />
-                <element signature="e#4235#4277#0#Perl5" expanded="true" />
-                <element signature="e#5135#5218#0#Perl5" expanded="true" />
-                <element signature="e#7061#7132#0#Perl5" expanded="true" />
-                <element signature="e#8358#8411#0#Perl5" expanded="true" />
+                <element signature="e#276#324#0#Perl5" expanded="true" />
+                <element signature="e#514#556#0#Perl5" expanded="true" />
+                <element signature="e#1079#1112#0#Perl5" expanded="true" />
+                <element signature="e#2137#2179#0#Perl5" expanded="true" />
+                <element signature="e#2978#3020#0#Perl5" expanded="true" />
+                <element signature="e#3806#3848#0#Perl5" expanded="true" />
+                <element signature="e#4397#4439#0#Perl5" expanded="true" />
+                <element signature="e#5297#5380#0#Perl5" expanded="true" />
+                <element signature="e#7223#7294#0#Perl5" expanded="true" />
+                <element signature="e#8520#8573#0#Perl5" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -486,19 +489,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1024">
-          <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+        <state relative-caret-position="936">
+          <caret line="62" column="21" lean-forward="false" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
           <folding>
             <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#379#421#0#Perl5" expanded="true" />
-            <element signature="e#944#977#0#Perl5" expanded="true" />
-            <element signature="e#2002#2044#0#Perl5" expanded="true" />
-            <element signature="e#2816#2858#0#Perl5" expanded="true" />
-            <element signature="e#3644#3686#0#Perl5" expanded="true" />
-            <element signature="e#4235#4277#0#Perl5" expanded="true" />
-            <element signature="e#5135#5218#0#Perl5" expanded="true" />
-            <element signature="e#7061#7132#0#Perl5" expanded="true" />
-            <element signature="e#8358#8411#0#Perl5" expanded="true" />
+            <element signature="e#276#324#0#Perl5" expanded="true" />
+            <element signature="e#514#556#0#Perl5" expanded="true" />
+            <element signature="e#1079#1112#0#Perl5" expanded="true" />
+            <element signature="e#2137#2179#0#Perl5" expanded="true" />
+            <element signature="e#2978#3020#0#Perl5" expanded="true" />
+            <element signature="e#3806#3848#0#Perl5" expanded="true" />
+            <element signature="e#4397#4439#0#Perl5" expanded="true" />
+            <element signature="e#5297#5380#0#Perl5" expanded="true" />
+            <element signature="e#7223#7294#0#Perl5" expanded="true" />
+            <element signature="e#8520#8573#0#Perl5" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -9,6 +9,9 @@ sub find_fastqs;
 sub fastqs_from_bam;
 sub bam_from_bronto;
 
+$| = 1;
+#If set to nonzero $|, forces a flush right away
+#    and after every write or print on the currently selected output channel.
 @ARGV ==3  || die "Usage: $0 <year> <case number> <individual>\n";
 
 my ($year, $caseno, $individual) = @ARGV;
@@ -54,9 +57,10 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 
 ##########################################
 # do we have something already processed by seqmule, by any chance?
-$cmd = "ls -d $bam_path 2> /dev/null";
+$cmd = "ls -d $bam_path ";
 print " *** $cmd\n";
-$ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
+$ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;
+print " *** ret: $ret\n";
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";

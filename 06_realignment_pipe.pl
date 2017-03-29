@@ -58,11 +58,10 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 ##########################################
 # do we have something already processed by seqmule, by any chance?
 $cmd = "ls -d $bam_path ";
-$ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;print " *** ret: $ret\n";
+$ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";
-    print " *** *** $cmd\n";
     $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`; chomp $ret;
     foreach (split '\n', $ret) {
         /.bam$/ || next;
@@ -90,12 +89,10 @@ if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
 
     $cmd  = "$seqmule pipeline -N 2 -capture default -threads 4 -e ";
     $cmd .= "-prefix $boid -a $fastqs_sorted_alphabetically[0] -b $fastqs_sorted_alphabetically[1]";
-    print "running:\n$cmd\n...\n";
-    exit;
     (system $cmd) && die "error: $!\n";
 }
 `tail -n1 $logfile` =~ "finished" || die "there was a problem completing\n$cmd\ncheck the logfile $boid.script\n";
-exit;
+
 ##########################################
 # create paths on bronto
 chdir  "$boid\_result";
@@ -170,6 +167,7 @@ sub find_fastqs  {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
         }
+        print ">>> $ret\n";
     } else {
         $brontofiles = 1;
     }

@@ -61,7 +61,6 @@ $cmd = "ls -d $bam_path ";
 print " *** $cmd\n";
 $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;
 print " *** ret: $ret\n";
-exit;
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";
@@ -74,6 +73,8 @@ if ($ret eq $bam_path) {
     }
 }
 # also check in Dropbox
+print "bam_from_dropbox seqmule $boid nodwld\n";
+exit;
 my $bamfile = `$bam_from_dropbox seqmule $boid nodwld`;
 chomp $bamfile;
 if ($bamfile =~ /.bam$/) {

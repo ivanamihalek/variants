@@ -167,7 +167,6 @@ sub find_fastqs  {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";
             return ();
         }
-        print ">>> $ret\n";
     } else {
         $brontofiles = 1;
     }

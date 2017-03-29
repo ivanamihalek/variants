@@ -59,6 +59,7 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 # do we have something already processed by seqmule, by any chance?
 $cmd = "ls -d $bam_path ";
 print " *** $cmd\n";
+exit;
 $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;
 print " *** ret: $ret\n";
 if ($ret eq $bam_path) {

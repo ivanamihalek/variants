@@ -134,8 +134,8 @@ def get_vcf_from_dropbox(boid, variant_caller):
 	local_dir = os.getcwd()
 	# download vcf files
 	files, checksums = scan_through_folder(dbx, dbx_path, local_dir)
-	# check md5 sums
-	md5sum_check(files, checksums)
+	# TODO: check md5 sums
+	#md5sum_check(files, checksums)
 	vcffiles = filter(lambda f: ".vcf" == f[-4:], files)
 	if len(vcffiles) == 0:
 		print "no vcffile found"

@@ -16,6 +16,8 @@ samtools = "/usr/local/bin/samtools"
 bedfile = {"ccds": "/databases/ccds/15/ccds_exon_regions.hg19.bed",
 		   "ensembl": "/databases/ucsc/ensembl_exon_regions.hg19.bed",
 		   "agilent": "/databases/agilent/v5_plus_5utr/regions_plain.bed",
+		   "agilent_v5": "/databases/agilent/v5/regions_plain.bed",
+		   "agilent_v4": "/databases/agilent/v4/regions_plain.bed",
 		   "hgmd": "/databases/ensembl/hg19/human_pheno_associated.bed"}
 
 bam_source = "seqmule"

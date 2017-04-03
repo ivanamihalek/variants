@@ -1,3 +1,5 @@
+use strict;
+use warnings;
 package variant_utils_pl::vcfanno;
 require Exporter;
 our @ISA = ("Exporter");

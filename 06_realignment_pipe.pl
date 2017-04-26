@@ -153,11 +153,11 @@ sub find_or_calculate_remote_md5sum(@) {
 sub find_fastqs  {
     # find fastq - if we have fastq we start from there
     my @fastqs = ();
-    my $cmd  = "find $individual_dir -name \"*fastq.bz2\" ";
-    my $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
-    if (!$ret) {
-        $cmd  = "find $individual_dir -name \"*fastq.gz\" ";
-        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    my $ret = 0;
+    for my $ext ( "fastq",  "fastq.bz2", "fastq.gz", "fq",  "fq.bz2", "fq.gz", ) {
+        my $cmd  = "find $individual_dir -name \"*$ext\" ";
+        $ret  = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+        $ret && last;
     }
     my $brontofiles = 0;
     if (!$ret) {

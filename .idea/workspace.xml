@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" afterPath="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_pl/annovar.pm" afterPath="$PROJECT_DIR$/variant_utils_pl/annovar.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" afterPath="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" afterPath="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,93 +22,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="07_realignment_pipe_outer_loop.pl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/07_realignment_pipe_outer_loop.pl">
+      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-287">
+              <caret line="159" column="21" lean-forward="true" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="04_fastq_from_dropbox.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/04_fastq_from_dropbox.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#71#116#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dropbox_utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1584">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5724">
-              <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-              <folding>
-                <element signature="e#88#142#0#Perl5" expanded="true" />
-                <element signature="e#276#324#0#Perl5" expanded="true" />
-                <element signature="e#514#556#0#Perl5" expanded="true" />
-                <element signature="e#1079#1112#0#Perl5" expanded="true" />
-                <element signature="e#2137#2179#0#Perl5" expanded="true" />
-                <element signature="e#2902#2944#0#Perl5" expanded="true" />
-                <element signature="e#3695#3737#0#Perl5" expanded="true" />
-                <element signature="e#4286#4328#0#Perl5" expanded="true" />
-                <element signature="e#5186#5269#0#Perl5" expanded="true" />
-                <element signature="e#7145#7216#0#Perl5" expanded="true" />
-                <element signature="e#8442#8495#0#Perl5" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="08_bam_stats_from_dropbox.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-576">
-              <caret line="28" column="63" lean-forward="false" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#233#269#0" expanded="false" />
-                <element signature="e#2018#2057#0" expanded="false" />
-                <element signature="e#5774#5829#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="12_roh_stats_from_dropbox.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/12_roh_stats_from_dropbox.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4824">
-              <caret line="136" column="12" lean-forward="false" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="10_reannotate_w_positions_and_freqs.pl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/10_reannotate_w_positions_and_freqs.pl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="828">
-              <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-              <folding>
-                <element signature="e#105#149#0#Perl5" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="annovar.pm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variant_utils_pl/annovar.pm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vcfanno.pm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-              <folding>
-                <element signature="e#183#254#0#Perl5" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -130,6 +70,7 @@
       <find>seq_center</find>
       <find>md5sum</find>
       <find>bam</find>
+      <find>adapt</find>
     </findStrings>
     <replaceStrings>
       <replace>bamfile</replace>
@@ -153,23 +94,23 @@
         <option value="$PROJECT_DIR$/08_seqmule_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/05_bam_from_dropbox.py" />
         <option value="$PROJECT_DIR$/04_fastq_from_dropbox.py" />
-        <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
         <option value="$PROJECT_DIR$/variant_utils_pl/md5.pm" />
         <option value="$PROJECT_DIR$/10_reannotate_w_positions_and_freqs.pl" />
         <option value="$PROJECT_DIR$/12_vcf_stats_from_dropbox.py" />
-        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
         <option value="$PROJECT_DIR$/12_roh_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/variant_utils_pl/annovar.pm" />
         <option value="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" />
         <option value="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
+        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
+        <option value="$PROJECT_DIR$/variant_utils_py/dropbox_utils.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="586" />
-    <option name="y" value="91" />
-    <option name="width" value="3055" />
-    <option name="height" value="2005" />
+    <option name="x" value="527" />
+    <option name="y" value="36" />
+    <option name="width" value="3213" />
+    <option name="height" value="1960" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -186,8 +127,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -200,8 +139,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="variants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="variants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="variant_utils_py" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -395,12 +350,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="586" y="91" width="3055" height="2005" extended-state="0" />
+    <frame x="527" y="36" width="3213" height="1960" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28557214" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23904131" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286925" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -448,21 +403,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/10_reannotate_w_positions_and_freqs.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="e#105#149#0#Perl5" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/annovar.pm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -470,9 +414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding>
-            <element signature="e#183#254#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -480,7 +421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -488,19 +428,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6048">
           <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -509,7 +436,7 @@
         <state relative-caret-position="540">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -521,7 +448,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -529,9 +455,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
           <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="e#105#149#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -539,7 +462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -547,9 +469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding>
-            <element signature="e#183#254#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -557,7 +476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -565,19 +483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5724">
           <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -586,7 +491,7 @@
         <state relative-caret-position="540">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -598,7 +503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4824">
           <caret line="136" column="12" lean-forward="false" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -606,9 +510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
           <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="e#105#149#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,7 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -624,9 +524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#183#254#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -634,7 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -642,19 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5724">
           <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -663,7 +546,7 @@
         <state relative-caret-position="540">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -675,7 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4824">
           <caret line="136" column="12" lean-forward="false" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,9 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#105#149#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -693,7 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -701,19 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5724">
           <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -722,7 +587,7 @@
         <state relative-caret-position="540">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -734,7 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -742,7 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -750,19 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5724">
           <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,7 +621,7 @@
         <state relative-caret-position="540">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -783,7 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,7 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -799,19 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5724">
           <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -820,7 +655,7 @@
         <state relative-caret-position="540">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -832,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,7 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,19 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5724">
           <caret line="168" column="9" lean-forward="true" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -869,7 +689,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -881,7 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,19 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -924,7 +730,7 @@
         <state relative-caret-position="6228">
           <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
@@ -936,49 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2232">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2232">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/07_realignment_pipe_outer_loop.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5724">
-          <caret line="168" column="9" lean-forward="false" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
-          <folding>
-            <element signature="e#88#142#0#Perl5" expanded="true" />
-            <element signature="e#276#324#0#Perl5" expanded="true" />
-            <element signature="e#514#556#0#Perl5" expanded="true" />
-            <element signature="e#1079#1112#0#Perl5" expanded="true" />
-            <element signature="e#2137#2179#0#Perl5" expanded="true" />
-            <element signature="e#2902#2944#0#Perl5" expanded="true" />
-            <element signature="e#3695#3737#0#Perl5" expanded="true" />
-            <element signature="e#4286#4328#0#Perl5" expanded="true" />
-            <element signature="e#5186#5269#0#Perl5" expanded="true" />
-            <element signature="e#7145#7216#0#Perl5" expanded="true" />
-            <element signature="e#8442#8495#0#Perl5" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_pl/annovar.pm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -986,40 +749,73 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding>
-            <element signature="e#183#254#0#Perl5" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variant_utils_pl/annovar.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/10_reannotate_w_positions_and_freqs.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
+        <state relative-caret-position="634">
           <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="e#105#149#0#Perl5" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/12_roh_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4824">
+        <state relative-caret-position="-1764">
           <caret line="136" column="12" lean-forward="false" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/07_realignment_pipe_outer_loop.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats_from_dropbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-576">
-          <caret line="28" column="63" lean-forward="false" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+        <state relative-caret-position="108">
+          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#169#214#0" expanded="false" />
             <element signature="e#233#269#0" expanded="false" />
             <element signature="e#2018#2057#0" expanded="false" />
             <element signature="e#5774#5829#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variant_utils_py/dropbox_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1584">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/04_fastq_from_dropbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#71#116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-287">
+          <caret line="159" column="21" lean-forward="true" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

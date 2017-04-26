@@ -38,6 +38,12 @@ def find_bams_in_dbx (dbx, dbx_path, local_dir, download_requested):
 	return files, checksums
 
 ####################################
+def has_fastq_extension(filename):
+	for ext in [".fastq.bz2" , ".fastq.gz" , ".fastq", ".fq", ".fq.bz2", ".fq.gz"]:
+		if filename[-len(ext):] == ext: return True
+	return False
+
+####################################
 def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
 
 	# if download is false, we are just checking for the existence
@@ -52,13 +58,13 @@ def find_fastqs_in_dbx (dbx, dbx_path, local_dir, download_requested):
 		for entry in response.entries:
 			if type(entry) != dropbox.files.FileMetadata: continue
 			if 'archive' in entry.path_lower: continue
-			if not entry.name[-3:] in ["md5", "bz2", "stq", ".gz"]: continue
+			if not entry.name[-3:] in ["md5", "bz2", ".gz", ".fq", "stq"]: continue
 			dbx_file_path = entry.path_display
 			local_filename = local_dir + "/" + entry.name
 			if download_requested and not os.path.exists(local_filename): download(dbx, local_filename, dbx_file_path)
 			if entry.name[-4:] == ".md5":
 				checksums.append(entry.name)
-			elif entry.name[-10:]==".fastq.bz2" or entry.name[-9:]==".fastq.gz" or entry.name[-6:]==".fastq":
+			elif has_fastq_extension(entry.name):
 				files.append(entry.name)
 	return files, checksums
 

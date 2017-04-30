@@ -161,9 +161,9 @@ def do_stats (boid):
 def main():
 
 	if len(sys.argv) < 2:
-		print  "usage: %s <BOid list> " % sys.argv[0]
+		print  "usage: %s <BOid>/<BOid list file> " % sys.argv[0]
 		exit(1)
-	boid_list =	sys.argv[1]
+
 	# bam source here is  hardcoded on top
 	# aside fromt the fact that seqmule removes duplicates,
 	# there does not seem to be much difference
@@ -176,11 +176,14 @@ def main():
 			print f, " not found"
 			exit(1)
 
-	for line in open(boid_list,"r"):
-		boid = line.rstrip()
+	if os.path.exists(sys.argv[1]) and os.path.isfile(sys.argv[1]):
+		boid_list =	sys.argv[1]
+		for line in open(boid_list,"r"):
+			boid = line.rstrip()
+			do_stats (boid)
+	else:
+		boid = sys.argv[1]
 		do_stats (boid)
-
-
 
 ####################################
 if __name__ == '__main__':

@@ -107,7 +107,7 @@ def stats_file_processed(boid, bam_source, filename):
 ####################################
 def check_and_fetch_bam_if_not_present(boid, bam_source):
 
-	bamfile = "%s.0_bwamem.sort.rmdup.readfiltered.realn.bam"
+	bamfile = "%s.0_bwamem.sort.rmdup.readfiltered.realn.bam" % boid
 	print "looking for", bamfile, "locally"
 	if os.path.exists(bamfile): return bamfile
 	bamfile = get_bam_from_dropbox(boid, bam_source)

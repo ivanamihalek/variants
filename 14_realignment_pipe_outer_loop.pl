@@ -24,10 +24,6 @@ for my $boid (@boids) {
     print `$realn $year $case $individual`;
     `mv BO*/*bwamem.sort.rmdup.readfiltered.realn.bam .`;
     print `$bamstats $boid`;
-
-
-    #`rm -rf BO* seqmule* *fq* *fastq*`;
-
-    exit;
+    `rm -rf BO* seqmule* *fq* *fastq*`;
 }
 1;

@@ -26,7 +26,7 @@ for my $boid (@boids) {
     print `$bamstats $boid`;
 
 
-    #`rm -rf BO* seqmule*`;
+    #`rm -rf BO* seqmule* *fq* *fastq*`;
 
     exit;
 }

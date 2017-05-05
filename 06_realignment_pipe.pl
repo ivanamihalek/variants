@@ -8,6 +8,7 @@ use variant_utils_pl::migrate_to_bronto  qw(migrate_to_bronto);
 sub find_fastqs;
 sub fastqs_from_bam;
 sub bam_from_bronto;
+sub find_or_make_on_bronto(@);
 
 $| = 1;
 #If set to nonzero $|, forces a flush right away
@@ -41,15 +42,12 @@ for my $dir  ( '/data01', '/data02') {
 $homedir || die "home dir not found on bronto for the year $year\n";
 
 my $casedir = "$homedir/$year/$caseno";
-my $cmd     = "ls -d $casedir";
-my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-$ret eq $casedir || die "$casedir not found on bronto\n";
-
 my $boid = "BO". (substr $year, 2,2) . $caseno. $individual;
 my $individual_dir = "$casedir/$boid";
-$cmd = "ls -d $individual_dir";
-$ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`; chomp $ret;
-$ret eq $individual_dir || die "$individual_dir  not found on bronto\n";
+
+for my $dir ($casedir, $individual_dir) {
+    find_or_make_on_bronto($dir);
+}
 
 my $vcf_path = "$individual_dir/wes/variants/called_by_seqmule_pipeline";
 my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
@@ -57,8 +55,8 @@ my $bam_path = "$individual_dir/wes/alignments/by_seqmule_pipeline";
 
 ##########################################
 # do we have something already processed by seqmule, by any chance?
-$cmd = "ls -d $bam_path ";
-$ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;
+my $cmd = "ls -d $bam_path ";
+my $ret = `echo $cmd | ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s  2> /dev/null'`; chomp $ret;
 if ($ret eq $bam_path) {
     # bam directory found - does it contain anything?
     $cmd  = "ls -f $bam_path/*bam ";
@@ -100,13 +98,8 @@ my @uploadables = split '\n', `ls *vcf`;
 my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
 my $bai = $bam.".bai"; ; push @uploadables, $bai;
 
-for ($vcf_path, $bam_path ) {
-    print  "making path $_\n";
-    $cmd = "mkdir -p $_";
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
-    print  "making path $_/md5sums\n";
-    $cmd = "mkdir -p $_/md5sums";
-    $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+for my $dir ($vcf_path, $bam_path ) {
+    find_or_make_on_bronto($dir);
 }
 
 ##########################################
@@ -127,6 +120,19 @@ foreach my $fnm (@uploadables) {
 
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $fnm\n";
     print "uploaded  $fnm, checksum checks\n";
+}
+
+######################################
+sub find_or_make_on_bronto(@) {
+    my $dir = $_[0];
+    my $cmd = "ls -d $dir";
+    my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
+    chomp $ret;
+    if ($ret ne $dir) {
+        print "$dir not found on brontov - making new one\n";
+        $cmd = "mkdir -p $dir";
+        $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s 2> /dev/null'`;
+    }
 }
 
 ###################################################################################
@@ -162,6 +168,7 @@ sub find_fastqs  {
     my $brontofiles = 0;
     if (!$ret) {
         printf "No fastqs (bz2 or gz) found on bronto. Looking in Dropbox ...\n";
+        # fastq from dropbox does its own md5sum checking
         $ret = `$fastq_from_dropbox $boid`;
         if (!$ret || $ret =~ /^none/ || $ret =~ "not found" ) {
             printf "No fastqs (bz2 or gz) found in Dropbox either. Will try to start from *.bam\n";

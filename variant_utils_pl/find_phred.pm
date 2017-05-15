@@ -25,18 +25,18 @@ sub find_phred (@) {
     my $reading = 0;
     while ( <IF> ) {
 
-	if (! $reading) {
-	    print OF;
-	    /^#CHROM/ && ($reading = 1);
-	} else {
-	    my @aux = split '\t';
-	    $aux[8] =~ ":AD:" && continue;
-	    print "$aux[8]\n";
-	    exit;
-	    my $newline = join "\t", @aux [0 .. 7];
-	    $newline .= join "\t", @aux [8 .. 9];
-	    print OF $newline;
-	}
+        if (! $reading) {
+            print OF;
+            /^#CHROM/ && ($reading = 1);
+        } else {
+            my @aux = split '\t';
+            $aux[8] =~ ":AD:" && next;
+            print "$aux[8]\n";
+            exit;
+            my $newline = join "\t", @aux [0 .. 7];
+            $newline .= join "\t", @aux [8 .. 9];
+            print OF $newline;
+        }
 
     }
 

@@ -17,6 +17,12 @@ sub find_phred (@) {
     open (IF, "<$filename" ) 
 	|| die "Cno $filename: $!.\n";
 
+	my @path_pieces = split "/", $filename;
+	pop  @path_pieces;
+	my $path = join "/", @path_pieces;
+	print `ls $path/*vcf`;
+	exit;
+
     my $outf = $filename;
     $outf=~ s/\.vcf/.phredded.vcf/;
     open (OF, ">$outf" ) 
@@ -39,6 +45,7 @@ sub find_phred (@) {
             $aux[8] =~ /\:A[ODC]\:/  && next;
             print "$aux[8]\n";
             print "\n$_\n";
+            # find the same position in other vcf files in the same folder
 
             exit;
             my $newline = join "\t", @aux [0 .. 7];

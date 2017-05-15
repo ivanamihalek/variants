@@ -30,10 +30,16 @@ sub find_phred (@) {
             /^#CHROM/ && ($reading = 1);
         } else {
             my @aux = split '\t';
-            $aux[8] =~ ":AD:" && next;
+            # it looks like AO (allele count - observed) might be preferable,  because
+            # "AD is the unfiltered allele depth, i.e. the number of reads that support
+            # each of the reported alleles. All reads at the position (including reads
+            # that did not pass the variant caller’s filters) are included in this number"
+            # but you never know with these morons - the same document where I found this
+            # does nto mention AO; leave alone that there might be 'AC' too (and ADF, and ADR ...)
+            $aux[8] =~ /\:A[ODC]\:/  && next;
             print "$aux[8]\n";
             print "\n$_\n";
-            
+
             exit;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];

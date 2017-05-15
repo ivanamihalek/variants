@@ -30,6 +30,7 @@ sub find_phred (@) {
 	    /^#CHROM/ && ($reading = 1);
 	} else {
 	    my @aux = split '\t';
+	    $aux[8] =~ ":AD:" && continue;
 	    print "$aux[8]\n";
 	    exit;
 	    my $newline = join "\t", @aux [0 .. 7];

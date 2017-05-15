@@ -32,6 +32,8 @@ sub find_phred (@) {
             my @aux = split '\t';
             $aux[8] =~ ":AD:" && next;
             print "$aux[8]\n";
+            print "\n$_\n";
+            
             exit;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];

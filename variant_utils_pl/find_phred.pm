@@ -51,7 +51,9 @@ sub find_phred (@) {
             my ($chrom, $pos) = @aux[0..1];
             for my $altfile (@alt_vcf_files) {
                 print "altfile\n";
-                print  `grep $pos $altfile | awk '\$1==$chrom'` ;
+                my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
+                print "$cmd\n";
+                print  `$cmd` ;
             }
             exit;
             my $newline = join "\t", @aux [0 .. 7];

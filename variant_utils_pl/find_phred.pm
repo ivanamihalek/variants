@@ -44,7 +44,10 @@ sub find_phred (@) {
             # that did not pass the variant caller’s filters) are included in this number"
             # but you never know with these morons - the same document where I found this
             # does nto mention AO; leave alone that there might be 'AC' too (and ADF, and ADR ...)
-            $aux[8] =~ /\:A[ODC]\:/  && next;
+            if ($aux[8] =~ /\:A[ODC]\:/) {
+                 print OF $line."\n";
+                 next;
+            }
             # find the same position in other vcf files in the same folder
             my $depth_found = 0;
             my ($chrom, $pos) = @aux[0..1];
@@ -55,11 +58,14 @@ sub find_phred (@) {
                 my $ret =  `$cmd`;
                 ($ret && length($ret)>0) || next;
                 my @field = split '\t', $ret;
-                my $field_four_sorted = join ",", (  sort (split ",", $field[4]) );
+                my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
                 $depth_found = ($field[3] eq $aux[3]  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
                 last if $depth_found;
             }
-            $depth_found  || next;
+            if ( ! $depth_found) {
+                 print OF $line."\n";
+                 next;
+            }
             print "\n-----------------------------------------------------------------------\n";
             print "$aux[8]\n";
             print "\n$line\n";

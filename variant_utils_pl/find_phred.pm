@@ -106,9 +106,9 @@ sub parse_phred (@) {
         print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
-        print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
         ($field[8] && length($field[8] )) || next;
         ($field[9] && length($field[9] )) || next;
+        print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
         my %subfield_hash = %{string_string_hash( $field[8], $field[9], ":")};
         # I think I still want AD
         if (defined $subfield_hash{"AD"}) {

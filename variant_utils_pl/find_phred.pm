@@ -34,7 +34,8 @@ sub find_phred (@) {
             print OF;
             /^#CHROM/ && ($reading = 1);
         } else {
-            my @aux = split '\t';
+            my $line = $_;
+            my @aux =  map { $_ =~ s/\s//r } split '\t';
             # it looks like AO (allele count - observed) might be preferable,  because
             # "AD is the unfiltered allele depth, i.e. the number of reads that support
             # each of the reported alleles. All reads at the position (including reads
@@ -52,11 +53,11 @@ sub find_phred (@) {
             }
             $depth_found  || next;
             print "$aux[8]\n";
-            print "\n$_\n";
+            print "\n$line\n";
             for my $altfile (@alt_vcf_files) {
                 print "\n$altfile\n";
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
-                my @field = split '\t', `$cmd`;
+                my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
                 print "   $field[3]   $field[4]    $field[8] \n";
             }
 

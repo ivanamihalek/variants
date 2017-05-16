@@ -49,7 +49,7 @@ sub find_phred (@) {
             for my $altfile (@alt_vcf_files) {
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
                 my @field = split '\t', `$cmd`;
-                $depth_found =  ($field[3] eq $aux[3]  &&  $field[4] eq $aux[4]);
+                $depth_found = ($field[3] eq $aux[3]  &&  $field[4] eq $aux[4] && $field[8]=~/\:A[ODC]\:/);
                 last if $depth_found;
             }
             $depth_found  || next;

@@ -82,7 +82,7 @@ sub parse_phred (@) {
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
     my $number_of_vars = scalar( split(',', $alt) ) + 1;
- 
+
     for my $altfile (@alt_vcf_files) {
         print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
@@ -98,7 +98,6 @@ sub parse_phred (@) {
         if (defined $subfield_hash{"AD"}) {
             # check if the length is correct
             my @aux = split ",", $subfield_hash{"AD"};
-            print scalar @aux, "    $number_of_vars   $alt \n";
             if ((scalar @aux)==$number_of_vars) {
                 print "\t  >>   @aux \n";
             }

@@ -93,6 +93,8 @@ sub parse_phred (@) {
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
     my @original_alts = split(',', $alt);
+    my @all_vars = @original_alts;
+    unshift @all_vars, $ref;
     my $number_of_vars = scalar(@original_alts) + 1;
     my $retstr = "";
     for my $altfile (@alt_vcf_files) {
@@ -111,9 +113,8 @@ sub parse_phred (@) {
                 $retstr = "";
                 # again, careful with the order
                 my %depth_hash = %{string_string_hash($ref.",".$alt, $subfield_hash{"AD"}, ',')};
-                $retstr = join "," ,( map { $depth_hash{$_}} (unshift @original_alts, $ref));
+                $retstr = join "," ,( map { $depth_hash{$_}} @all_vars);
                  print "\t  >>   $retstr \n";
-
             }
         }
         # I should check what is goin on in other files, but I need to move o

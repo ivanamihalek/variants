@@ -11,6 +11,8 @@ our @EXPORT_OK = qw(find_phred);
 use strict;
 use warnings;
 
+sub parse_phred (@);
+
 sub find_phred (@) {
 
     my $filename = $_[0];
@@ -58,13 +60,7 @@ sub find_phred (@) {
             $depth_found  || next;
             print "$aux[8]\n";
             print "\n$line\n";
-            for my $altfile (@alt_vcf_files) {
-                print "\n$altfile\n";
-                my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
-                my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
-                print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
-            }
-
+            parse_phred ($chrom, $pos, $aux[3], $aux[4], @alt_vcf_files);
             exit;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];
@@ -79,3 +75,18 @@ sub find_phred (@) {
     return $outf;
 }
 
+
+sub parse_phred (@) {
+    my ($chrom, $pos, $ref, $alt) = @_[0..3];
+    my @alt_vcf_files = @_[4..-1];
+
+    for my $altfile (@alt_vcf_files) {
+        print "\n$altfile\n";
+        my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
+        my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
+        print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
+    }
+
+
+
+}

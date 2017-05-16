@@ -53,7 +53,9 @@ sub find_phred (@) {
             my $aux_four_sorted = join ",", (  sort (split ",", $aux[4]) );
             for my $altfile (@alt_vcf_files) {
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
-                my @field = split '\t', `$cmd`;
+                my $ret =  `$cmd`;
+                ($ret && length($ret)>0) || next;
+                my @field = split '\t', $ret;
                 my $field_four_sorted = join ",", (  sort (split ",", $field[4]) );
                 $depth_found = ($field[3] eq $aux[3]  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
                 last if $depth_found;

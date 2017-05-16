@@ -20,7 +20,7 @@ sub find_phred (@) {
 	my @path_pieces = split "/", $filename;
 	pop  @path_pieces;
 	my $path = join "/", @path_pieces;
-	my @alt_vcf_files = split "\n", `ls $path/*extracted.vcf `;
+	my @alt_vcf_files = split "\n", `ls $path/*extract.vcf `;
 	print join "\n", @alt_vcf_files;
 	print "\n";
 	exit;

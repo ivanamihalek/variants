@@ -20,7 +20,7 @@ sub find_phred (@) {
 	my @path_pieces = split "/", $filename;
 	pop  @path_pieces;
 	my $path = join "/", @path_pieces;
-	my @alt_vcf_files = split "\n", `ls $path/*extract.vcf `;
+	my @alt_vcf_files = split "\n", `ls $path/*extract.vcf`;
 	print join "\n", @alt_vcf_files;
 	print "\n";
 	exit;
@@ -48,7 +48,11 @@ sub find_phred (@) {
             print "$aux[8]\n";
             print "\n$_\n";
             # find the same position in other vcf files in the same folder
-
+            my ($chrom, $pos) = @aux[0..1];
+            for my $altfile (@alt_vcf_files) {
+                print "altfile\n";
+                print  `grep $pos $altfile | awk '\$1==$chrom'` ;
+            }
             exit;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];
@@ -62,3 +66,4 @@ sub find_phred (@) {
 
     return $outf;
 }
+

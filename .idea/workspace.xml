@@ -54,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_phred.pm">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="863">
-              <caret line="88" column="43" lean-forward="false" selection-start-line="88" selection-start-column="43" selection-end-line="88" selection-end-column="43" />
+              <caret line="88" column="16" lean-forward="false" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -736,7 +736,7 @@
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_phred.pm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="863">
-          <caret line="88" column="43" lean-forward="false" selection-start-line="88" selection-start-column="43" selection-end-line="88" selection-end-column="43" />
+          <caret line="88" column="16" lean-forward="false" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="16" />
           <folding />
         </state>
       </provider>

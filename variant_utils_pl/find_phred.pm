@@ -21,9 +21,6 @@ sub find_phred (@) {
 	pop  @path_pieces;
 	my $path = join "/", @path_pieces;
 	my @alt_vcf_files = split "\n", `ls $path/*extract.vcf`;
-	print join "\n", @alt_vcf_files;
-	print "\n";
-	exit;
 
     my $outf = $filename;
     $outf=~ s/\.vcf/.phredded.vcf/;

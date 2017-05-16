@@ -42,16 +42,24 @@ sub find_phred (@) {
             # but you never know with these morons - the same document where I found this
             # does nto mention AO; leave alone that there might be 'AC' too (and ADF, and ADR ...)
             $aux[8] =~ /\:A[ODC]\:/  && next;
+            # find the same position in other vcf files in the same folder
+            my $depth_found = 0;
+            my ($chrom, $pos) = @aux[0..1];
+            for my $altfile (@alt_vcf_files) {
+                my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
+                my @field = split '\t', `$cmd`;
+                $depth_found =  ($field[3]==$aux[3]  &&  $field[4]==$aux[4]);
+            }
+            $depth_found  || next;
             print "$aux[8]\n";
             print "\n$_\n";
-            # find the same position in other vcf files in the same folder
-            my ($chrom, $pos) = @aux[0..1];
             for my $altfile (@alt_vcf_files) {
                 print "\n$altfile\n";
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
                 my @field = split '\t', `$cmd`;
                 print "   $field[3]   $field[4]    $field[8] \n";
             }
+
             exit;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];

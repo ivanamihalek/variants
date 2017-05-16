@@ -79,7 +79,7 @@ sub find_phred (@) {
 sub parse_phred (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @_[4..-1];
-
+    print "  $chrom, $pos, $ref, $alt \n";
     for my $altfile (@alt_vcf_files) {
         print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";

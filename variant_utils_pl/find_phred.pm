@@ -81,6 +81,7 @@ sub parse_phred (@) {
     my @alt_vcf_files = @{$_[4]};
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
+    my $number_of_vars = length( split ",", $alt) + 1;
     for my $altfile (@alt_vcf_files) {
         print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
@@ -92,10 +93,15 @@ sub parse_phred (@) {
         foreach my $i (0 .. $#subfield_names) {
            $subfield_hash{$subfield_names[$i]} = $subfield_vals[$i];
         }
-        foreach my $k  (keys %subfield_hash) {
-            print "\t  $k    $subfield_hash{$k}     \n";
+        # I think I still want AD
+        if (defined $subfield_hash{"AD"}) {
+            # check if the length is correct
+            my @aux = split ",", $subfield_hash{"AD"};
+            if ((scalar @aux)==$number_of_vars) {
+                print "\t  >>   @aux \n";
+            }
         }
-
+        # I should check what is goin on in other files, but I need to move o
     }
 
 

@@ -97,6 +97,7 @@ sub parse_phred (@) {
         if (defined $subfield_hash{"AD"}) {
             # check if the length is correct
             my @aux = split ",", $subfield_hash{"AD"};
+            print scalar @aux, "    $number_of_vars\n";
             if ((scalar @aux)==$number_of_vars) {
                 print "\t  >>   @aux \n";
             }

@@ -30,7 +30,6 @@ sub find_phred (@) {
 	|| die "Cno $outf: $!.\n";
 
     my $reading = 0;
-    my $count = 0;
     while ( <IF> ) {
 
         if (! $reading) {
@@ -65,13 +64,15 @@ sub find_phred (@) {
             print "$aux[8]\n";
             print "\n$line\n";
             my $depthstr = parse_phred ($chrom, $pos, $aux[3], $aux[4], \@alt_vcf_files);
-            $count ++;
-            $count==50 && exit;
-            #next;
-            #my $newline = join "\t", @aux [0 .. 7];
-            #$newline .= join "\t", @aux [8 .. 9];
-            #print OF $newline;
-        }
+            if ($depthstr && length($depthstr)>0) {
+               $aux[8] .= ":AD";
+               $aux[9] .= ":$depthstr";
+               my $newline = join "\t", @aux;
+               print OF $newline."\n";
+            } else {
+               print OF $line."\n";
+            }
+         }
 
     }
 

@@ -48,7 +48,7 @@ sub find_phred (@) {
             for my $altfile (@alt_vcf_files) {
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
                 my @field = split '\t', `$cmd`;
-                $depth_found =  ($field[3]==$aux[3]  &&  $field[4]==$aux[4]);
+                $depth_found =  ($field[3] eq $aux[3]  &&  $field[4] eq $aux[4]);
             }
             $depth_found  || next;
             print "$aux[8]\n";

@@ -59,7 +59,7 @@ sub find_phred (@) {
                 print "\n$altfile\n";
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
                 my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
-                print "   $field[3]   $field[4]    $field[8] \n";
+                print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
             }
 
             exit;

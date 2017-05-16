@@ -86,6 +86,16 @@ sub parse_phred (@) {
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
         print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
+        my @subfield_names = split ":", $field[8];
+        my @subfield_vals  = split ":", $field[9];
+        my %subfield_hash  = ();
+        foreach my $i (0 .. $#subfield_names) {
+           $subfield_hash{$subfield_names[$i]} = $subfield_vals[$i];
+        }
+        foreach my $k  (keys %subfield_hash) {
+            print "\t  $k    $subfield_hash{$k}     \n";
+        }
+
     }
 
 

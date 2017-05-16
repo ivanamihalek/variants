@@ -78,7 +78,7 @@ sub find_phred (@) {
 
 sub string_string_hash (@) {
     my ($keystring, $valstring, $separator) = @_;
-    my %rethash = {};
+    my %rethash = ();
     my @subfield_keys = split $separator, $keystring;
     my @subfield_vals  = split $separator, $valstring;
     foreach my $i (0 .. $#subfield_keys ) {
@@ -110,7 +110,7 @@ sub parse_phred (@) {
                 print "\t  >>   @aux \n";
                 $retstr = "";
                 # again, careful with the order
-                my %depth_hash = %{string_string_hash($alt, $subfield_hash{"AD"}, ',')};
+                my %depth_hash = %{string_string_hash($ref+","+$alt, $subfield_hash{"AD"}, ',')};
                 $retstr = join "," ,( map { $depth_hash{$_}} @original_alts);
                  print "\t  >>   $retstr \n";
 

@@ -76,35 +76,45 @@ sub find_phred (@) {
 }
 
 
+sub string_string_hash (@) {
+    my ($keystring, $valstring, $separator) = @_;
+    my %rethash = {};
+    my @subfield_keys = split $separator, $keystring;
+    my @subfield_vals  = split $separator, $valstring;
+    foreach my $i (0 .. $#subfield_keys ) {
+        $rethash{$subfield_keys[$i]} = $subfield_vals[$i];
+    }
+    return \%rethash;
+}
+
 sub parse_phred (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
     my $number_of_vars = scalar( split(',', $alt) ) + 1;
-
+    my $retstr = "";
     for my $altfile (@alt_vcf_files) {
         print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
         print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
-        my @subfield_names = split ":", $field[8];
-        my @subfield_vals  = split ":", $field[9];
-        my %subfield_hash  = ();
-        foreach my $i (0 .. $#subfield_names) {
-           $subfield_hash{$subfield_names[$i]} = $subfield_vals[$i];
-        }
+        my %subfield_hash = %{string_string_hash( $field[8], $field[9], ":")};
         # I think I still want AD
         if (defined $subfield_hash{"AD"}) {
             # check if the length is correct
+            # the value of  $subfield_hash{"AD"} should be something like 45,20,7 or some such
             my @aux = split ",", $subfield_hash{"AD"};
             if ((scalar @aux)==$number_of_vars) {
                 print "\t  >>   @aux \n";
+                $retstr = "";
+                # again, careful with the order
+                last;
             }
         }
         # I should check what is goin on in other files, but I need to move o
     }
-
+    return $retstr;
 
 
 }

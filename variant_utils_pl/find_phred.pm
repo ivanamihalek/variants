@@ -60,7 +60,7 @@ sub find_phred (@) {
             $depth_found  || next;
             print "$aux[8]\n";
             print "\n$line\n";
-            parse_phred ($chrom, $pos, $aux[3], $aux[4], @alt_vcf_files);
+            parse_phred ($chrom, $pos, $aux[3], $aux[4], \@alt_vcf_files);
             exit;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];
@@ -78,7 +78,7 @@ sub find_phred (@) {
 
 sub parse_phred (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
-    my @alt_vcf_files = @_[4..-1];
+    my @alt_vcf_files = @_[4];
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
     for my $altfile (@alt_vcf_files) {

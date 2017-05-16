@@ -110,7 +110,7 @@ sub parse_phred (@) {
                 print "\t  >>   @aux \n";
                 $retstr = "";
                 # again, careful with the order
-                my %depth_hash = %{string_string_hash($alt, subfield_hash{"AD"}, ',')};
+                my %depth_hash = %{string_string_hash($alt, $subfield_hash{"AD"}, ',')};
                 $retstr = join "," ,( map { $depth_hash{$_}} @original_alts);
                  print "\t  >>   $retstr \n";
 

@@ -64,10 +64,10 @@ sub find_phred (@) {
             my $depthstr = parse_phred ($chrom, $pos, $aux[3], $aux[4], \@alt_vcf_files);
             $count ++;
             $count==10 && exit;
-            next;
-            my $newline = join "\t", @aux [0 .. 7];
-            $newline .= join "\t", @aux [8 .. 9];
-            print OF $newline;
+            #next;
+            #my $newline = join "\t", @aux [0 .. 7];
+            #$newline .= join "\t", @aux [8 .. 9];
+            #print OF $newline;
         }
 
     }

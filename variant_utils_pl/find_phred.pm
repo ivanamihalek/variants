@@ -46,10 +46,13 @@ sub find_phred (@) {
             # find the same position in other vcf files in the same folder
             my $depth_found = 0;
             my ($chrom, $pos) = @aux[0..1];
+            # filed [3] is the ref, and fields[4] are alts
+            my $aux_four_sorted = join ",", (  sort (split ",", $aux[4]) );
             for my $altfile (@alt_vcf_files) {
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
                 my @field = split '\t', `$cmd`;
-                $depth_found = ($field[3] eq $aux[3]  &&  $field[4] eq $aux[4] && $field[8]=~/\:A[ODC]\:/);
+                my $field_four_sorted = join ",", (  sort (split ",", $field[4]) );
+                $depth_found = ($field[3] eq $aux[3]  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
                 last if $depth_found;
             }
             $depth_found  || next;

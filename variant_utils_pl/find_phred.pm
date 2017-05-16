@@ -30,6 +30,7 @@ sub find_phred (@) {
 	|| die "Cno $outf: $!.\n";
 
     my $reading = 0;
+    my $count = 0;
     while ( <IF> ) {
 
         if (! $reading) {
@@ -60,8 +61,10 @@ sub find_phred (@) {
             $depth_found  || next;
             print "$aux[8]\n";
             print "\n$line\n";
-            parse_phred ($chrom, $pos, $aux[3], $aux[4], \@alt_vcf_files);
-            exit;
+            my $depthstr = parse_phred ($chrom, $pos, $aux[3], $aux[4], \@alt_vcf_files);
+            $count ++;
+            $count==10 && exit;
+            next;
             my $newline = join "\t", @aux [0 .. 7];
             $newline .= join "\t", @aux [8 .. 9];
             print OF $newline;
@@ -114,7 +117,8 @@ sub parse_phred (@) {
                 # again, careful with the order
                 my %depth_hash = %{string_string_hash($ref.",".$alt, $subfield_hash{"AD"}, ',')};
                 $retstr = join "," ,( map { $depth_hash{$_}} @all_vars);
-                 print "\t  >>   $retstr \n";
+                print "\t  >>   $retstr \n";
+                last;
             }
         }
         # I should check what is goin on in other files, but I need to move o

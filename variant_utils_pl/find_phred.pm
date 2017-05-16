@@ -50,6 +50,7 @@ sub find_phred (@) {
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
                 my @field = split '\t', `$cmd`;
                 $depth_found =  ($field[3] eq $aux[3]  &&  $field[4] eq $aux[4]);
+                last if $depth_found;
             }
             $depth_found  || next;
             print "$aux[8]\n";

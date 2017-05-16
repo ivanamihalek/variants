@@ -53,8 +53,8 @@
       <file leaf-file-name="find_phred.pm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_phred.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="678">
-              <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state relative-caret-position="382">
+              <caret line="63" column="96" lean-forward="false" selection-start-line="63" selection-start-column="96" selection-end-line="63" selection-end-column="96" />
               <folding />
             </state>
           </provider>
@@ -735,8 +735,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_phred.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state relative-caret-position="382">
+          <caret line="63" column="96" lean-forward="false" selection-start-line="63" selection-start-column="96" selection-end-line="63" selection-end-column="96" />
           <folding />
         </state>
       </provider>

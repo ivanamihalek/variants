@@ -82,6 +82,10 @@ sub parse_phred (@) {
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
     my $number_of_vars = length( split(',', $alt) ) + 1;
+    print  $alt, "\n";
+    my @blah = split(',', $alt);
+    print "@blah   \n";
+
     for my $altfile (@alt_vcf_files) {
         print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";

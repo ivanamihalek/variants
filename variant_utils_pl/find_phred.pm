@@ -47,9 +47,8 @@ sub find_phred (@) {
             # find the same position in other vcf files in the same folder
             my ($chrom, $pos) = @aux[0..1];
             for my $altfile (@alt_vcf_files) {
-                print "$altfile\n";
+                print "\n$altfile\n";
                 my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
-                print "$cmd\n";
                 print  `$cmd` ;
             }
             exit;

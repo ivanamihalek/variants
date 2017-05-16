@@ -85,6 +85,8 @@ sub parse_phred (@) {
     print  $alt, "\n";
     my @blah = split(',', $alt);
     print "@blah   \n";
+    print length(@blah), "\n";
+    print length( split(',', $alt) ), "\n";
 
     for my $altfile (@alt_vcf_files) {
         print "\n$altfile\n";

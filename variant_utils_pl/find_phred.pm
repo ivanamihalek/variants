@@ -78,7 +78,7 @@ sub find_phred (@) {
 
 sub parse_phred (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
-    my @alt_vcf_files = @{@_[4]};
+    my @alt_vcf_files = @{$_[4]};
     print "  $chrom, $pos, $ref, $alt \n";
     print "@alt_vcf_files\n";
     for my $altfile (@alt_vcf_files) {

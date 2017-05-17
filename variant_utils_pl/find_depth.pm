@@ -108,6 +108,7 @@ sub string_string_hash (@) {
 
 sub parse_depth (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
+    ($pos == 120404629) && print "blah\n";
     my @alt_vcf_files = @{$_[4]};
     my @original_alts = split(',', $alt);
     my @all_vars = @original_alts;

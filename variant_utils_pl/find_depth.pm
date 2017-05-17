@@ -82,8 +82,6 @@ sub  check_depth_field_exists_in_other_files (@) {
 
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
-    print "  $chrom, $pos, $ref, $alt \n";
-    print "@alt_vcf_files\n";
     my $depth_found = 0;
     # filed [3] is the ref, and fields[4] are alts
     my $aux_four_sorted = join ",", (  sort (split ",", $alt) );
@@ -95,6 +93,10 @@ sub  check_depth_field_exists_in_other_files (@) {
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
         $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
         last if $depth_found;
+    }
+    if ($depth_found) {
+        print "  $chrom, $pos, $ref, $alt \n";
+        print "@alt_vcf_files\n";
     }
     return $depth_found;
 }

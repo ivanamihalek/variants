@@ -89,6 +89,7 @@ sub  check_depth_field_exists_in_other_files (@) {
         print ">>> $altfile \n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my $ret =  `$cmd`;
+        print "\t\t $ret\n";
         ($ret && length($ret)>0) || next;
         my @field = split '\t', $ret;
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );

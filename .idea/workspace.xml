@@ -43,8 +43,8 @@
       <file leaf-file-name="find_depth.pm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="28" column="38" lean-forward="true" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+            <state relative-caret-position="903">
+              <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -114,10 +114,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="415" />
-    <option name="y" value="90" />
+    <option name="x" value="217" />
+    <option name="y" value="59" />
     <option name="width" value="3265" />
-    <option name="height" value="1988" />
+    <option name="height" value="1659" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -319,7 +319,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="415" y="90" width="3265" height="1988" extended-state="0" />
+    <frame x="217" y="59" width="3265" height="1659" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2159265" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -731,8 +731,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="28" column="38" lean-forward="true" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+        <state relative-caret-position="903">
+          <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
           <folding />
         </state>
       </provider>

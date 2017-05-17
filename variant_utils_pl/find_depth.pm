@@ -130,6 +130,7 @@ sub parse_depth (@) {
                 # again, careful with the order
                 my %depth_hash = %{string_string_hash($ref.",".$alt, $subfield_hash{"AD"}, ',')};
                 $retstr = join "," ,( map { $depth_hash{$_}} @all_vars);
+                print "$retstr\n";
                 last;
             }
         }

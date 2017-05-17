@@ -57,7 +57,6 @@ sub find_depth (@) {
                  print OF $line;
                  next;
             } else {
-               print " ***  @aux[0..1] \n";
                my ($new_ref, $new_alts, $new_keystring, $new_valstring) = @retvals;
                $aux[2] = $new_ref;
                $aux[3] = $new_alts;

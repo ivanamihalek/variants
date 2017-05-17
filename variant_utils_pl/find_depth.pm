@@ -58,8 +58,8 @@ sub find_depth (@) {
                  next;
             } else {
                my ($new_ref, $new_alts, $new_keystring, $new_valstring) = @retvals;
-               $aux[2] = $new_ref;
-               $aux[3] = $new_alts;
+               $aux[3] = $new_ref;
+               $aux[4] = $new_alts;
                $aux[8] = $new_keystring;
                $aux[9] = $new_valstring;
                my $newline = join "\t", @aux;

@@ -3,7 +3,7 @@
 # I need the alt depths for further  processing, so I will asuume that
 # the other vcf files are still present in the directory,
 # and if so force allele dpeths from one of the files, that has the consensus alt strinf
-package variant_utils_pl::find_phred;
+package variant_utils_pl::find_depth;
 require Exporter;
 our @ISA = ("Exporter");
 our @EXPORT_OK = qw(find_depth);

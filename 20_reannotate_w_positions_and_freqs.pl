@@ -37,7 +37,7 @@ foreach my $filename ( @filenames) {
     my $fixed_depth_filename = find_depth($stripped_filename);
     my $annovar_filename   = annovar ($fixed_depth_filename );
     my $annotated_filename = vcfanno  ($annovar_filename);
-    #`rm  $stripped_filename $fixed_depth_filename $annovar_filename `;
+    `rm  $stripped_filename $fixed_depth_filename $annovar_filename `;
     printf "\nfinal annotated file: $annotated_filename\n";
     # md5sum - 0 is for not expcting to have an old version of md5
     my ($md5,$md5sum_file) = get_md5sum (0, $annotated_filename);

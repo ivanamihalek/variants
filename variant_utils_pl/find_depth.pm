@@ -94,7 +94,8 @@ sub  check_depth_field_exists_in_other_files (@) {
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
         # there is just too much shit to resolve - the consensus has varinats that exist in only one file ...
         # just go with the variant that has depth
-        # thus: if I have the dpehts, I'll go with whichever variants they have - usually it is gatk
+        # thus: if I have the depths, I'll go with whichever variants they have - usually it is gatk
+        ($pos == 120404629) && print "$field[3] <=> $ref   $field[8]  \n";
         $depth_found = ($field[3] eq $ref   && $field[8]=~/\:AD\:/);
         if ($depth_found) {
             push @retvals, ($field[4], $field[8], $field[9]);

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" afterPath="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" afterPath="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,21 +20,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="20_reannotate_w_positions_and_freqs.pl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="20_reannotate_w_positions_and_freqs.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state relative-caret-position="1174">
+              <caret line="39" column="5" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vcfanno.pm" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vcfanno.pm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            <state relative-caret-position="888">
+              <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -120,8 +120,8 @@
         <option value="$PROJECT_DIR$/depth_find_test.pl" />
         <option value="$PROJECT_DIR$/variant_utils_pl/generic.pm" />
         <option value="$PROJECT_DIR$/variant_utils_pl/find_depth.pm" />
-        <option value="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" />
         <option value="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" />
+        <option value="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" />
       </list>
     </option>
   </component>
@@ -734,18 +734,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl">
+    <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        <state relative-caret-position="888">
+          <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
+    <entry file="file://$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        <state relative-caret-position="1174">
+          <caret line="39" column="5" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding />
         </state>
       </provider>

@@ -53,19 +53,17 @@ sub find_depth (@) {
             my ($chrom, $pos) = @aux[0..1];
             ($pos == 120404629) && print " *****************  afdgkfahgla \n";
             my ($ref, $alt) = @aux[3..4];
-            my $depth_found = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
-            if ( ! $depth_found) {
+            my $retvals = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
+            if ( !$retvals) {
                  print OF $line;
                  next;
-            }
-            my $depthstr = parse_depth ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
-            if ($depthstr && length($depthstr)>0) {
-               $aux[8] .= ":AD";
-               $aux[9] .= ":$depthstr";
+            } else {
+               my ($new_alts, $new_keystring, $new_valstring) = $retvals;
+               $aux[3] = $new_alts;
+               $aux[8] = $new_keystring;
+               $aux[9] = $new_valstring;
                my $newline = join "\t", @aux;
                print OF $newline;
-            } else {
-               print OF $line;
             }
          }
     }
@@ -82,6 +80,7 @@ sub  check_depth_field_exists_in_other_files (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
     my $depth_found = 0;
+    my $retvals = 0;
     # filed [3] is the ref, and fields[4] are alts
     my $alt_sorted = join ",", (  sort (split ",", $alt) );
     for my $altfile (@alt_vcf_files) {
@@ -89,12 +88,15 @@ sub  check_depth_field_exists_in_other_files (@) {
         my $ret =  `$cmd`;
         ($ret && length($ret)>0) || next;
         my @field = split '\t', $ret;
-       ($pos == 120404629) && print "  &&&&&&&&  $field[3]==$field[3]  $field[4]==$alt_sorted    $field[8]  $field[9]\n";
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
-        $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
+        # there is just too much shit to resolve - the consensus has varinats that exist in only one file ...
+        # just go with the variant that has depth
+        # thus: if I have the dpehts, I'll go with whichever variants they have - usually it is gatk
+        $depth_found = ($field[3] eq $ref   && $field[8]=~/\:AD\:/);
+        $retvals = ($field[4], $field[8], $field[9]);
         last if $depth_found;
     }
-    return $depth_found;
+    return $retvals;
 }
 
 sub string_string_hash (@) {

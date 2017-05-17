@@ -34,8 +34,8 @@ if ($ARGV[0] eq "all") {
 foreach my $filename ( @filenames) {
     print " ***** running $filename  .... \n";
     my $stripped_filename  = strip_vcf($filename);
-    #my $fixed_depth_filename = find_depth($stripped_filename);
-    my $annovar_filename   = annovar ($stripped_filename );
+    my $fixed_depth_filename = find_depth($stripped_filename);
+    my $annovar_filename   = annovar ($fixed_depth_filename );
     my $annotated_filename = vcfanno  ($annovar_filename);
     #`rm  $stripped_filename $fixed_depth_filename $annovar_filename `;
     printf "\nfinal annotated file: $annotated_filename\n";

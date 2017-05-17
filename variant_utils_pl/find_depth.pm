@@ -95,10 +95,6 @@ sub  check_depth_field_exists_in_other_files (@) {
         $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
         last if $depth_found;
     }
-    if ($depth_found) {
-        print "  $chrom, $pos, $ref, $alt \n";
-        print "@alt_vcf_files\n";
-    }
     return $depth_found;
 }
 

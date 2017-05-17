@@ -6,6 +6,18 @@ our @EXPORT_OK = qw(strip_vcf);
 use strict;
 use warnings;
 
+sub string_string_hash (@) {
+    my ($keystring, $valstring, $separator) = @_;
+    my %rethash = ();
+    my @subfield_keys = split $separator, $keystring;
+    my @subfield_vals  = split $separator, $valstring;
+    foreach my $i (0 .. $#subfield_keys ) {
+        $rethash{$subfield_keys[$i]} = $subfield_vals[$i];
+    }
+    return \%rethash;
+}
+
+
 sub strip_vcf (@) {
 
     my $filename = $_[0];

@@ -51,10 +51,8 @@ sub find_depth (@) {
             }
             # find the same position in other vcf files in the same folder
             my ($chrom, $pos) = @aux[0..1];
-            ($pos == 120404629) && print " *****************  afdgkfahgla \n";
             my ($ref, $alt) = @aux[3..4];
             my @retvals = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
-            ($pos == 120404629) && print " retvals:   @retvals\n";
              if ( !@retvals ) {
                  print OF $line;
                  next;
@@ -96,7 +94,6 @@ sub  check_depth_field_exists_in_other_files (@) {
         # there is just too much shit to resolve - the consensus has varinats that exist in only one file ...
         # just go with the variant that has depth
         # thus: if I have the depths, I'll go with whichever variants they have - usually it is gatk
-        ($pos == 120404629) && print "  $field[8]  \n";
         $depth_found = ($field[8]=~/\:AD\:/);
         if ($depth_found) {
             push @retvals, ($field[3], $field[4], $field[8], $field[9]);
@@ -106,48 +103,3 @@ sub  check_depth_field_exists_in_other_files (@) {
     return @retvals;
 }
 
-sub string_string_hash (@) {
-    my ($keystring, $valstring, $separator) = @_;
-    my %rethash = ();
-    my @subfield_keys = split $separator, $keystring;
-    my @subfield_vals  = split $separator, $valstring;
-    foreach my $i (0 .. $#subfield_keys ) {
-        $rethash{$subfield_keys[$i]} = $subfield_vals[$i];
-    }
-    return \%rethash;
-}
-
-sub parse_depth (@) {
-    my ($chrom, $pos, $ref, $alt) = @_[0..3];
-    my @alt_vcf_files = @{$_[4]};
-    my @original_alts = split(',', $alt);
-    my @all_vars = @original_alts;
-    unshift @all_vars, $ref;
-    my $number_of_vars = scalar(@original_alts) + 1;
-    my $retstr = "";
-    for my $altfile (@alt_vcf_files) {
-        my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
-        my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
-        ($field[8] && length($field[8] )) || next;
-        ($field[9] && length($field[9] )) || next;
-        my %subfield_hash = %{string_string_hash( $field[8], $field[9], ":")};
-        # I think I still want AD
-        if (defined $subfield_hash{"AD"}) {
-            # check if the length is correct
-            # the value of  $subfield_hash{"AD"} should be something like 45,20,7 or some such
-            my @aux = split ",", $subfield_hash{"AD"};
-            if ((scalar @aux)==$number_of_vars) {
-                $retstr = "";
-                # again, careful with the order
-                my %depth_hash = %{string_string_hash($ref.",".$alt, $subfield_hash{"AD"}, ',')};
-                $retstr = join "," ,( map { $depth_hash{$_}} @all_vars);
-                print " $pos  $retstr\n";
-                last;
-            }
-        }
-        # I should check what is goin on in other files, but I need to move o
-    }
-    return $retstr;
-
-
-}

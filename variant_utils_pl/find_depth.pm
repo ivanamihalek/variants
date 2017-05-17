@@ -95,7 +95,7 @@ sub  check_depth_field_exists_in_other_files (@) {
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
         print "\t\t $field[2] -- $ref   $field_four_sorted ==  $alt_sorted     $field[8]      \n";
 
-        $depth_found = ($field[2] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
+        $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
         last if $depth_found;
     }
     if ($depth_found) {

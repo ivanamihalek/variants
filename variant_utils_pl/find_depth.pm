@@ -53,7 +53,7 @@ sub find_depth (@) {
             my ($chrom, $pos) = @aux[0..1];
             my ($ref, $alt) = @aux[3..4];
             my @retvals = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
-             if ( !@retvals ) {
+            if ( !@retvals ) {
                  print OF $line;
                  next;
             } else {

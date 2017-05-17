@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_pl/find_depth.pm" afterPath="$PROJECT_DIR$/variant_utils_pl/find_depth.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/variant_utils_pl/generic.pm" afterPath="$PROJECT_DIR$/variant_utils_pl/generic.pm" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,8 +53,8 @@
       <file leaf-file-name="find_depth.pm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2035">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="481">
+              <caret line="55" column="12" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -127,7 +126,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="680" />
-    <option name="y" value="244" />
+    <option name="y" value="246" />
     <option name="width" value="2982" />
     <option name="height" value="1834" />
   </component>
@@ -331,7 +330,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="680" y="244" width="2982" height="1834" extended-state="0" />
+    <frame x="680" y="246" width="2982" height="1834" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23641852" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
@@ -743,8 +742,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2035">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state relative-caret-position="481">
+          <caret line="55" column="12" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
           <folding />
         </state>
       </provider>

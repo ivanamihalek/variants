@@ -46,7 +46,7 @@ sub find_depth (@) {
             # but you never know with these morons - the same document where I found this
             # does nto mention AO; leave alone that there might be 'AC' too (and ADF, and ADR ...)
             if ($aux[8] =~ /\:A[ODC]\:/) {
-                 print OF $line."\n";
+                 print OF $line;
                  next;
             }
             # find the same position in other vcf files in the same folder
@@ -54,7 +54,7 @@ sub find_depth (@) {
             my ($ref, $alt) = @aux[3..4];
             my $depth_found = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
             if ( ! $depth_found) {
-                 print OF $line."\n";
+                 print OF $line;
                  next;
             }
             print "\n-----------------------------------------------------------------------\n";
@@ -65,9 +65,9 @@ sub find_depth (@) {
                $aux[8] .= ":AD";
                $aux[9] .= ":$depthstr";
                my $newline = join "\t", @aux;
-               print OF $newline."\n";
+               print OF $newline;
             } else {
-               print OF $line."\n";
+               print OF $line;
             }
          }
     }

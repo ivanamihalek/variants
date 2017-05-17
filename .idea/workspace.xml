@@ -43,8 +43,8 @@
       <file leaf-file-name="find_depth.pm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+            <state relative-caret-position="650">
+              <caret line="88" column="32" lean-forward="false" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -67,11 +67,13 @@
       <find>md5sum</find>
       <find>bam</find>
       <find>adapt</find>
+      <find>$aux_four_sorted</find>
     </findStrings>
     <replaceStrings>
       <replace>bamfile</replace>
       <replace>seqcenter</replace>
       <replace>fastq</replace>
+      <replace>$alt_sorted</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -727,8 +729,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+        <state relative-caret-position="650">
+          <caret line="88" column="32" lean-forward="false" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
           <folding />
         </state>
       </provider>

@@ -84,14 +84,15 @@ sub  check_depth_field_exists_in_other_files (@) {
     my @alt_vcf_files = @{$_[4]};
     my $depth_found = 0;
     # filed [3] is the ref, and fields[4] are alts
-    my $aux_four_sorted = join ",", (  sort (split ",", $alt) );
+    my $alt_sorted = join ",", (  sort (split ",", $alt) );
     for my $altfile (@alt_vcf_files) {
+        print ">>> $altfile \n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my $ret =  `$cmd`;
         ($ret && length($ret)>0) || next;
         my @field = split '\t', $ret;
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
-        $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
+        $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
         last if $depth_found;
     }
     if ($depth_found) {

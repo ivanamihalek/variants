@@ -88,6 +88,8 @@ sub  check_depth_field_exists_in_other_files (@) {
         my $ret =  `$cmd`;
         ($ret && length($ret)>0) || next;
         my @field = split '\t', $ret;
+        ($field[8] && length($field[8] )) || next;
+        ($field[9] && length($field[9] )) || next;
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
         # there is just too much shit to resolve - the consensus has varinats that exist in only one file ...
         # just go with the variant that has depth

@@ -57,9 +57,6 @@ sub find_depth (@) {
                  print OF $line;
                  next;
             }
-            print "\n-----------------------------------------------------------------------\n";
-            print "$aux[8]\n";
-            print "\n$line\n";
             my $depthstr = parse_phred ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
             if ($depthstr && length($depthstr)>0) {
                $aux[8] .= ":AD";

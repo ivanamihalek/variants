@@ -11,7 +11,7 @@ our @EXPORT_OK = qw(find_depth);
 use strict;
 use warnings;
 
-sub parse_phred (@);
+sub parse_depth (@);
 sub find_depth_field_in_other_files (@);
 
 sub find_depth (@) {
@@ -57,7 +57,7 @@ sub find_depth (@) {
                  print OF $line;
                  next;
             }
-            my $depthstr = parse_phred ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
+            my $depthstr = parse_depth ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
             if ($depthstr && length($depthstr)>0) {
                $aux[8] .= ":AD";
                $aux[9] .= ":$depthstr";
@@ -106,7 +106,7 @@ sub string_string_hash (@) {
     return \%rethash;
 }
 
-sub parse_phred (@) {
+sub parse_depth (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
     my @original_alts = split(',', $alt);
@@ -115,12 +115,10 @@ sub parse_phred (@) {
     my $number_of_vars = scalar(@original_alts) + 1;
     my $retstr = "";
     for my $altfile (@alt_vcf_files) {
-        print "\n$altfile\n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
         ($field[8] && length($field[8] )) || next;
         ($field[9] && length($field[9] )) || next;
-        print "   $field[3]   $field[4]    $field[8]   $field[9] \n";
         my %subfield_hash = %{string_string_hash( $field[8], $field[9], ":")};
         # I think I still want AD
         if (defined $subfield_hash{"AD"}) {
@@ -128,12 +126,10 @@ sub parse_phred (@) {
             # the value of  $subfield_hash{"AD"} should be something like 45,20,7 or some such
             my @aux = split ",", $subfield_hash{"AD"};
             if ((scalar @aux)==$number_of_vars) {
-                print "\t  >>   @aux \n";
                 $retstr = "";
                 # again, careful with the order
                 my %depth_hash = %{string_string_hash($ref.",".$alt, $subfield_hash{"AD"}, ',')};
                 $retstr = join "," ,( map { $depth_hash{$_}} @all_vars);
-                print "\t  >>   $retstr \n";
                 last;
             }
         }

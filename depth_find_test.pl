@@ -4,7 +4,7 @@ use strict;
 use lib  '/home/ivana/pypeworks/variants';
 
 use warnings FATAL => 'all';
-use variant_utils_pl::find_phred qw(find_phred);
+use variant_utils_pl::find_depth qw(find_depth);
 
 (@ARGV==1) || die "Usage:  $0  <filename file>/all  \n";
 
@@ -29,5 +29,5 @@ if ($ARGV[0] eq "all") {
 
 foreach my $filename ( @filenames) {
     print " ***** running $filename  .... \n";
-    find_phred($filename);
+    find_depth($filename);
 }

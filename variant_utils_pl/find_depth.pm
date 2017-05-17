@@ -6,14 +6,15 @@
 package variant_utils_pl::find_phred;
 require Exporter;
 our @ISA = ("Exporter");
-our @EXPORT_OK = qw(find_phred);
+our @EXPORT_OK = qw(find_depth);
 
 use strict;
 use warnings;
 
 sub parse_phred (@);
+sub find_depth_field_in_other_files (@);
 
-sub find_phred (@) {
+sub find_depth (@) {
 
     my $filename = $_[0];
     open (IF, "<$filename" ) 
@@ -49,19 +50,8 @@ sub find_phred (@) {
                  next;
             }
             # find the same position in other vcf files in the same folder
-            my $depth_found = 0;
-            my ($chrom, $pos) = @aux[0..1];
-            # filed [3] is the ref, and fields[4] are alts
-            my $aux_four_sorted = join ",", (  sort (split ",", $aux[4]) );
-            for my $altfile (@alt_vcf_files) {
-                my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
-                my $ret =  `$cmd`;
-                ($ret && length($ret)>0) || next;
-                my @field = split '\t', $ret;
-                my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
-                $depth_found = ($field[3] eq $aux[3]  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
-                last if $depth_found;
-            }
+            my ($chrom, $pos, $ref, $alt) = @aux[0..4];
+            my $depth_found = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
             if ( ! $depth_found) {
                  print OF $line."\n";
                  next;
@@ -69,7 +59,7 @@ sub find_phred (@) {
             print "\n-----------------------------------------------------------------------\n";
             print "$aux[8]\n";
             print "\n$line\n";
-            my $depthstr = parse_phred ($chrom, $pos, $aux[3], $aux[4], \@alt_vcf_files);
+            my $depthstr = parse_phred ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
             if ($depthstr && length($depthstr)>0) {
                $aux[8] .= ":AD";
                $aux[9] .= ":$depthstr";
@@ -79,7 +69,6 @@ sub find_phred (@) {
                print OF $line."\n";
             }
          }
-
     }
 
     close IF;
@@ -88,6 +77,25 @@ sub find_phred (@) {
     return $outf;
 }
 
+###############################################################
+sub  check_depth_field_exists_in_other_files (@) {
+
+    my ($chrom, $pos, $ref, $alt) = @_[0..3];
+    my @alt_vcf_files = @{$_[4]};
+    my $depth_found = 0;
+    # filed [3] is the ref, and fields[4] are alts
+    my $aux_four_sorted = join ",", (  sort (split ",", $alt) );
+    for my $altfile (@alt_vcf_files) {
+        my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
+        my $ret =  `$cmd`;
+        ($ret && length($ret)>0) || next;
+        my @field = split '\t', $ret;
+        my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
+        $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $aux_four_sorted  && $field[8]=~/\:A[ODC]\:/);
+        last if $depth_found;
+    }
+    return $depth_found;
+}
 
 sub string_string_hash (@) {
     my ($keystring, $valstring, $separator) = @_;

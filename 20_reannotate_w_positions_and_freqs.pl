@@ -8,6 +8,7 @@ use variant_utils_pl::generic qw(strip_vcf);
 use variant_utils_pl::annovar qw(annovar);
 use variant_utils_pl::vcfanno qw(vcfanno);
 use variant_utils_pl::md5     qw(get_md5sum);
+use variant_utils_pl::find_depth qw(find_depth);
 
 (@ARGV==1) || die "Usage:  $0  <filename file>/all  \n";
 
@@ -33,9 +34,10 @@ if ($ARGV[0] eq "all") {
 foreach my $filename ( @filenames) {
     print " ***** running $filename  .... \n";
     my $stripped_filename  = strip_vcf($filename);
-    my $annovar_filename   = annovar ($stripped_filename);
+    my $fixed_depth_filename = find_depth($stripped_filename);
+    my $annovar_filename   = annovar ($fixed_depth_filename );
     my $annotated_filename = vcfanno  ($annovar_filename);
-    `rm  $stripped_filename $annovar_filename `;
+    `rm  $stripped_filename $fixed_depth_filename $annovar_filename `;
     printf "\nfinal annotated file: $annotated_filename\n";
     # md5sum - 0 is for not expcting to have an old version of md5
     my ($md5,$md5sum_file) = get_md5sum (0, $annotated_filename);

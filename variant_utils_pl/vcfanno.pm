@@ -12,7 +12,7 @@ sub vcfanno (@) {
     #$filename =~ /stripped\.jv\.cleaned/ || die "in vcfannp: unexpected filename: $filename\n";
     $filename =~ /stripped\.annov/ || die "in vcfanno: unexpected filename: $filename\n";
     my $new_filename = $filename;
-    $new_filename =~  s/stripped\.annov/annotated/;
+    $new_filename =~  s/stripped\.fixed\_depth\.annov/annotated/;
 
     $new_filename ne $filename or 
 	die "name change failed: expected stripped\.jv\.cleaned in the input name\n";

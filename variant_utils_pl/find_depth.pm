@@ -80,7 +80,7 @@ sub  check_depth_field_exists_in_other_files (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
     my $depth_found = 0;
-    my $retvals = 0;
+    my @retvals = ();
     # filed [3] is the ref, and fields[4] are alts
     my $alt_sorted = join ",", (  sort (split ",", $alt) );
     for my $altfile (@alt_vcf_files) {
@@ -93,10 +93,10 @@ sub  check_depth_field_exists_in_other_files (@) {
         # just go with the variant that has depth
         # thus: if I have the dpehts, I'll go with whichever variants they have - usually it is gatk
         $depth_found = ($field[3] eq $ref   && $field[8]=~/\:AD\:/);
-        $retvals = ($field[4], $field[8], $field[9]);
+        push @retvals, ($field[4], $field[8], $field[9]);
         last if $depth_found;
     }
-    return $retvals;
+    return @retvals;
 }
 
 sub string_string_hash (@) {

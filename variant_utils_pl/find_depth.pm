@@ -26,7 +26,7 @@ sub find_depth (@) {
 	my @alt_vcf_files = split "\n", `ls $path/*.vcf | grep -v extract`;
 
     my $outf = $filename;
-    $outf=~ s/\.vcf/.phredded.vcf/;
+    $outf=~ s/\.vcf/.fixed_depth.vcf/;
     open (OF, ">$outf" ) 
 	|| die "Cno $outf: $!.\n";
 

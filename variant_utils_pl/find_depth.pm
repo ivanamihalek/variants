@@ -54,7 +54,7 @@ sub find_depth (@) {
             ($pos == 120404629) && print " *****************  afdgkfahgla \n";
             my ($ref, $alt) = @aux[3..4];
             my @retvals = check_depth_field_exists_in_other_files ($chrom, $pos, $ref, $alt, \@alt_vcf_files);
-            if ( @retvals ) {
+            if ( !@retvals ) {
                  print OF $line;
                  next;
             } else {

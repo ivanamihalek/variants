@@ -59,7 +59,8 @@ sub find_depth (@) {
                  print OF $line;
                  next;
             } else {
-               my ($new_alts, $new_keystring, $new_valstring) = @retvals;
+               my ($new_ref, $new_alts, $new_keystring, $new_valstring) = @retvals;
+               $aux[2] = $new_ref;
                $aux[3] = $new_alts;
                $aux[8] = $new_keystring;
                $aux[9] = $new_valstring;
@@ -95,10 +96,10 @@ sub  check_depth_field_exists_in_other_files (@) {
         # there is just too much shit to resolve - the consensus has varinats that exist in only one file ...
         # just go with the variant that has depth
         # thus: if I have the depths, I'll go with whichever variants they have - usually it is gatk
-        ($pos == 120404629) && print "$field[3] <=> $ref   $field[8]  \n";
-        $depth_found = ($field[3] eq $ref   && $field[8]=~/\:AD\:/);
+        ($pos == 120404629) && print "  $field[8]  \n";
+        $depth_found = ($field[8]=~/\:AD\:/);
         if ($depth_found) {
-            push @retvals, ($field[4], $field[8], $field[9]);
+            push @retvals, ($field[3], $field[4], $field[8], $field[9]);
             last;
         }
     }

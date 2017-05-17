@@ -82,6 +82,8 @@ sub  check_depth_field_exists_in_other_files (@) {
 
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
+    print "  $chrom, $pos, $ref, $alt \n";
+    print "@alt_vcf_files\n";
     my $depth_found = 0;
     # filed [3] is the ref, and fields[4] are alts
     my $aux_four_sorted = join ",", (  sort (split ",", $alt) );
@@ -111,8 +113,6 @@ sub string_string_hash (@) {
 sub parse_phred (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
     my @alt_vcf_files = @{$_[4]};
-    print "  $chrom, $pos, $ref, $alt \n";
-    print "@alt_vcf_files\n";
     my @original_alts = split(',', $alt);
     my @all_vars = @original_alts;
     unshift @all_vars, $ref;

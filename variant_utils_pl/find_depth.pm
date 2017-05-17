@@ -89,11 +89,12 @@ sub  check_depth_field_exists_in_other_files (@) {
         print ">>> $altfile \n";
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my $ret =  `$cmd`;
-        print "\t\t $ret\n";
         ($ret && length($ret)>0) || next;
         my @field = split '\t', $ret;
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
-        $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
+        print "\t\t $field[2] -- $ref   $field_four_sorted ==  $alt_sorted     $field[8]      \n";
+
+        $depth_found = ($field[2] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
         last if $depth_found;
     }
     if ($depth_found) {

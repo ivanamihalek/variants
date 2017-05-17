@@ -110,7 +110,6 @@ sub string_string_hash (@) {
 
 sub parse_depth (@) {
     my ($chrom, $pos, $ref, $alt) = @_[0..3];
-    ($pos == 120404629) && print "blah\n";
     my @alt_vcf_files = @{$_[4]};
     my @original_alts = split(',', $alt);
     my @all_vars = @original_alts;
@@ -120,7 +119,6 @@ sub parse_depth (@) {
     for my $altfile (@alt_vcf_files) {
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
-        ($pos == 120404629) && print "@field\n";
         ($field[8] && length($field[8] )) || next;
         ($field[9] && length($field[9] )) || next;
         my %subfield_hash = %{string_string_hash( $field[8], $field[9], ":")};

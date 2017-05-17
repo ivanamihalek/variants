@@ -95,8 +95,10 @@ sub  check_depth_field_exists_in_other_files (@) {
         # just go with the variant that has depth
         # thus: if I have the dpehts, I'll go with whichever variants they have - usually it is gatk
         $depth_found = ($field[3] eq $ref   && $field[8]=~/\:AD\:/);
-        push @retvals, ($field[4], $field[8], $field[9]);
-        last if $depth_found;
+        if ($depth_found) {
+            push @retvals, ($field[4], $field[8], $field[9]);
+            last;
+        }
     }
     return @retvals;
 }

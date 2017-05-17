@@ -89,6 +89,7 @@ sub  check_depth_field_exists_in_other_files (@) {
         my $ret =  `$cmd`;
         ($ret && length($ret)>0) || next;
         my @field = split '\t', $ret;
+       ($pos == 120404629) && print "@field\n";
         my $field_four_sorted = join ",", (  sort(split ",", $field[4]) );
         $depth_found = ($field[3] eq $ref  &&  $field_four_sorted eq $alt_sorted  && $field[8]=~/\:A[ODC]\:/);
         last if $depth_found;

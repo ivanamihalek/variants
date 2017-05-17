@@ -117,6 +117,7 @@ sub parse_depth (@) {
     for my $altfile (@alt_vcf_files) {
         my $cmd = "grep $pos $altfile | awk '\$1==$chrom'";
         my @field = map { $_ =~ s/\s//r } split '\t', `$cmd`;
+        ($pos == 120404629) && print "@field\n";
         ($field[8] && length($field[8] )) || next;
         ($field[9] && length($field[9] )) || next;
         my %subfield_hash = %{string_string_hash( $field[8], $field[9], ":")};

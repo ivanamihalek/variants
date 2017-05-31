@@ -10,7 +10,8 @@ sub fastqs_from_bam;
 sub bam_from_bronto;
 sub find_or_make_on_bronto(@);
 
-$| = 1;
+$| = 1; # turn on the outo flush
+
 #If set to nonzero $|, forces a flush right away
 #    and after every write or print on the currently selected output channel.
 @ARGV ==3  || die "Usage: $0 <year> <case number> <individual>\n";
@@ -76,6 +77,8 @@ if ($bamfile =~ /.bam$/) {
 }
 
 ##########################################
+##########################################
+# THE MAIN LOOP
 # check whether the parts of the pipeline have already completed
 my $logfile = "$boid.script";
 
@@ -90,9 +93,10 @@ if ( ! -e $logfile || `tail -n1 $logfile` !~ "finished" ) {
     (system $cmd) && die "error: $!\n";
 }
 `tail -n1 $logfile` =~ "finished" || die "there was a problem completing\n$cmd\ncheck the logfile $boid.script\n";
+##########################################
 
 ##########################################
-# create paths on bronto
+# create paths for upload  on bronto
 chdir  "$boid\_result";
 my @uploadables = split '\n', `ls *vcf`;
 my $bam = `ls *realn.bam`; chomp $bam; push @uploadables, $bam;
@@ -101,7 +105,6 @@ my $bai = $bam.".bai"; ; push @uploadables, $bai;
 for my $dir ($vcf_path, $bam_path ) {
     find_or_make_on_bronto($dir);
 }
-
 ##########################################
 # upload to bronto
 foreach my $fnm (@uploadables) {
@@ -122,7 +125,10 @@ foreach my $fnm (@uploadables) {
     print "uploaded  $fnm, checksum checks\n";
 }
 
-######################################
+############################################################################
+############################################################################
+############################################################################
+############################################################################
 sub find_or_make_on_bronto(@) {
     my $dir = $_[0];
     my $cmd = "ls -d $dir";
@@ -135,7 +141,7 @@ sub find_or_make_on_bronto(@) {
     }
 }
 
-###################################################################################
+#######################################
 #######################################
 sub find_or_calculate_remote_md5sum(@) {
     my ($path, $file) = @_;
@@ -157,6 +163,8 @@ sub find_or_calculate_remote_md5sum(@) {
 
 #######################################
 sub find_fastqs  {
+    print "in find_fastqs\n";
+    exit;
     # find fastq - if we have fastq we start from there
     my @fastqs = ();
     my $ret = 0;
@@ -249,7 +257,6 @@ sub find_fastqs  {
     return @fastqs;
 }
 
-
 #######################################
 sub fastqs_from_bam {
 
@@ -301,7 +308,7 @@ sub bam_from_bronto {
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
     $ret || return "";
 
-    my @lines = split '\n', $ret;
+    my @lines = grep { !/wes\d{2}/ } split '\n', $ret; # older sequencing files
     if ( @lines>1 ) {
         printf "Multiple bamfiles found: \n". (join "\n", @lines)."\n";
         return  "";

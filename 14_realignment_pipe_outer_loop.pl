@@ -18,7 +18,7 @@ my @boids = split "\n", `grep BO$yr $infile`;
 for my $boid (@boids) {
     print $boid, "\n";
     # parse boid into year/case/individual (year I have already)
-    # run 05_relignment pipe year c
+    # run 05_realignment pipe year c
     my $case       = substr $boid, 4, 3;
     my $individual = substr $boid, 7, 2;
     print `$realn $year $case $individual`;

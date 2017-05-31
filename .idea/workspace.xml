@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" afterPath="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl" afterPath="$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,42 +22,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="20_reannotate_w_positions_and_freqs.pl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl">
+      <file leaf-file-name="14_realignment_pipe_outer_loop.pl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1174">
-              <caret line="39" column="4" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-              <folding />
+            <state relative-caret-position="740">
+              <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+              <folding>
+                <element signature="e#962#991#0#Perl5" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vcfanno.pm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
+      <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generic.pm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variant_utils_pl/generic.pm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="find_depth.pm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="67" column="10" lean-forward="true" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="370">
+              <caret line="166" column="9" lean-forward="false" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
+              <folding>
+                <element signature="e#1085#1134#0#Perl5" expanded="false" />
+                <element signature="e#1256#1466#0#Perl5" expanded="false" />
+                <element signature="e#1407#1464#0#Perl5" expanded="false" />
+                <element signature="e#1718#1755#0#Perl5" expanded="false" />
+                <element signature="e#2167#2489#0#Perl5" expanded="false" />
+                <element signature="e#2394#2487#0#Perl5" expanded="false" />
+                <element signature="e#2611#2671#0#Perl5" expanded="false" />
+                <element signature="e#2673#2715#0#Perl5" expanded="true" />
+                <element signature="e#3524#3566#0#Perl5" expanded="true" />
+                <element signature="e#3902#3944#0#Perl5" expanded="true" />
+                <element signature="e#4802#4878#0#Perl5" expanded="true" />
+                <element signature="e#5310#5505#0#Perl5" expanded="false" />
+                <element signature="e#5509#5548#0#Perl5" expanded="true" />
+                <element signature="e#5628#6401#1#Perl5" expanded="false" />
+                <element signature="e#5845#6365#0#Perl5" expanded="false" />
+                <element signature="e#7138#7272#0#Perl5" expanded="false" />
+                <element signature="e#7284#7317#1#Perl5" expanded="false" />
+                <element signature="e#7350#8749#0#Perl5" expanded="false" />
+                <element signature="e#7755#7803#0#Perl5" expanded="false" />
+                <element signature="e#7809#8743#1#Perl5" expanded="false" />
+                <element signature="e#7930#8446#0#Perl5" expanded="false" />
+                <element signature="e#8544#8676#0#Perl5" expanded="false" />
+                <element signature="e#8682#8733#1#Perl5" expanded="false" />
+                <element signature="e#8771#10086#0#Perl5" expanded="false" />
+                <element signature="e#9224#9380#0#Perl5" expanded="false" />
+                <element signature="e#9502#10031#0#Perl5" expanded="false" />
+                <element signature="e#9582#10021#0#Perl5" expanded="false" />
+                <element signature="e#9617#9748#0#Perl5" expanded="false" />
+                <element signature="e#9770#9903#0#Perl5" expanded="false" />
+                <element signature="e#9909#10007#1#Perl5" expanded="false" />
+                <element signature="e#10250#10462#0#Perl5" expanded="false" />
+                <element signature="e#10616#10660#0#Perl5" expanded="false" />
+                <element signature="e#10666#10810#1#Perl5" expanded="false" />
+                <element signature="e#10980#11033#0#Perl5" expanded="false" />
+                <element signature="e#11039#11190#1#Perl5" expanded="false" />
+                <element signature="e#11679#11778#0#Perl5" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,6 +100,7 @@
       <find>adapt</find>
       <find>$aux_four_sorted</find>
       <find>parse_phred</find>
+      <find>bailing</find>
     </findStrings>
     <replaceStrings>
       <replace>bamfile</replace>
@@ -113,8 +135,6 @@
         <option value="$PROJECT_DIR$/08_bam_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/10_roh_stats_from_dropbox.py" />
         <option value="$PROJECT_DIR$/08_bam_stats.py" />
-        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
-        <option value="$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl" />
         <option value="$PROJECT_DIR$/phred_find_test.pl" />
         <option value="$PROJECT_DIR$/variant_utils_pl/find_phred.pm" />
         <option value="$PROJECT_DIR$/depth_find_test.pl" />
@@ -122,14 +142,16 @@
         <option value="$PROJECT_DIR$/variant_utils_pl/vcfanno.pm" />
         <option value="$PROJECT_DIR$/variant_utils_pl/find_depth.pm" />
         <option value="$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl" />
+        <option value="$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl" />
+        <option value="$PROJECT_DIR$/06_realignment_pipe.pl" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="487" />
-    <option name="y" value="81" />
-    <option name="width" value="3235" />
-    <option name="height" value="1915" />
+    <option name="x" value="408" />
+    <option name="y" value="65" />
+    <option name="width" value="3028" />
+    <option name="height" value="1933" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -174,8 +196,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,6 +223,38 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="#PerlConfigurationType" factoryName="Perl" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="alternativeSdkPath" />
+      <option name="compileTimeBreakpointsEnabled" value="false" />
+      <option name="consoleCharset" />
+      <option name="envs">
+        <map />
+      </option>
+      <option name="nonInteractiveModeEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="perlParameters" value="" />
+      <option name="programParameters" />
+      <option name="scriptPath" />
+      <option name="useAlternativeSdk" value="false" />
+      <option name="workingDirectory" />
+      <option name="SCRIPT_PATH" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="PERL_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENVS">
+        <map />
+      </option>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="CHARSET" />
+      <option name="USE_ALTERNATIVE_SDK" value="false" />
+      <option name="ALTERNATIVE_SDK_PATH" />
+      <option name="scriptCharset" value="utf8" />
+      <option name="startMode" value="RUN" />
+      <option name="isNonInteractiveModeEnabled" value="false" />
+      <option name="isCompileTimeBreakpointsEnabled" value="false" />
+      <option name="initCode" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -331,10 +385,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="487" y="81" width="3235" height="1915" extended-state="0" />
+    <frame x="408" y="65" width="3028" height="1933" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2179289" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27113608" sideWeight="0.49793753" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286925" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -383,7 +437,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -661,20 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5513">
-          <caret line="149" column="45" lean-forward="false" selection-start-line="149" selection-start-column="45" selection-end-line="149" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="27" column="17" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/08_bam_stats.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2146">
@@ -710,25 +750,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/depth_find_test.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/depth_find_test.pl" />
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/generic.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
+        <state relative-caret-position="666">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
@@ -736,17 +761,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/variant_utils_pl/find_depth.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="67" column="10" lean-forward="true" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
+        <state relative-caret-position="2146">
+          <caret line="67" column="10" lean-forward="false" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/20_reannotate_w_positions_and_freqs.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1174">
-          <caret line="39" column="4" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state relative-caret-position="1517">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variant_utils_pl/vcfanno.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding>
+            <element signature="e#962#991#0#Perl5" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="166" column="9" lean-forward="false" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
+          <folding>
+            <element signature="e#1085#1134#0#Perl5" expanded="false" />
+            <element signature="e#1256#1466#0#Perl5" expanded="false" />
+            <element signature="e#1407#1464#0#Perl5" expanded="false" />
+            <element signature="e#1718#1755#0#Perl5" expanded="false" />
+            <element signature="e#2167#2489#0#Perl5" expanded="false" />
+            <element signature="e#2394#2487#0#Perl5" expanded="false" />
+            <element signature="e#2611#2671#0#Perl5" expanded="false" />
+            <element signature="e#2673#2715#0#Perl5" expanded="true" />
+            <element signature="e#3524#3566#0#Perl5" expanded="true" />
+            <element signature="e#3902#3944#0#Perl5" expanded="true" />
+            <element signature="e#4802#4878#0#Perl5" expanded="true" />
+            <element signature="e#5310#5505#0#Perl5" expanded="false" />
+            <element signature="e#5509#5548#0#Perl5" expanded="true" />
+            <element signature="e#5628#6401#1#Perl5" expanded="false" />
+            <element signature="e#5845#6365#0#Perl5" expanded="false" />
+            <element signature="e#7138#7272#0#Perl5" expanded="false" />
+            <element signature="e#7284#7317#1#Perl5" expanded="false" />
+            <element signature="e#7350#8749#0#Perl5" expanded="false" />
+            <element signature="e#7755#7803#0#Perl5" expanded="false" />
+            <element signature="e#7809#8743#1#Perl5" expanded="false" />
+            <element signature="e#7930#8446#0#Perl5" expanded="false" />
+            <element signature="e#8544#8676#0#Perl5" expanded="false" />
+            <element signature="e#8682#8733#1#Perl5" expanded="false" />
+            <element signature="e#8771#10086#0#Perl5" expanded="false" />
+            <element signature="e#9224#9380#0#Perl5" expanded="false" />
+            <element signature="e#9502#10031#0#Perl5" expanded="false" />
+            <element signature="e#9582#10021#0#Perl5" expanded="false" />
+            <element signature="e#9617#9748#0#Perl5" expanded="false" />
+            <element signature="e#9770#9903#0#Perl5" expanded="false" />
+            <element signature="e#9909#10007#1#Perl5" expanded="false" />
+            <element signature="e#10250#10462#0#Perl5" expanded="false" />
+            <element signature="e#10616#10660#0#Perl5" expanded="false" />
+            <element signature="e#10666#10810#1#Perl5" expanded="false" />
+            <element signature="e#10980#11033#0#Perl5" expanded="false" />
+            <element signature="e#11039#11190#1#Perl5" expanded="false" />
+            <element signature="e#11679#11778#0#Perl5" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

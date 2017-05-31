@@ -301,7 +301,7 @@ sub fastqs_from_bam {
 
 #######################################
 sub bam_from_bronto {
-
+    print "in bam from bronto\n";
     my @fastqs = ();
     my $cmd = "find $individual_dir -name \"*.bam\" ";
     my $ret = `echo $cmd |  ssh ivana\@brontosaurus.tch.harvard.edu 'bash -s '`;
@@ -316,9 +316,12 @@ sub bam_from_bronto {
     my @aux = split '\/', $lines[0];
     my $bamfile = pop @aux;
     my $path = join "/", @aux;
-    # md5sum
-    my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $bamfile);
+    print "downolading from bronto: $path/$bamfile\n";
     (-e $bamfile && ! -z $bamfile) || `scp ivana\@brontosaurus.tch.harvard.edu:$path/$bamfile .`;
+    # md5sum
+    print "calculating remote checksum\n";
+    my $md5sum_bronto = find_or_calculate_remote_md5sum($path, $bamfile);
+    print "calculating local checksum\n";
     my $md5sum_local = `md5sum $bamfile | cut -d " " -f 1`; chomp $md5sum_local;
     $md5sum_bronto eq $md5sum_local || die "checksum mismatch for $bamfile\n";
     print "downloaded $bamfile from bronto, checksum checks\n";

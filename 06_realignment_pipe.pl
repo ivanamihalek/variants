@@ -164,7 +164,6 @@ sub find_or_calculate_remote_md5sum(@) {
 #######################################
 sub find_fastqs  {
     print "in find_fastqs\n";
-    exit;
     # find fastq - if we have fastq we start from there
     my @fastqs = ();
     my $ret = 0;
@@ -259,7 +258,7 @@ sub find_fastqs  {
 
 #######################################
 sub fastqs_from_bam {
-
+    print "in fastqs from bam\n";
     my @fastqs = ();
 
     my $bamfile =  bam_from_bronto;

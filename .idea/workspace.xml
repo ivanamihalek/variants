@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6e79d0-f8fe-4bcb-8761-32d671a0a3f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06_realignment_pipe.pl" afterPath="$PROJECT_DIR$/06_realignment_pipe.pl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl" afterPath="$PROJECT_DIR$/14_realignment_pipe_outer_loop.pl" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="06_realignment_pipe.pl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="166" column="9" lean-forward="false" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
+            <state relative-caret-position="1147">
+              <caret line="260" column="29" lean-forward="false" selection-start-line="260" selection-start-column="29" selection-end-line="260" selection-end-column="29" />
               <folding>
                 <element signature="e#1085#1134#0#Perl5" expanded="false" />
                 <element signature="e#1256#1466#0#Perl5" expanded="false" />
@@ -55,27 +53,27 @@
                 <element signature="e#5509#5548#0#Perl5" expanded="true" />
                 <element signature="e#5628#6401#1#Perl5" expanded="false" />
                 <element signature="e#5845#6365#0#Perl5" expanded="false" />
-                <element signature="e#7138#7272#0#Perl5" expanded="false" />
-                <element signature="e#7284#7317#1#Perl5" expanded="false" />
-                <element signature="e#7350#8749#0#Perl5" expanded="false" />
-                <element signature="e#7755#7803#0#Perl5" expanded="false" />
-                <element signature="e#7809#8743#1#Perl5" expanded="false" />
-                <element signature="e#7930#8446#0#Perl5" expanded="false" />
-                <element signature="e#8544#8676#0#Perl5" expanded="false" />
-                <element signature="e#8682#8733#1#Perl5" expanded="false" />
-                <element signature="e#8771#10086#0#Perl5" expanded="false" />
-                <element signature="e#9224#9380#0#Perl5" expanded="false" />
-                <element signature="e#9502#10031#0#Perl5" expanded="false" />
-                <element signature="e#9582#10021#0#Perl5" expanded="false" />
-                <element signature="e#9617#9748#0#Perl5" expanded="false" />
-                <element signature="e#9770#9903#0#Perl5" expanded="false" />
-                <element signature="e#9909#10007#1#Perl5" expanded="false" />
-                <element signature="e#10250#10462#0#Perl5" expanded="false" />
-                <element signature="e#10616#10660#0#Perl5" expanded="false" />
-                <element signature="e#10666#10810#1#Perl5" expanded="false" />
-                <element signature="e#10980#11033#0#Perl5" expanded="false" />
-                <element signature="e#11039#11190#1#Perl5" expanded="false" />
-                <element signature="e#11679#11778#0#Perl5" expanded="false" />
+                <element signature="e#7128#7262#0#Perl5" expanded="false" />
+                <element signature="e#7274#7307#1#Perl5" expanded="false" />
+                <element signature="e#7340#8739#0#Perl5" expanded="false" />
+                <element signature="e#7745#7793#0#Perl5" expanded="false" />
+                <element signature="e#7799#8733#1#Perl5" expanded="false" />
+                <element signature="e#7920#8436#0#Perl5" expanded="false" />
+                <element signature="e#8534#8666#0#Perl5" expanded="false" />
+                <element signature="e#8672#8723#1#Perl5" expanded="false" />
+                <element signature="e#8761#10076#0#Perl5" expanded="false" />
+                <element signature="e#9214#9370#0#Perl5" expanded="false" />
+                <element signature="e#9492#10021#0#Perl5" expanded="false" />
+                <element signature="e#9572#10011#0#Perl5" expanded="false" />
+                <element signature="e#9607#9738#0#Perl5" expanded="false" />
+                <element signature="e#9760#9893#0#Perl5" expanded="false" />
+                <element signature="e#9899#9997#1#Perl5" expanded="false" />
+                <element signature="e#10273#10485#0#Perl5" expanded="false" />
+                <element signature="e#10639#10683#0#Perl5" expanded="false" />
+                <element signature="e#10689#10833#1#Perl5" expanded="false" />
+                <element signature="e#11003#11056#0#Perl5" expanded="false" />
+                <element signature="e#11062#11213#1#Perl5" expanded="false" />
+                <element signature="e#11702#11801#0#Perl5" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -795,8 +793,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06_realignment_pipe.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="166" column="9" lean-forward="false" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
+        <state relative-caret-position="1147">
+          <caret line="260" column="29" lean-forward="false" selection-start-line="260" selection-start-column="29" selection-end-line="260" selection-end-column="29" />
           <folding>
             <element signature="e#1085#1134#0#Perl5" expanded="false" />
             <element signature="e#1256#1466#0#Perl5" expanded="false" />
@@ -813,27 +811,27 @@
             <element signature="e#5509#5548#0#Perl5" expanded="true" />
             <element signature="e#5628#6401#1#Perl5" expanded="false" />
             <element signature="e#5845#6365#0#Perl5" expanded="false" />
-            <element signature="e#7138#7272#0#Perl5" expanded="false" />
-            <element signature="e#7284#7317#1#Perl5" expanded="false" />
-            <element signature="e#7350#8749#0#Perl5" expanded="false" />
-            <element signature="e#7755#7803#0#Perl5" expanded="false" />
-            <element signature="e#7809#8743#1#Perl5" expanded="false" />
-            <element signature="e#7930#8446#0#Perl5" expanded="false" />
-            <element signature="e#8544#8676#0#Perl5" expanded="false" />
-            <element signature="e#8682#8733#1#Perl5" expanded="false" />
-            <element signature="e#8771#10086#0#Perl5" expanded="false" />
-            <element signature="e#9224#9380#0#Perl5" expanded="false" />
-            <element signature="e#9502#10031#0#Perl5" expanded="false" />
-            <element signature="e#9582#10021#0#Perl5" expanded="false" />
-            <element signature="e#9617#9748#0#Perl5" expanded="false" />
-            <element signature="e#9770#9903#0#Perl5" expanded="false" />
-            <element signature="e#9909#10007#1#Perl5" expanded="false" />
-            <element signature="e#10250#10462#0#Perl5" expanded="false" />
-            <element signature="e#10616#10660#0#Perl5" expanded="false" />
-            <element signature="e#10666#10810#1#Perl5" expanded="false" />
-            <element signature="e#10980#11033#0#Perl5" expanded="false" />
-            <element signature="e#11039#11190#1#Perl5" expanded="false" />
-            <element signature="e#11679#11778#0#Perl5" expanded="false" />
+            <element signature="e#7128#7262#0#Perl5" expanded="false" />
+            <element signature="e#7274#7307#1#Perl5" expanded="false" />
+            <element signature="e#7340#8739#0#Perl5" expanded="false" />
+            <element signature="e#7745#7793#0#Perl5" expanded="false" />
+            <element signature="e#7799#8733#1#Perl5" expanded="false" />
+            <element signature="e#7920#8436#0#Perl5" expanded="false" />
+            <element signature="e#8534#8666#0#Perl5" expanded="false" />
+            <element signature="e#8672#8723#1#Perl5" expanded="false" />
+            <element signature="e#8761#10076#0#Perl5" expanded="false" />
+            <element signature="e#9214#9370#0#Perl5" expanded="false" />
+            <element signature="e#9492#10021#0#Perl5" expanded="false" />
+            <element signature="e#9572#10011#0#Perl5" expanded="false" />
+            <element signature="e#9607#9738#0#Perl5" expanded="false" />
+            <element signature="e#9760#9893#0#Perl5" expanded="false" />
+            <element signature="e#9899#9997#1#Perl5" expanded="false" />
+            <element signature="e#10273#10485#0#Perl5" expanded="false" />
+            <element signature="e#10639#10683#0#Perl5" expanded="false" />
+            <element signature="e#10689#10833#1#Perl5" expanded="false" />
+            <element signature="e#11003#11056#0#Perl5" expanded="false" />
+            <element signature="e#11062#11213#1#Perl5" expanded="false" />
+            <element signature="e#11702#11801#0#Perl5" expanded="false" />
           </folding>
         </state>
       </provider>
